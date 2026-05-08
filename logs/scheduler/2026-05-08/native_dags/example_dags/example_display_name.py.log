@@ -1,0 +1,315 @@
+[2026-05-08T11:45:08.664+0000] {processor.py:161} INFO - Started process (PID=78) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:45:08.665+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:45:08.667+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:45:08.667+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:45:08.682+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:45:08.719+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:45:08.719+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:45:08.741+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:45:08.740+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:45:08.758+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.099 seconds
+[2026-05-08T11:45:40.163+0000] {processor.py:161} INFO - Started process (PID=136) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:45:40.164+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:45:40.166+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:45:40.166+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:45:40.172+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:45:40.247+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:45:40.247+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:45:40.256+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:45:40.256+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:45:40.273+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.114 seconds
+[2026-05-08T11:46:10.691+0000] {processor.py:161} INFO - Started process (PID=194) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:46:10.692+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:46:10.694+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:46:10.694+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:46:10.700+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:46:10.723+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:46:10.723+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:46:10.735+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:46:10.735+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:46:10.755+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.070 seconds
+[2026-05-08T11:46:40.889+0000] {processor.py:161} INFO - Started process (PID=252) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:46:40.890+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:46:40.892+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:46:40.892+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:46:40.899+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:46:40.924+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:46:40.924+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:46:40.938+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:46:40.938+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:46:40.960+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.077 seconds
+[2026-05-08T11:47:11.290+0000] {processor.py:161} INFO - Started process (PID=310) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:47:11.291+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:47:11.294+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:47:11.293+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:47:11.300+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:47:11.323+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:47:11.322+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:47:11.334+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:47:11.334+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:47:11.353+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.069 seconds
+[2026-05-08T11:47:42.085+0000] {processor.py:161} INFO - Started process (PID=368) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:47:42.086+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:47:42.089+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:47:42.088+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:47:42.095+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:47:42.118+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:47:42.118+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:47:42.130+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:47:42.130+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:47:42.148+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.070 seconds
+[2026-05-08T11:48:12.345+0000] {processor.py:161} INFO - Started process (PID=426) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:48:12.346+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:48:12.352+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:48:12.351+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:48:12.358+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:48:12.381+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:48:12.381+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:48:12.398+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:48:12.398+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:48:12.416+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.077 seconds
+[2026-05-08T11:48:42.562+0000] {processor.py:161} INFO - Started process (PID=484) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:48:42.563+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:48:42.565+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:48:42.565+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:48:42.571+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:48:42.593+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:48:42.593+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:48:42.604+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:48:42.604+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:48:42.625+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.069 seconds
+[2026-05-08T11:49:12.780+0000] {processor.py:161} INFO - Started process (PID=542) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:49:12.781+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:49:12.784+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:49:12.784+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:49:12.788+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:49:12.807+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:49:12.807+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:49:12.817+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:49:12.817+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:49:12.832+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.057 seconds
+[2026-05-08T11:49:43.167+0000] {processor.py:161} INFO - Started process (PID=600) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:49:43.169+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:49:43.173+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:49:43.173+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:49:43.180+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:49:43.196+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:49:43.195+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:49:43.210+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:49:43.209+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:49:43.228+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.068 seconds
+[2026-05-08T11:50:14.190+0000] {processor.py:161} INFO - Started process (PID=658) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:50:14.191+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:50:14.193+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:50:14.193+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:50:14.198+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:50:14.275+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:50:14.275+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:50:14.283+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:50:14.282+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:50:14.296+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.111 seconds
+[2026-05-08T11:50:45.133+0000] {processor.py:161} INFO - Started process (PID=716) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:50:45.134+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:50:45.136+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:50:45.136+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:50:45.143+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:50:45.167+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:50:45.167+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:50:45.181+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:50:45.181+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:50:45.202+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.076 seconds
+[2026-05-08T11:51:15.494+0000] {processor.py:161} INFO - Started process (PID=774) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:51:15.495+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:51:15.497+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:51:15.497+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:51:15.504+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:51:15.527+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:51:15.526+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:51:15.538+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:51:15.538+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:51:15.556+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.068 seconds
+[2026-05-08T11:51:46.708+0000] {processor.py:161} INFO - Started process (PID=832) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:51:46.709+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:51:46.711+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:51:46.710+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:51:46.715+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:51:46.734+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:51:46.734+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:51:46.745+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:51:46.745+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:51:46.763+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.060 seconds
+[2026-05-08T11:52:18.068+0000] {processor.py:161} INFO - Started process (PID=890) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:52:18.070+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:52:18.072+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:52:18.072+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:52:18.079+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:52:18.102+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:52:18.102+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:52:18.114+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:52:18.114+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:52:18.137+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.076 seconds
+[2026-05-08T11:52:48.706+0000] {processor.py:161} INFO - Started process (PID=948) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:52:48.707+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:52:48.708+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:52:48.708+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:52:48.713+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:52:48.732+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:52:48.731+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:52:48.742+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:52:48.742+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:52:48.755+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.054 seconds
+[2026-05-08T11:53:19.610+0000] {processor.py:161} INFO - Started process (PID=1006) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:53:19.611+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:53:19.613+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:53:19.613+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:53:19.618+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:53:19.635+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:53:19.634+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:53:19.644+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:53:19.644+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:53:19.658+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.053 seconds
+[2026-05-08T11:53:50.725+0000] {processor.py:161} INFO - Started process (PID=1064) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:53:50.727+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:53:50.729+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:53:50.729+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:53:50.736+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:53:50.758+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:53:50.758+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:53:50.770+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:53:50.770+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:53:50.788+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.068 seconds
+[2026-05-08T11:54:21.058+0000] {processor.py:161} INFO - Started process (PID=1122) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:54:21.059+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:54:21.062+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:54:21.061+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:54:21.068+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:54:21.092+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:54:21.092+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:54:21.106+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:54:21.106+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:54:21.124+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.073 seconds
+[2026-05-08T11:54:52.208+0000] {processor.py:161} INFO - Started process (PID=1180) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:54:52.209+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:54:52.211+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:54:52.211+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:54:52.217+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:54:52.243+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:54:52.243+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:54:52.259+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:54:52.258+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:54:52.274+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.072 seconds
+[2026-05-08T11:55:23.093+0000] {processor.py:161} INFO - Started process (PID=1238) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:55:23.094+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:55:23.097+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:55:23.096+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:55:23.104+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:55:23.127+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:55:23.127+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:55:23.144+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:55:23.143+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:55:23.167+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.080 seconds
+[2026-05-08T11:55:53.213+0000] {processor.py:161} INFO - Started process (PID=1296) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:55:53.215+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:55:53.217+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:55:53.217+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:55:53.222+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:55:53.241+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:55:53.241+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:55:53.252+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:55:53.251+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:55:53.268+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.059 seconds
+[2026-05-08T11:56:23.479+0000] {processor.py:161} INFO - Started process (PID=1354) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:56:23.480+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:56:23.483+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:56:23.483+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:56:23.489+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:56:23.512+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:56:23.512+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:56:23.525+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:56:23.525+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:56:23.549+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.076 seconds
+[2026-05-08T11:56:53.911+0000] {processor.py:161} INFO - Started process (PID=1411) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:56:53.912+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:56:53.915+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:56:53.915+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:56:53.923+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:56:53.948+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:56:53.948+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:56:53.961+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:56:53.960+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:56:53.979+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.077 seconds
+[2026-05-08T11:57:24.340+0000] {processor.py:161} INFO - Started process (PID=1469) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:57:24.342+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:57:24.345+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:57:24.344+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:57:24.352+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:57:24.376+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:57:24.376+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:57:24.389+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:57:24.388+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:57:24.410+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.079 seconds
+[2026-05-08T11:57:54.554+0000] {processor.py:161} INFO - Started process (PID=1527) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:57:54.555+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:57:54.558+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:57:54.558+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:57:54.564+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:57:54.588+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:57:54.588+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:57:54.602+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:57:54.602+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:57:54.624+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.077 seconds
+[2026-05-08T11:58:25.417+0000] {processor.py:161} INFO - Started process (PID=1585) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:58:25.419+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:58:25.421+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:58:25.421+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:58:25.427+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:58:25.452+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:58:25.451+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:58:25.465+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:58:25.464+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:58:25.483+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.072 seconds
+[2026-05-08T11:58:55.938+0000] {processor.py:161} INFO - Started process (PID=1643) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:58:55.940+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:58:55.943+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:58:55.942+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:58:55.949+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:58:55.972+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:58:55.971+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:58:55.984+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:58:55.984+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:58:56.002+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.070 seconds
+[2026-05-08T11:59:26.308+0000] {processor.py:161} INFO - Started process (PID=1701) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:59:26.309+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T11:59:26.311+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:59:26.311+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:59:26.317+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T11:59:26.342+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:59:26.342+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T11:59:26.356+0000] {logging_mixin.py:188} INFO - [2026-05-08T11:59:26.355+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T11:59:26.381+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.080 seconds
+[2026-05-08T13:36:17.144+0000] {processor.py:161} INFO - Started process (PID=72) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:36:17.145+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:36:17.148+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:36:17.147+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:36:17.158+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:36:17.181+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:36:17.181+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:36:17.194+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:36:17.194+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:36:17.212+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.075 seconds
+[2026-05-08T13:36:48.008+0000] {processor.py:161} INFO - Started process (PID=130) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:36:48.008+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:36:48.010+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:36:48.010+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:36:48.015+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:36:48.039+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:36:48.039+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:36:48.053+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:36:48.053+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:36:48.071+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.069 seconds
+[2026-05-08T13:37:18.547+0000] {processor.py:161} INFO - Started process (PID=194) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:37:18.548+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:37:18.550+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:37:18.549+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:37:18.555+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:37:18.566+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:37:18.566+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:37:18.579+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:37:18.579+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:37:18.597+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.055 seconds
+[2026-05-08T13:37:49.770+0000] {processor.py:161} INFO - Started process (PID=252) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:37:49.771+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:37:49.773+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:37:49.773+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:37:49.778+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:37:49.859+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:37:49.858+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:37:49.868+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:37:49.867+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:37:49.884+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.118 seconds
+[2026-05-08T13:38:20.189+0000] {processor.py:161} INFO - Started process (PID=310) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:38:20.189+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:38:20.191+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:38:20.191+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:38:20.195+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:38:20.213+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:38:20.212+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:38:20.222+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:38:20.222+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:38:20.237+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.053 seconds
+[2026-05-08T13:38:50.650+0000] {processor.py:161} INFO - Started process (PID=368) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:38:50.651+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:38:50.652+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:38:50.652+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:38:50.657+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:38:50.673+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:38:50.673+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:38:50.682+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:38:50.682+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:38:50.696+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.051 seconds
+[2026-05-08T13:39:21.029+0000] {processor.py:161} INFO - Started process (PID=426) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:39:21.030+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:39:21.031+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:39:21.031+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:39:21.036+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:39:21.052+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:39:21.052+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:39:21.061+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:39:21.060+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:39:21.073+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.049 seconds
+[2026-05-08T13:39:51.524+0000] {processor.py:161} INFO - Started process (PID=484) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:39:51.525+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:39:51.526+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:39:51.526+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:39:51.531+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:39:51.547+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:39:51.547+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:39:51.555+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:39:51.555+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:39:51.568+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.049 seconds
+[2026-05-08T13:40:21.799+0000] {processor.py:161} INFO - Started process (PID=542) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:40:21.800+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:40:21.802+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:40:21.801+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:40:21.806+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:40:21.821+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:40:21.821+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:40:21.829+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:40:21.829+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:40:21.841+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.046 seconds
+[2026-05-08T13:40:52.210+0000] {processor.py:161} INFO - Started process (PID=600) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:40:52.211+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:40:52.212+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:40:52.212+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:40:52.216+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:40:52.232+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:40:52.231+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:40:52.240+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:40:52.240+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:40:52.252+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.046 seconds
+[2026-05-08T13:41:22.471+0000] {processor.py:161} INFO - Started process (PID=658) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:41:22.472+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:41:22.473+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:41:22.473+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:41:22.478+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:41:22.493+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:41:22.493+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:41:22.502+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:41:22.502+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:41:22.515+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.048 seconds
+[2026-05-08T13:41:52.743+0000] {processor.py:161} INFO - Started process (PID=716) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:41:52.743+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:41:52.745+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:41:52.745+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:41:52.749+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:41:52.767+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:41:52.767+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:41:52.777+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:41:52.777+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:41:52.789+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.051 seconds
+[2026-05-08T13:42:23.005+0000] {processor.py:161} INFO - Started process (PID=774) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:42:23.006+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:42:23.007+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:42:23.007+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:42:23.011+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:42:23.028+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:42:23.027+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:42:23.035+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:42:23.035+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:42:23.048+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.047 seconds
+[2026-05-08T13:42:53.347+0000] {processor.py:161} INFO - Started process (PID=832) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:42:53.348+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:42:53.349+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:42:53.349+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:42:53.354+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:42:53.369+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:42:53.369+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:42:53.377+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:42:53.377+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:42:53.390+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.047 seconds
+[2026-05-08T13:43:23.859+0000] {processor.py:161} INFO - Started process (PID=890) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:43:23.861+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:43:23.863+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:43:23.862+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:43:23.869+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:43:23.891+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:43:23.890+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:43:23.908+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:43:23.907+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:43:23.925+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.072 seconds
+[2026-05-08T13:43:54.371+0000] {processor.py:161} INFO - Started process (PID=948) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:43:54.372+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py for tasks to queue
+[2026-05-08T13:43:54.373+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:43:54.373+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:43:54.378+0000] {processor.py:840} INFO - DAG(s) 'example_display_name' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py
+[2026-05-08T13:43:54.398+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:43:54.398+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-08T13:43:54.406+0000] {logging_mixin.py:188} INFO - [2026-05-08T13:43:54.406+0000] {dag.py:3947} INFO - Setting next_dagrun for example_display_name to None, run_after=None
+[2026-05-08T13:43:54.418+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_display_name.py took 0.052 seconds

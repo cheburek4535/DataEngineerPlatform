@@ -1,110 +1,12 @@
 from typing import Optional
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
-from collector.models import RawWeather, Weather, Anomaly, LocationToTrack
+from collector.models import Weather, Anomaly, LocationToTrack
 from db import get_session
-import openmeteo_requests
-import json
+from src.transform import collect_weather
 
-import requests_cache
-from retry_requests import retry
 
 db = get_session()
-
-cache_session = requests_cache.CachedSession('.cache', expire_after = 3600)
-retry_session = retry(cache_session, retries = 5, backoff_factor = 0.2)
-openmeteo = openmeteo_requests.Client(session = retry_session)
-def get_weather(lon: float, lat: float) -> Optional[dict]:
-    url = "https://api.open-meteo.com/v1/forecast"
-    if lon is not None and lat is not None:
-        params = {
-            'latitude': lat,
-            'longitude': lon,
-            'current': 'temperature_2m,wind_speed_10m,relative_humidity_2m,pressure_msl'
-        }
-
-    else:
-        return None
-
-    try:
-        responses = openmeteo.weather_api(url, params=params)
-
-        response = responses[0]
-        current = response.Current()
-        current_temperature = current.Variables(0).Value()
-        current_wind_speed = current.Variables(1).Value()
-        current_relative_humidity = current.Variables(2).Value()
-        current_pressure = current.Variables(3).Value()
-
-        latitude = response.Latitude()
-        longitude = response.Longitude()
-
-        data = {
-            'temp': float(current_temperature),  # Преобразуем в обычный float
-            'wind_speed': float(current_wind_speed),
-            'humidity': float(current_relative_humidity),
-            'pressure': float(current_pressure),
-            'latitude': float(latitude),
-            'longitude': float(longitude),
-            'timestamp': response.Current().Time(),  # Время текущих данных
-            'raw_json': json.loads(json.dumps({
-                'latitude': response.Latitude(),
-                'longitude': response.Longitude(),
-                'elevation': response.Elevation(),
-                'timezone': response.Timezone(),
-                'timezone_abbreviation': response.TimezoneAbbreviation(),
-                'utc_offset_seconds': response.UtcOffsetSeconds(),
-                'current': {
-                    'time': response.Current().Time(),
-                    'interval': response.Current().Interval(),
-                    'temperature_2m': float(current_temperature),
-                    'wind_speed_10m': float(current_wind_speed),
-                    'relative_humidity_2m': float(current_relative_humidity),
-                    'pressure_msl': float(current_pressure)
-                }
-            }))
-        }
-
-        return data
-    except Exception as e:
-        print(f"Ошибка запроса погоды: {e}")
-        return None
-
-
-def collect_raw_weather(db: Session, weather: dict) -> dict:
-        print(weather)
-        db_weather = RawWeather(
-            lat=weather['latitude'],
-            lon=weather['longitude'],
-            data_json=weather
-        )
-        db.add(db_weather)
-        db.commit()
-        db.refresh(db_weather)
-        return db_weather
-
-def save_structured_weather(db: Session, raw_weather: RawWeather) -> dict:
-    db_weather = Weather(
-            lat=raw_weather.lat,
-            lon=raw_weather.lon,
-            timestamp=raw_weather.collected_at,
-            temperature=raw_weather.data_json['temp'],
-            pressure=raw_weather.data_json['pressure'],
-            humidity=raw_weather.data_json['humidity'],
-            wind_speed=raw_weather.data_json['wind_speed'],
-        )
-    print(db_weather)
-    db.add(db_weather)
-    db.commit()
-    return db_weather
-
-def collect_weather(db: Session, lat: float, lon: float) -> Optional[dict]:
-    weather = get_weather(lon=lon, lat=lat)
-    if weather:
-        raw_weather = collect_raw_weather(db, weather)
-        structured_weather = save_structured_weather(db, raw_weather)
-        return structured_weather
-    return None
 
 
 def compare_weather(db: Session, structured_weather: Weather) -> Optional[dict]:
@@ -210,5 +112,3 @@ def save_anomaly(db: Session, anomalies: dict, loc: LocationToTrack, data: dict)
     db.commit()
     db.refresh(db_anomaly)
     return db_anomaly
-# check_anomalies(db, 57, 38)
-# print(check_anomalies(db, lat=47.48, lon=97.98))

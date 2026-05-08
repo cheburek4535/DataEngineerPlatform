@@ -1,3 +1,36 @@
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import declarative_base
+from dotenv import load_dotenv
+from config import settings
+
+load_dotenv()
+
+
+#SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
+SQLALCHEMY_DATABASE_URL = f"postgresql+psycopg://{settings.db_user}:{settings.db_password}@{settings.db_host}:{settings.db_port}/{settings.db_name}"
+
+engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=False, pool_pre_ping=True)
+
+SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+
+print("DATABASE_URL:", engine.url)
+
+Base = declarative_base()
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+def get_session():
+    """Возвращает сессию для использования в скриптах"""
+    return SessionLocal()
+
+
 from sqlalchemy import Integer, Column, DateTime, ForeignKey, Float
 from sqlalchemy.sql import func
 from sqlalchemy.orm import Mapped, relationship
