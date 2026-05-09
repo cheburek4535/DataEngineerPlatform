@@ -6,12 +6,12 @@ class Settings(BaseSettings):
     app_debug: bool = True
     app_name: str = "weather_guard"
 
-    db_host: str = "localhost"
+    db_host: str = "postgres"
     db_port: int = 5432
     db_name: str = "weather_guard"
-    db_user: str = "postgres"
+    db_user: str = "airflow"
     #db_password: str = Field(..., env="DB_PASSWORD") # type: ignore[arg-type]
-    db_password: str = "A101325b!A255075B!!e"
+    db_password: str = "airflow"
     secret_key: str = "636"
     #secret_key: str = Field(..., env="SECRET_KEY") # type: ignore[arg-type]
 

@@ -1,14 +1,12 @@
 from typing import Optional
 from sqlalchemy.orm import Session
-from collector.models import RawWeather
-from db import get_session
+from db import RawWeather
 import openmeteo_requests
 import json
 
 import requests_cache
 from retry_requests import retry
 
-db = get_session()
 
 cache_session = requests_cache.CachedSession('.cache', expire_after = 3600)
 retry_session = retry(cache_session, retries = 5, backoff_factor = 0.2)

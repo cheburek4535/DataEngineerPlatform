@@ -49,8 +49,8 @@ x-airflow-common:
   # In order to add custom dependencies or upgrade provider packages you can use your extended image.
   # Comment the image line, place your Dockerfile in the directory where you placed the docker-compose.yaml
   # and uncomment the "build" line below, Then run `docker-compose build` to build the images.
-  image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.9.3}
-  # build: .
+  # image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.9.3}
+  build: .
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
@@ -69,6 +69,8 @@ x-airflow-common:
     # WARNING: Use _PIP_ADDITIONAL_REQUIREMENTS option ONLY for a quick checks
     # for other purpose (development, test and especially production usage) build/extend Airflow image.
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
+    _PIP_ADDITIONAL_DEPENDENCIES: "openmeteo-requests retry-requests"
+
     # The following line can be used to set a custom config file, stored in the local config folder
     # If you want to use it, outcomment it and replace airflow.cfg with the name of your config file
     PYTHONPATH: "/opt/airflow/dags:/opt/airflow/plugins:/opt/airflow/src"
@@ -86,6 +88,8 @@ x-airflow-common:
       condition: service_healthy
     postgres:
       condition: service_healthy
+    weather_db:
+      condition: service_healthy
 
 services:
   postgres:
@@ -94,7 +98,6 @@ services:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
-      PYTHONPATH: "/opt/airflow/src"
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
     healthcheck:
@@ -103,6 +106,23 @@ services:
       retries: 5
       start_period: 5s
     restart: always
+
+  weather_db:
+    image: postgres:13
+    container_name: weather_db
+    restart: always
+    environment:
+      POSTGRES_USER: weather_user
+      POSTGRES_PASSWORD: weather_pass
+      POSTGRES_DB: weather_guard
+    ports:
+      - "5433:5432"
+    volumes:
+      - weather_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "weather_user"]
+      interval: 10s
+      retries: 5
 
   redis:
     # Redis is limited to 7.2-bookworm due to licencing change
@@ -289,3 +309,4 @@ services:
 
 volumes:
   postgres-db-volume:
+  weather_db_data:

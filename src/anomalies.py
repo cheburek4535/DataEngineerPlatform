@@ -1,12 +1,9 @@
 from typing import Optional
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
-from collector.models import Weather, Anomaly, LocationToTrack
-from db import get_session
-from src.transform import collect_weather
+from db import Weather, Anomaly, LocationToTrack
+from transform import collect_weather
 
-
-db = get_session()
 
 
 def compare_weather(db: Session, structured_weather: Weather) -> Optional[dict]:

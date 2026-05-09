@@ -1,0 +1,21 @@
+[2026-05-09T10:32:16.295+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-09T10:32:16.318+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_pipeline.extract_weather scheduled__2026-05-09T10:15:00+00:00 [queued]>
+[2026-05-09T10:32:16.323+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_pipeline.extract_weather scheduled__2026-05-09T10:15:00+00:00 [queued]>
+[2026-05-09T10:32:16.323+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 3
+[2026-05-09T10:32:16.332+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): extract_weather> on 2026-05-09 10:15:00+00:00
+[2026-05-09T10:32:16.341+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=86) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-05-09T10:32:16.343+0000] {standard_task_runner.py:64} INFO - Started process 97 to run task
+[2026-05-09T10:32:16.343+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'weather_pipeline', 'extract_weather', 'scheduled__2026-05-09T10:15:00+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/weather_pipeline.py', '--cfg-path', '/tmp/tmprbjfb6qs']
+[2026-05-09T10:32:16.346+0000] {standard_task_runner.py:91} INFO - Job 13: Subtask extract_weather
+[2026-05-09T10:32:16.393+0000] {task_command.py:426} INFO - Running <TaskInstance: weather_pipeline.extract_weather scheduled__2026-05-09T10:15:00+00:00 [running]> on host f3c5ce6e1c4d
+[2026-05-09T10:32:16.462+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Cheburek' AIRFLOW_CTX_DAG_ID='weather_pipeline' AIRFLOW_CTX_TASK_ID='extract_weather' AIRFLOW_CTX_EXECUTION_DATE='2026-05-09T10:15:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-09T10:15:00+00:00'
+[2026-05-09T10:32:16.464+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-09T10:32:16.480+0000] {logging_mixin.py:188} INFO - {'temp': 12.117499351501465, 'wind_speed': 10.308830261230469, 'humidity': 39.0, 'pressure': 1023.9000244140625, 'latitude': 55.75, 'longitude': 37.625, 'timestamp': 1778322600, 'raw_json': {'latitude': 55.75, 'longitude': 37.625, 'elevation': 152.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778322600, 'interval': 900, 'temperature_2m': 12.117499351501465, 'wind_speed_10m': 10.308830261230469, 'relative_humidity_2m': 39.0, 'pressure_msl': 1023.9000244140625}}}
+[2026-05-09T10:32:16.497+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-09T10:32:16.498+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-09T10:32:16.506+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=weather_pipeline, task_id=extract_weather, run_id=scheduled__2026-05-09T10:15:00+00:00, execution_date=20260509T101500, start_date=20260509T103216, end_date=20260509T103216
+[2026-05-09T10:32:16.557+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-09T10:32:16.579+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-09T10:32:16.581+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

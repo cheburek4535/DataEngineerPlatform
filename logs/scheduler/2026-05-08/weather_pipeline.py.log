@@ -1,0 +1,544 @@
+[2026-05-08T21:47:24.168+0000] {processor.py:161} INFO - Started process (PID=89) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:47:24.169+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T21:47:24.170+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:47:24.170+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:47:24.185+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:47:24.183+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T21:47:24.186+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:47:24.203+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.040 seconds
+[2026-05-08T21:47:55.036+0000] {processor.py:161} INFO - Started process (PID=148) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:47:55.037+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T21:47:55.039+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:47:55.039+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:47:55.049+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:47:55.047+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T21:47:55.050+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:47:55.068+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.037 seconds
+[2026-05-08T21:49:17.115+0000] {processor.py:161} INFO - Started process (PID=46) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:49:17.116+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T21:49:17.118+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:49:17.118+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:49:17.129+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:49:17.127+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T21:49:17.130+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:49:17.152+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.043 seconds
+[2026-05-08T21:49:47.343+0000] {processor.py:161} INFO - Started process (PID=105) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:49:47.344+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T21:49:47.346+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:49:47.346+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:49:47.357+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:49:47.355+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T21:49:47.358+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:49:47.378+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.042 seconds
+[2026-05-08T21:50:17.563+0000] {processor.py:161} INFO - Started process (PID=164) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:50:17.564+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T21:50:17.565+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:50:17.565+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:50:17.575+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:50:17.573+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T21:50:17.576+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:50:17.594+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.037 seconds
+[2026-05-08T21:50:47.922+0000] {processor.py:161} INFO - Started process (PID=223) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:50:47.923+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T21:50:47.925+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:50:47.925+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:50:47.935+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:50:47.933+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T21:50:47.936+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:50:47.953+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.037 seconds
+[2026-05-08T21:51:18.141+0000] {processor.py:161} INFO - Started process (PID=282) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:51:18.142+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T21:51:18.144+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:51:18.144+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:51:18.154+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:51:18.152+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T21:51:18.155+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:51:18.172+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.037 seconds
+[2026-05-08T21:51:48.304+0000] {processor.py:161} INFO - Started process (PID=347) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:51:48.304+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T21:51:48.306+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:51:48.306+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:51:48.317+0000] {logging_mixin.py:188} INFO - [2026-05-08T21:51:48.314+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T21:51:48.318+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T21:51:48.338+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.040 seconds
+[2026-05-08T22:03:24.075+0000] {processor.py:161} INFO - Started process (PID=89) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:03:24.076+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:03:24.078+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:03:24.078+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:03:24.089+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:03:24.085+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:03:24.090+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:03:24.110+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.041 seconds
+[2026-05-08T22:04:44.174+0000] {processor.py:161} INFO - Started process (PID=47) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:04:44.175+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:04:44.177+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:04:44.177+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:04:44.189+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:04:44.186+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:04:44.190+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:04:44.214+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.047 seconds
+[2026-05-08T22:05:14.604+0000] {processor.py:161} INFO - Started process (PID=106) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:05:14.606+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:05:14.610+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:05:14.609+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:05:14.633+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:05:14.628+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:05:14.635+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:05:14.666+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.073 seconds
+[2026-05-08T22:05:45.279+0000] {processor.py:161} INFO - Started process (PID=171) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:05:45.281+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:05:45.284+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:05:45.283+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:05:45.304+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:05:45.301+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:05:45.306+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:05:45.339+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.070 seconds
+[2026-05-08T22:06:16.114+0000] {processor.py:161} INFO - Started process (PID=230) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:06:16.115+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:06:16.120+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:06:16.119+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:06:16.139+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:06:16.135+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:06:16.141+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:06:16.173+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.070 seconds
+[2026-05-08T22:06:46.329+0000] {processor.py:161} INFO - Started process (PID=289) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:06:46.331+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:06:46.336+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:06:46.335+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:06:46.365+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:06:46.359+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:06:46.367+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:06:46.399+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.082 seconds
+[2026-05-08T22:07:16.465+0000] {processor.py:161} INFO - Started process (PID=348) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:07:16.466+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:07:16.470+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:07:16.469+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:07:16.494+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:07:16.489+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:07:16.495+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:07:16.528+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.076 seconds
+[2026-05-08T22:07:46.894+0000] {processor.py:161} INFO - Started process (PID=407) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:07:46.896+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:07:46.899+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:07:46.899+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:07:46.919+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:07:46.914+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:07:46.921+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:07:46.952+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.068 seconds
+[2026-05-08T22:08:17.620+0000] {processor.py:161} INFO - Started process (PID=466) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:08:17.622+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:08:17.625+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:08:17.625+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:08:17.647+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:08:17.643+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:08:17.649+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:08:17.679+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.070 seconds
+[2026-05-08T22:08:48.246+0000] {processor.py:161} INFO - Started process (PID=525) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:08:48.247+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:08:48.251+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:08:48.250+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:08:48.276+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:08:48.271+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:08:48.278+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:08:48.309+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.073 seconds
+[2026-05-08T22:09:18.717+0000] {processor.py:161} INFO - Started process (PID=584) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:09:18.719+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:09:18.722+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:09:18.721+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:09:18.743+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:09:18.739+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:09:18.745+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:09:18.778+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.071 seconds
+[2026-05-08T22:09:49.561+0000] {processor.py:161} INFO - Started process (PID=643) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:09:49.563+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:09:49.567+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:09:49.566+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:09:49.591+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:09:49.586+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:09:49.593+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:09:49.624+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.073 seconds
+[2026-05-08T22:10:20.189+0000] {processor.py:161} INFO - Started process (PID=702) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:10:20.191+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:10:20.194+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:10:20.194+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:10:20.215+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:10:20.210+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:10:20.217+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:10:20.248+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.069 seconds
+[2026-05-08T22:10:50.974+0000] {processor.py:161} INFO - Started process (PID=761) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:10:50.976+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:10:50.979+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:10:50.978+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:10:51.009+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:10:51.003+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:10:51.011+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:10:51.041+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.079 seconds
+[2026-05-08T22:11:21.951+0000] {processor.py:161} INFO - Started process (PID=820) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:11:21.953+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:11:21.956+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:11:21.956+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:11:21.984+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:11:21.978+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:11:21.987+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:11:22.019+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.078 seconds
+[2026-05-08T22:11:52.505+0000] {processor.py:161} INFO - Started process (PID=879) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:11:52.506+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:11:52.509+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:11:52.508+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:11:52.520+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:11:52.518+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:11:52.521+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:11:52.545+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.051 seconds
+[2026-05-08T22:12:23.046+0000] {processor.py:161} INFO - Started process (PID=938) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:12:23.048+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:12:23.052+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:12:23.052+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:12:23.075+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:12:23.070+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:12:23.077+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:12:23.114+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.083 seconds
+[2026-05-08T22:12:53.417+0000] {processor.py:161} INFO - Started process (PID=997) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:12:53.419+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:12:53.422+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:12:53.422+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:12:53.444+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:12:53.440+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:12:53.446+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:12:53.479+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.072 seconds
+[2026-05-08T22:13:23.556+0000] {processor.py:161} INFO - Started process (PID=1056) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:13:23.558+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:13:23.561+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:13:23.561+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:13:23.587+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:13:23.582+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:13:23.590+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:13:23.628+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.084 seconds
+[2026-05-08T22:13:53.820+0000] {processor.py:161} INFO - Started process (PID=1115) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:13:53.822+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:13:53.825+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:13:53.825+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:13:53.851+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:13:53.847+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:13:53.852+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:13:53.885+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.077 seconds
+[2026-05-08T22:14:24.155+0000] {processor.py:161} INFO - Started process (PID=1174) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:14:24.156+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:14:24.160+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:14:24.159+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:14:24.181+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:14:24.176+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:14:24.184+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:14:24.217+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.074 seconds
+[2026-05-08T22:14:54.676+0000] {processor.py:161} INFO - Started process (PID=1233) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:14:54.677+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:14:54.679+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:14:54.679+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:14:54.692+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:14:54.688+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:14:54.693+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:14:54.721+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.053 seconds
+[2026-05-08T22:15:25.042+0000] {processor.py:161} INFO - Started process (PID=1292) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:15:25.044+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:15:25.047+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:15:25.046+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:15:25.068+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:15:25.063+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:15:25.069+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:15:25.101+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.070 seconds
+[2026-05-08T22:15:55.660+0000] {processor.py:161} INFO - Started process (PID=1351) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:15:55.662+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:15:55.665+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:15:55.664+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:15:55.688+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:15:55.681+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:15:55.690+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:15:55.736+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.088 seconds
+[2026-05-08T22:16:26.363+0000] {processor.py:161} INFO - Started process (PID=1410) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:16:26.364+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:16:26.368+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:16:26.367+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:16:26.387+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:16:26.383+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:16:26.389+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:16:26.422+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.069 seconds
+[2026-05-08T22:16:56.727+0000] {processor.py:161} INFO - Started process (PID=1469) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:16:56.729+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:16:56.732+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:16:56.732+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:16:56.759+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:16:56.751+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:16:56.760+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:16:56.792+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.075 seconds
+[2026-05-08T22:17:27.442+0000] {processor.py:161} INFO - Started process (PID=1528) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:17:27.445+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:17:27.449+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:17:27.448+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:17:27.465+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:17:27.461+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from src.extract import get_weather, collect_raw_weather
+ModuleNotFoundError: No module named 'src'
+[2026-05-08T22:17:27.467+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:17:27.498+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.068 seconds
+[2026-05-08T22:17:55.312+0000] {processor.py:161} INFO - Started process (PID=1587) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:17:55.313+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:17:55.316+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:17:55.315+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:17:55.374+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:17:55.368+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from extract import get_weather, collect_raw_weather
+  File "/opt/airflow/src/extract.py", line 3, in <module>
+    from db import RawWeather
+  File "/opt/airflow/src/db.py", line 6, in <module>
+    from config import settings
+ModuleNotFoundError: No module named 'config'
+[2026-05-08T22:17:55.375+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:17:55.397+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.097 seconds
+[2026-05-08T22:18:55.208+0000] {processor.py:161} INFO - Started process (PID=46) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:18:55.209+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:18:55.211+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:18:55.211+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:18:55.243+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:18:55.236+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from extract import get_weather, collect_raw_weather
+  File "/opt/airflow/src/extract.py", line 3, in <module>
+    from db import RawWeather
+  File "/opt/airflow/src/db.py", line 6, in <module>
+    from config import settings
+ModuleNotFoundError: No module named 'config'
+[2026-05-08T22:18:55.245+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:18:55.271+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.070 seconds
+[2026-05-08T22:19:25.684+0000] {processor.py:161} INFO - Started process (PID=105) to work on /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:19:25.686+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline.py for tasks to queue
+[2026-05-08T22:19:25.691+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:19:25.690+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:19:25.745+0000] {logging_mixin.py:188} INFO - [2026-05-08T22:19:25.733+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline.py", line 5, in <module>
+    from extract import get_weather, collect_raw_weather
+  File "/opt/airflow/src/extract.py", line 3, in <module>
+    from db import RawWeather
+  File "/opt/airflow/src/db.py", line 6, in <module>
+    from config import settings
+ModuleNotFoundError: No module named 'config'
+[2026-05-08T22:19:25.748+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline.py
+[2026-05-08T22:19:25.782+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline.py took 0.108 seconds
