@@ -1,7 +1,7 @@
 from typing import Optional
 from sqlalchemy.orm import Session
-from db import RawWeather, Weather
-from extract import collect_raw_weather, get_weather
+from services.db.models import RawWeather, Weather
+from services.weather.extract import collect_raw_weather, get_weather
 
 
 def save_structured_weather(db: Session, raw_weather: RawWeather) -> dict:

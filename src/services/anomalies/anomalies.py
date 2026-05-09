@@ -1,9 +1,10 @@
-from typing import Optional
+from typing import Optional, Dict
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
-from db import Weather, Anomaly, LocationToTrack
-from transform import collect_weather
-
+from services.db.models import Weather, Anomaly, LocationToTrack
+from services.weather.transform import collect_weather
+from logger import logger
+from datetime import datetime, timedelta, timezone
 
 
 def compare_weather(db: Session, structured_weather: Weather) -> Optional[dict]:
@@ -17,7 +18,7 @@ def compare_weather(db: Session, structured_weather: Weather) -> Optional[dict]:
     similar_places = []
     if lon is not None and lat is not None:
         print("Ищем похожие места")
-        radius = 1.0
+        radius = 3.0
         similar_places = db.query(Weather).filter(
             and_(  # ← 4 УСЛОВИЯ and_, НЕ or_!
                 Weather.lat >= lat - radius,
@@ -44,7 +45,7 @@ def compare_weather(db: Session, structured_weather: Weather) -> Optional[dict]:
     avg_humidity = sum(humidities) / len(humidities)
     avg_wind = sum(winds) / len(winds)
 
-    threshold = 0.3
+    threshold = 0.1
     anomaly = {
             'temperature': abs(temperature - avg_temp) > threshold * abs(avg_temp) if temperature else False,
             'pressure': abs(pressure - avg_pressure) > threshold * abs(avg_pressure) if pressure else False,
@@ -69,7 +70,7 @@ def check_anomalies(db: Session, lat: float, lon: float, loc: LocationToTrack) -
             for key, is_anomaly in anomalies.items():
                 if is_anomaly and key != 'averages':
                     anomaly_value = getattr(weather, key)
-                    print(f"Аномалия: {key}: {anomaly_value}! Среднее: {anomalies['averages'][key]}")
+                    logger.info(f"Аномалия: {key}: {anomaly_value}! Среднее: {anomalies['averages'][key]}")
 
                     # Определяем правильное название поля для БД
                     if key == "temperature":
@@ -90,22 +91,56 @@ def check_anomalies(db: Session, lat: float, lon: float, loc: LocationToTrack) -
                 else:
                     if key != 'averages':
                         value = getattr(weather, key)
-                        print(f"Аномалий в {key} НЕ найдено! Среднее: {anomalies['averages'][key]}, текущее: {value}")
+                        logger.info(f"Аномалий в {key} НЕ найдено! Среднее: {anomalies['averages'][key]}, текущее: {value}")
 
             if anomalies_to_save:
                 saved_anomaly = save_anomaly(db, anomalies_to_save, loc, anomalies_data)
+                if not saved_anomaly:
+                    logger.info(f"Аномалия для локации {loc.id} не сохранена (уже существует)")
                 return saved_anomaly
 
     return None
 
 
-def save_anomaly(db: Session, anomalies: dict, loc: LocationToTrack, data: dict) -> Optional[Anomaly]:
-    db_anomaly = Anomaly(
-        location=loc,
-        additional_data=data,
-        **anomalies  # Распаковываем все аномалии в конструктор
-    )
-    db.add(db_anomaly)
-    db.commit()
-    db.refresh(db_anomaly)
-    return db_anomaly
+def save_anomaly(db: Session, anomalies: Dict[str, float], loc: LocationToTrack, data: dict) -> Optional[Anomaly]:
+    exists_anomaly = db.query(Anomaly).filter_by(location_id=loc.id).order_by(Anomaly.found_at.desc()).first()
+
+    create_new = False
+    if not exists_anomaly:
+        create_new = True
+    else:
+        # Проверяем изменения в параметрах
+        new_anomalies_count = 0
+        for k, value in anomalies.items():
+            if getattr(exists_anomaly, k) != value:
+                new_anomalies_count += 1
+
+        if new_anomalies_count > 0 or (datetime.now(timezone.utc) - exists_anomaly.found_at) > timedelta(days=1):
+            logger.info(
+                f"Обновляем аномалию для локации {loc.id}:  ({new_anomalies_count} новых параметров или прошло более суток)")
+            create_new = True
+
+    if create_new:
+        if exists_anomaly:
+            # Обновляем существующую
+            for k, value in anomalies.items():
+                setattr(exists_anomaly, k, value)
+            exists_anomaly.additional_data = data  # Обновляем доп. данные
+            exists_anomaly.found_at = datetime.now(timezone.utc)  # Обновляем дату
+            db.commit()
+            db.refresh(exists_anomaly)
+        else:
+            # Создаем новую
+            db_anomaly = Anomaly(
+                location=loc,
+                additional_data=data,
+                **anomalies
+            )
+            db.add(db_anomaly)
+            db.commit()
+            db.refresh(db_anomaly)
+            exists_anomaly = db_anomaly
+
+        return exists_anomaly
+
+    return None

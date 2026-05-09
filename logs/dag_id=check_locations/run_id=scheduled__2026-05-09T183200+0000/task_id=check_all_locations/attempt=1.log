@@ -1,0 +1,32 @@
+[2026-05-09T18:53:37.969+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-09T18:53:37.986+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: check_locations.check_all_locations scheduled__2026-05-09T18:32:00+00:00 [queued]>
+[2026-05-09T18:53:37.990+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: check_locations.check_all_locations scheduled__2026-05-09T18:32:00+00:00 [queued]>
+[2026-05-09T18:53:37.991+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-05-09T18:53:38.000+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): check_all_locations> on 2026-05-09 18:32:00+00:00
+[2026-05-09T18:53:38.009+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=67) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-05-09T18:53:38.010+0000] {standard_task_runner.py:64} INFO - Started process 69 to run task
+[2026-05-09T18:53:38.010+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'check_locations', 'check_all_locations', 'scheduled__2026-05-09T18:32:00+00:00', '--job-id', '23', '--raw', '--subdir', 'DAGS_FOLDER/check_locations.py', '--cfg-path', '/tmp/tmpo8wr5025']
+[2026-05-09T18:53:38.012+0000] {standard_task_runner.py:91} INFO - Job 23: Subtask check_all_locations
+[2026-05-09T18:53:38.049+0000] {task_command.py:426} INFO - Running <TaskInstance: check_locations.check_all_locations scheduled__2026-05-09T18:32:00+00:00 [running]> on host 432ee9c83feb
+[2026-05-09T18:53:38.123+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Cheburek' AIRFLOW_CTX_DAG_ID='check_locations' AIRFLOW_CTX_TASK_ID='check_all_locations' AIRFLOW_CTX_EXECUTION_DATE='2026-05-09T18:32:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-09T18:32:00+00:00'
+[2026-05-09T18:53:38.125+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-09T18:53:38.126+0000] {log.py:232} WARNING - [32m18:53:38 | logger          | INFO     | Проверяем все локации[0m
+[2026-05-09T18:53:46.143+0000] {log.py:232} WARNING - [32m18:53:46 | logger          | INFO     | Проверка локации 9 (координаты 40.42, 74.0)[0m
+[2026-05-09T18:53:46.692+0000] {logging_mixin.py:188} INFO - {'temp': 8.937999725341797, 'wind_speed': 3.3818929195404053, 'humidity': 68.67291259765625, 'pressure': 1018.0, 'latitude': 40.456939697265625, 'longitude': 74.00564575195312, 'timestamp': 1778352300, 'raw_json': {'latitude': 40.456939697265625, 'longitude': 74.00564575195312, 'elevation': 2231.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778352300, 'interval': 900, 'temperature_2m': 8.937999725341797, 'wind_speed_10m': 3.3818929195404053, 'relative_humidity_2m': 68.67291259765625, 'pressure_msl': 1018.0}}}
+[2026-05-09T18:53:46.697+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x7d99ef2b1c40>
+[2026-05-09T18:53:46.700+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T18:53:46.702+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T18:53:46.704+0000] {logging_mixin.py:188} INFO - Найдено похожих: 2 в радиусе 3.0° от (40.456939697265625, 74.00564575195312)
+[2026-05-09T18:53:46.704+0000] {log.py:232} WARNING - [32m18:53:46 | logger          | INFO     | Аномалий в temperature НЕ найдено! Среднее: 8.937999725341797, текущее: 8.937999725341797[0m
+[2026-05-09T18:53:46.705+0000] {log.py:232} WARNING - [32m18:53:46 | logger          | INFO     | Аномалий в pressure НЕ найдено! Среднее: 1018.0, текущее: 1018.0[0m
+[2026-05-09T18:53:46.706+0000] {log.py:232} WARNING - [32m18:53:46 | logger          | INFO     | Аномалий в humidity НЕ найдено! Среднее: 68.67291259765625, текущее: 68.67291259765625[0m
+[2026-05-09T18:53:46.706+0000] {log.py:232} WARNING - [32m18:53:46 | logger          | INFO     | Аномалий в wind_speed НЕ найдено! Среднее: 3.3818929195404053, текущее: 3.3818929195404053[0m
+[2026-05-09T18:53:46.708+0000] {log.py:232} WARNING - [32m18:53:46 | logger          | INFO     | Аномалий в локации 9 не обнаружено[0m
+[2026-05-09T18:53:47.710+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-09T18:53:47.711+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-09T18:53:47.719+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=check_locations, task_id=check_all_locations, run_id=scheduled__2026-05-09T18:32:00+00:00, execution_date=20260509T183200, start_date=20260509T185337, end_date=20260509T185347
+[2026-05-09T18:53:47.772+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-09T18:53:47.785+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-09T18:53:47.786+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

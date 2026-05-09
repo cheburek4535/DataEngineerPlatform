@@ -1,4 +1,5 @@
-from db import Base, engine, RawWeather, Anomaly, Weather, LocationToTrack
+from db import Base, engine
+from models import *
 try:
     Base.metadata.create_all(bind=engine)
     print("✅ Все таблицы созданы успешно!")

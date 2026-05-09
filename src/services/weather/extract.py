@@ -1,6 +1,6 @@
 from typing import Optional
 from sqlalchemy.orm import Session
-from db import RawWeather
+from services.db.models import RawWeather
 import openmeteo_requests
 import json
 

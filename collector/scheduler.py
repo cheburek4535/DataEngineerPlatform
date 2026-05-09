@@ -1,8 +1,8 @@
 from collector.data_collector import check_anomalies
-from collector.models import Anomaly, LocationToTrack
+from collector.models import LocationToTrack
 from collector.db import get_session
 from datetime import datetime, timezone
-from logger import logger
+from src.logger import logger
 import time
 from sqlalchemy.orm import Session
 

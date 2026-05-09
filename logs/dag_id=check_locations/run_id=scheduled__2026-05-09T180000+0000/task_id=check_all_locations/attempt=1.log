@@ -1,0 +1,64 @@
+[2026-05-09T18:30:27.762+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-09T18:30:27.788+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: check_locations.check_all_locations scheduled__2026-05-09T18:00:00+00:00 [queued]>
+[2026-05-09T18:30:27.795+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: check_locations.check_all_locations scheduled__2026-05-09T18:00:00+00:00 [queued]>
+[2026-05-09T18:30:27.796+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-05-09T18:30:27.809+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): check_all_locations> on 2026-05-09 18:00:00+00:00
+[2026-05-09T18:30:27.824+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=66) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-05-09T18:30:27.826+0000] {standard_task_runner.py:64} INFO - Started process 72 to run task
+[2026-05-09T18:30:27.827+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'check_locations', 'check_all_locations', 'scheduled__2026-05-09T18:00:00+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/check_locations.py', '--cfg-path', '/tmp/tmpjmh2qzuz']
+[2026-05-09T18:30:27.830+0000] {standard_task_runner.py:91} INFO - Job 16: Subtask check_all_locations
+[2026-05-09T18:30:27.880+0000] {task_command.py:426} INFO - Running <TaskInstance: check_locations.check_all_locations scheduled__2026-05-09T18:00:00+00:00 [running]> on host 40f1ea124521
+[2026-05-09T18:30:27.974+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Cheburek' AIRFLOW_CTX_DAG_ID='check_locations' AIRFLOW_CTX_TASK_ID='check_all_locations' AIRFLOW_CTX_EXECUTION_DATE='2026-05-09T18:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-09T18:00:00+00:00'
+[2026-05-09T18:30:27.976+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-09T18:30:27.977+0000] {log.py:232} WARNING - [32m18:30:27 | logger          | INFO     | Проверяем все локации[0m
+[2026-05-09T18:30:28.006+0000] {log.py:232} WARNING - [32m18:30:28 | logger          | INFO     | Проверка локации 1 (координаты 59.57, 30.19)[0m
+[2026-05-09T18:30:30.404+0000] {logging_mixin.py:188} INFO - {'temp': 8.593500137329102, 'wind_speed': 14.399999618530273, 'humidity': 50.0, 'pressure': 1025.5999755859375, 'latitude': 59.56721878051758, 'longitude': 30.180068969726562, 'timestamp': 1778351400, 'raw_json': {'latitude': 59.56721878051758, 'longitude': 30.180068969726562, 'elevation': 81.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778351400, 'interval': 900, 'temperature_2m': 8.593500137329102, 'wind_speed_10m': 14.399999618530273, 'relative_humidity_2m': 50.0, 'pressure_msl': 1025.5999755859375}}}
+[2026-05-09T18:30:30.409+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x76a6ada67410>
+[2026-05-09T18:30:30.411+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T18:30:30.413+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T18:30:30.415+0000] {logging_mixin.py:188} INFO - Найдено похожих: 3 в радиусе 1.0° от (59.56721878051758, 30.180068969726562)
+[2026-05-09T18:30:30.416+0000] {log.py:232} WARNING - [31m18:30:30 | logger          | ERROR    | Ошибка при проверке локации 1: 'Logger' object is not callable[0m
+[2026-05-09T18:30:30.418+0000] {log.py:232} WARNING - [32m18:30:30 | logger          | INFO     | Проверка локации 2 (координаты 58.33, 31.1)[0m
+[2026-05-09T18:30:31.803+0000] {logging_mixin.py:188} INFO - {'temp': 12.36299991607666, 'wind_speed': 19.440000534057617, 'humidity': 49.0, 'pressure': 1023.9000244140625, 'latitude': 58.336692810058594, 'longitude': 31.097198486328125, 'timestamp': 1778351400, 'raw_json': {'latitude': 58.336692810058594, 'longitude': 31.097198486328125, 'elevation': 18.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778351400, 'interval': 900, 'temperature_2m': 12.36299991607666, 'wind_speed_10m': 19.440000534057617, 'relative_humidity_2m': 49.0, 'pressure_msl': 1023.9000244140625}}}
+[2026-05-09T18:30:31.805+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x76a6ad0bf6b0>
+[2026-05-09T18:30:31.807+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T18:30:31.808+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T18:30:31.809+0000] {logging_mixin.py:188} INFO - Найдено похожих: 3 в радиусе 1.0° от (58.336692810058594, 31.097198486328125)
+[2026-05-09T18:30:31.810+0000] {log.py:232} WARNING - [31m18:30:31 | logger          | ERROR    | Ошибка при проверке локации 2: 'Logger' object is not callable[0m
+[2026-05-09T18:30:31.812+0000] {log.py:232} WARNING - [32m18:30:31 | logger          | INFO     | Проверка локации 3 (координаты 61.23, 29.12)[0m
+[2026-05-09T18:30:33.044+0000] {logging_mixin.py:188} INFO - {'temp': 7.674499988555908, 'wind_speed': 2.1600000858306885, 'humidity': 62.0, 'pressure': 1027.0, 'latitude': 61.229698181152344, 'longitude': 29.11181640625, 'timestamp': 1778351400, 'raw_json': {'latitude': 61.229698181152344, 'longitude': 29.11181640625, 'elevation': 119.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778351400, 'interval': 900, 'temperature_2m': 7.674499988555908, 'wind_speed_10m': 2.1600000858306885, 'relative_humidity_2m': 62.0, 'pressure_msl': 1027.0}}}
+[2026-05-09T18:30:33.048+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x76a6c018ef60>
+[2026-05-09T18:30:33.050+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T18:30:33.052+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T18:30:33.053+0000] {logging_mixin.py:188} INFO - Найдено похожих: 3 в радиусе 1.0° от (61.229698181152344, 29.11181640625)
+[2026-05-09T18:30:33.054+0000] {log.py:232} WARNING - [31m18:30:33 | logger          | ERROR    | Ошибка при проверке локации 3: 'Logger' object is not callable[0m
+[2026-05-09T18:30:33.056+0000] {log.py:232} WARNING - [32m18:30:33 | logger          | INFO     | Проверка локации 4 (координаты 12.99, 99.12)[0m
+[2026-05-09T18:30:34.220+0000] {logging_mixin.py:188} INFO - {'temp': 21.188499450683594, 'wind_speed': 2.6758923530578613, 'humidity': 93.44732666015625, 'pressure': 1011.0999755859375, 'latitude': 12.970123291015625, 'longitude': 99.16363525390625, 'timestamp': 1778351400, 'raw_json': {'latitude': 12.970123291015625, 'longitude': 99.16363525390625, 'elevation': 760.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778351400, 'interval': 900, 'temperature_2m': 21.188499450683594, 'wind_speed_10m': 2.6758923530578613, 'relative_humidity_2m': 93.44732666015625, 'pressure_msl': 1011.0999755859375}}}
+[2026-05-09T18:30:34.223+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x76a6ad0bf8f0>
+[2026-05-09T18:30:34.225+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T18:30:34.226+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T18:30:34.227+0000] {logging_mixin.py:188} INFO - Найдено похожих: 3 в радиусе 1.0° от (12.970123291015625, 99.16363525390625)
+[2026-05-09T18:30:34.228+0000] {log.py:232} WARNING - [31m18:30:34 | logger          | ERROR    | Ошибка при проверке локации 4: 'Logger' object is not callable[0m
+[2026-05-09T18:30:34.230+0000] {log.py:232} WARNING - [32m18:30:34 | logger          | INFO     | Проверка локации 5 (координаты 40.4, 40.4)[0m
+[2026-05-09T18:30:34.909+0000] {logging_mixin.py:188} INFO - {'temp': 9.675999641418457, 'wind_speed': 1.7999999523162842, 'humidity': 57.0, 'pressure': 1018.0, 'latitude': 40.375, 'longitude': 40.375, 'timestamp': 1778351400, 'raw_json': {'latitude': 40.375, 'longitude': 40.375, 'elevation': 1619.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778351400, 'interval': 900, 'temperature_2m': 9.675999641418457, 'wind_speed_10m': 1.7999999523162842, 'relative_humidity_2m': 57.0, 'pressure_msl': 1018.0}}}
+[2026-05-09T18:30:34.912+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x76a6ad8331d0>
+[2026-05-09T18:30:34.914+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T18:30:34.915+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T18:30:34.916+0000] {logging_mixin.py:188} INFO - Найдено похожих: 1 в радиусе 1.0° от (40.375, 40.375)
+[2026-05-09T18:30:34.917+0000] {logging_mixin.py:188} INFO - Похожие места не найдены или их не хватает
+[2026-05-09T18:30:34.918+0000] {log.py:232} WARNING - [32m18:30:34 | logger          | INFO     | Аномалий в локации 5 не обнаружено[0m
+[2026-05-09T18:30:37.929+0000] {log.py:232} WARNING - [32m18:30:37 | logger          | INFO     | Проверка локации 8 (координаты 55.45, 37.37)[0m
+[2026-05-09T18:30:38.252+0000] {logging_mixin.py:188} INFO - {'temp': 9.591499328613281, 'wind_speed': 6.952754497528076, 'humidity': 57.0, 'pressure': 1022.5999755859375, 'latitude': 55.4375, 'longitude': 37.375, 'timestamp': 1778351400, 'raw_json': {'latitude': 55.4375, 'longitude': 37.375, 'elevation': 183.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778351400, 'interval': 900, 'temperature_2m': 9.591499328613281, 'wind_speed_10m': 6.952754497528076, 'relative_humidity_2m': 57.0, 'pressure_msl': 1022.5999755859375}}}
+[2026-05-09T18:30:38.259+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x76a6ad8331d0>
+[2026-05-09T18:30:38.264+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T18:30:38.267+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T18:30:38.269+0000] {logging_mixin.py:188} INFO - Найдено похожих: 3 в радиусе 1.0° от (55.4375, 37.375)
+[2026-05-09T18:30:38.271+0000] {log.py:232} WARNING - [31m18:30:38 | logger          | ERROR    | Ошибка при проверке локации 8: 'Logger' object is not callable[0m
+[2026-05-09T18:30:38.272+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-09T18:30:38.274+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-09T18:30:38.292+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=check_locations, task_id=check_all_locations, run_id=scheduled__2026-05-09T18:00:00+00:00, execution_date=20260509T180000, start_date=20260509T183027, end_date=20260509T183038
+[2026-05-09T18:30:38.355+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-09T18:30:38.384+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-09T18:30:38.386+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

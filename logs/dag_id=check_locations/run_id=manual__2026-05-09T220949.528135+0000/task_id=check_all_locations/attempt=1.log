@@ -1,0 +1,127 @@
+[2026-05-09T22:09:51.947+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-09T22:09:51.975+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: check_locations.check_all_locations manual__2026-05-09T22:09:49.528135+00:00 [queued]>
+[2026-05-09T22:09:51.985+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: check_locations.check_all_locations manual__2026-05-09T22:09:49.528135+00:00 [queued]>
+[2026-05-09T22:09:51.985+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-05-09T22:09:52.001+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): check_all_locations> on 2026-05-09 22:09:49.528135+00:00
+[2026-05-09T22:09:52.010+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=99) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-05-09T22:09:52.012+0000] {standard_task_runner.py:64} INFO - Started process 101 to run task
+[2026-05-09T22:09:52.014+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'check_locations', 'check_all_locations', 'manual__2026-05-09T22:09:49.528135+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/check_locations.py', '--cfg-path', '/tmp/tmpmsk1sfoo']
+[2026-05-09T22:09:52.018+0000] {standard_task_runner.py:91} INFO - Job 30: Subtask check_all_locations
+[2026-05-09T22:09:52.080+0000] {task_command.py:426} INFO - Running <TaskInstance: check_locations.check_all_locations manual__2026-05-09T22:09:49.528135+00:00 [running]> on host 061f00590ca1
+[2026-05-09T22:09:52.187+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Cheburek' AIRFLOW_CTX_DAG_ID='check_locations' AIRFLOW_CTX_TASK_ID='check_all_locations' AIRFLOW_CTX_EXECUTION_DATE='2026-05-09T22:09:49.528135+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-09T22:09:49.528135+00:00'
+[2026-05-09T22:09:52.190+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-09T22:09:52.191+0000] {log.py:232} WARNING - [32m22:09:52 | logger          | INFO     | Проверяем все локации[0m
+[2026-05-09T22:09:52.208+0000] {log.py:232} WARNING - [32m22:09:52 | logger          | INFO     | Проверка локации 1 (координаты 59.57, 30.19)[0m
+[2026-05-09T22:09:52.230+0000] {logging_mixin.py:188} INFO - {'temp': 5.94350004196167, 'wind_speed': 8.279999732971191, 'humidity': 64.0, 'pressure': 1024.699951171875, 'latitude': 59.56721878051758, 'longitude': 30.180068969726562, 'timestamp': 1778364000, 'raw_json': {'latitude': 59.56721878051758, 'longitude': 30.180068969726562, 'elevation': 81.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778364000, 'interval': 900, 'temperature_2m': 5.94350004196167, 'wind_speed_10m': 8.279999732971191, 'relative_humidity_2m': 64.0, 'pressure_msl': 1024.699951171875}}}
+[2026-05-09T22:09:52.237+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x7379a8943f50>
+[2026-05-09T22:09:52.240+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T22:09:52.244+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T22:09:52.247+0000] {logging_mixin.py:188} INFO - Найдено похожих: 16 в радиусе 3.0° от (59.56721878051758, 30.180068969726562)
+[2026-05-09T22:09:52.248+0000] {log.py:232} WARNING - [32m22:09:52 | logger          | INFO     | Аномалия: temperature: 5.94350004196167! Среднее: 8.896781176328659[0m
+[2026-05-09T22:09:52.249+0000] {log.py:232} WARNING - [32m22:09:52 | logger          | INFO     | Аномалий в pressure НЕ найдено! Среднее: 1025.25, текущее: 1024.699951171875[0m
+[2026-05-09T22:09:52.250+0000] {log.py:232} WARNING - [32m22:09:52 | logger          | INFO     | Аномалия: humidity: 64.0! Среднее: 55.3125[0m
+[2026-05-09T22:09:52.251+0000] {log.py:232} WARNING - [32m22:09:52 | logger          | INFO     | Аномалия: wind_speed: 8.279999732971191! Среднее: 11.924999922513962[0m
+[2026-05-09T22:09:52.258+0000] {log.py:232} WARNING - [32m22:09:52 | logger          | INFO     | Аномалия для локации 1 не сохранена (уже существует)[0m
+[2026-05-09T22:09:52.258+0000] {log.py:232} WARNING - [32m22:09:52 | logger          | INFO     | Аномалий в локации 1 не обнаружено[0m
+[2026-05-09T22:09:53.263+0000] {log.py:232} WARNING - [32m22:09:53 | logger          | INFO     | Проверка локации 2 (координаты 58.33, 31.1)[0m
+[2026-05-09T22:09:53.266+0000] {logging_mixin.py:188} INFO - {'temp': 11.162999153137207, 'wind_speed': 25.559999465942383, 'humidity': 49.0, 'pressure': 1023.4000244140625, 'latitude': 58.336692810058594, 'longitude': 31.097198486328125, 'timestamp': 1778364000, 'raw_json': {'latitude': 58.336692810058594, 'longitude': 31.097198486328125, 'elevation': 18.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778364000, 'interval': 900, 'temperature_2m': 11.162999153137207, 'wind_speed_10m': 25.559999465942383, 'relative_humidity_2m': 49.0, 'pressure_msl': 1023.4000244140625}}}
+[2026-05-09T22:09:53.270+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x7379a8943f50>
+[2026-05-09T22:09:53.271+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T22:09:53.272+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T22:09:53.274+0000] {logging_mixin.py:188} INFO - Найдено похожих: 17 в радиусе 3.0° от (58.336692810058594, 31.097198486328125)
+[2026-05-09T22:09:53.274+0000] {log.py:232} WARNING - [32m22:09:53 | logger          | INFO     | Аномалия: temperature: 11.162999153137207! Среднее: 9.030088116140927[0m
+[2026-05-09T22:09:53.275+0000] {log.py:232} WARNING - [32m22:09:53 | logger          | INFO     | Аномалий в pressure НЕ найдено! Среднее: 1025.1411779067096, текущее: 1023.4000244140625[0m
+[2026-05-09T22:09:53.275+0000] {log.py:232} WARNING - [32m22:09:53 | logger          | INFO     | Аномалия: humidity: 49.0! Среднее: 54.94117647058823[0m
+[2026-05-09T22:09:53.276+0000] {log.py:232} WARNING - [32m22:09:53 | logger          | INFO     | Аномалия: wind_speed: 25.559999465942383! Среднее: 12.727058719186221[0m
+[2026-05-09T22:09:53.278+0000] {log.py:232} WARNING - [32m22:09:53 | logger          | INFO     | Обновляем аномалию для локации 2:  (1 новых параметров или прошло более суток)[0m
+[2026-05-09T22:09:53.283+0000] {log.py:232} WARNING - [33m22:09:53 | logger          | WARNING  | Обнаружена аномалия в локации 2 (координаты 58.33, 31.1). Дополнительные данные: {'humidity': {'avg': 54.94117647058823, 'value': 49.0}, 'wind_speed': {'avg': 12.727058719186221, 'value': 25.559999465942383}, 'temperature': {'avg': 9.030088116140927, 'value': 11.162999153137207}}[0m
+[2026-05-09T22:09:54.287+0000] {log.py:232} WARNING - [32m22:09:54 | logger          | INFO     | Проверка локации 3 (координаты 61.23, 29.12)[0m
+[2026-05-09T22:09:54.289+0000] {logging_mixin.py:188} INFO - {'temp': 5.774499893188477, 'wind_speed': 4.679999828338623, 'humidity': 61.0, 'pressure': 1025.800048828125, 'latitude': 61.229698181152344, 'longitude': 29.11181640625, 'timestamp': 1778364000, 'raw_json': {'latitude': 61.229698181152344, 'longitude': 29.11181640625, 'elevation': 119.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778364000, 'interval': 900, 'temperature_2m': 5.774499893188477, 'wind_speed_10m': 4.679999828338623, 'relative_humidity_2m': 61.0, 'pressure_msl': 1025.800048828125}}}
+[2026-05-09T22:09:54.292+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x7379c5e4ea80>
+[2026-05-09T22:09:54.295+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T22:09:54.296+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T22:09:54.298+0000] {logging_mixin.py:188} INFO - Найдено похожих: 18 в радиусе 3.0° от (61.229698181152344, 29.11181640625)
+[2026-05-09T22:09:54.298+0000] {log.py:232} WARNING - [32m22:09:54 | logger          | INFO     | Аномалия: temperature: 5.774499893188477! Среднее: 8.849222103754679[0m
+[2026-05-09T22:09:54.299+0000] {log.py:232} WARNING - [32m22:09:54 | logger          | INFO     | Аномалий в pressure НЕ найдено! Среднее: 1025.177781846788, текущее: 1025.800048828125[0m
+[2026-05-09T22:09:54.299+0000] {log.py:232} WARNING - [32m22:09:54 | logger          | INFO     | Аномалия: humidity: 61.0! Среднее: 55.27777777777778[0m
+[2026-05-09T22:09:54.300+0000] {log.py:232} WARNING - [32m22:09:54 | logger          | INFO     | Аномалия: wind_speed: 4.679999828338623! Среднее: 12.27999989191691[0m
+[2026-05-09T22:09:54.302+0000] {log.py:232} WARNING - [32m22:09:54 | logger          | INFO     | Аномалия для локации 3 не сохранена (уже существует)[0m
+[2026-05-09T22:09:54.303+0000] {log.py:232} WARNING - [32m22:09:54 | logger          | INFO     | Аномалий в локации 3 не обнаружено[0m
+[2026-05-09T22:09:55.307+0000] {log.py:232} WARNING - [32m22:09:55 | logger          | INFO     | Проверка локации 4 (координаты 12.99, 99.12)[0m
+[2026-05-09T22:09:55.309+0000] {logging_mixin.py:188} INFO - {'temp': 20.988500595092773, 'wind_speed': 1.6595180034637451, 'humidity': 89.46121978759766, 'pressure': 1010.5999755859375, 'latitude': 12.970123291015625, 'longitude': 99.16363525390625, 'timestamp': 1778364000, 'raw_json': {'latitude': 12.970123291015625, 'longitude': 99.16363525390625, 'elevation': 760.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778364000, 'interval': 900, 'temperature_2m': 20.988500595092773, 'wind_speed_10m': 1.6595180034637451, 'relative_humidity_2m': 89.46121978759766, 'pressure_msl': 1010.5999755859375}}}
+[2026-05-09T22:09:55.313+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x7379c5e4ea80>
+[2026-05-09T22:09:55.315+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T22:09:55.316+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T22:09:55.318+0000] {logging_mixin.py:188} INFO - Найдено похожих: 6 в радиусе 3.0° от (12.970123291015625, 99.16363525390625)
+[2026-05-09T22:09:55.318+0000] {log.py:232} WARNING - [32m22:09:55 | logger          | INFO     | Аномалий в temperature НЕ найдено! Среднее: 21.146833101908367, текущее: 20.988500595092773[0m
+[2026-05-09T22:09:55.320+0000] {log.py:232} WARNING - [32m22:09:55 | logger          | INFO     | Аномалий в pressure НЕ найдено! Среднее: 1010.9166463216146, текущее: 1010.5999755859375[0m
+[2026-05-09T22:09:55.321+0000] {log.py:232} WARNING - [32m22:09:55 | logger          | INFO     | Аномалий в humidity НЕ найдено! Среднее: 92.02383041381836, текущее: 89.46121978759766[0m
+[2026-05-09T22:09:55.322+0000] {log.py:232} WARNING - [32m22:09:55 | logger          | INFO     | Аномалия: wind_speed: 1.6595180034637451! Среднее: 2.3371009031931558[0m
+[2026-05-09T22:09:55.324+0000] {log.py:232} WARNING - [32m22:09:55 | logger          | INFO     | Аномалия для локации 4 не сохранена (уже существует)[0m
+[2026-05-09T22:09:55.325+0000] {log.py:232} WARNING - [32m22:09:55 | logger          | INFO     | Аномалий в локации 4 не обнаружено[0m
+[2026-05-09T22:09:56.329+0000] {log.py:232} WARNING - [32m22:09:56 | logger          | INFO     | Проверка локации 5 (координаты 40.4, 40.4)[0m
+[2026-05-09T22:09:56.331+0000] {logging_mixin.py:188} INFO - {'temp': 7.426000118255615, 'wind_speed': 1.6099690198898315, 'humidity': 74.0, 'pressure': 1018.7000122070312, 'latitude': 40.375, 'longitude': 40.375, 'timestamp': 1778364000, 'raw_json': {'latitude': 40.375, 'longitude': 40.375, 'elevation': 1619.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778364000, 'interval': 900, 'temperature_2m': 7.426000118255615, 'wind_speed_10m': 1.6099690198898315, 'relative_humidity_2m': 74.0, 'pressure_msl': 1018.7000122070312}}}
+[2026-05-09T22:09:56.335+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x7379a8aff020>
+[2026-05-09T22:09:56.337+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T22:09:56.339+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T22:09:56.341+0000] {logging_mixin.py:188} INFO - Найдено похожих: 6 в радиусе 3.0° от (40.375, 40.375)
+[2026-05-09T22:09:56.341+0000] {log.py:232} WARNING - [32m22:09:56 | logger          | INFO     | Аномалия: temperature: 7.426000118255615! Среднее: 8.88433313369751[0m
+[2026-05-09T22:09:56.343+0000] {log.py:232} WARNING - [32m22:09:56 | logger          | INFO     | Аномалий в pressure НЕ найдено! Среднее: 1018.2333374023438, текущее: 1018.7000122070312[0m
+[2026-05-09T22:09:56.343+0000] {log.py:232} WARNING - [32m22:09:56 | logger          | INFO     | Аномалия: humidity: 74.0! Среднее: 63.333333333333336[0m
+[2026-05-09T22:09:56.344+0000] {log.py:232} WARNING - [32m22:09:56 | logger          | INFO     | Аномалия: wind_speed: 1.6099690198898315! Среднее: 1.8016220728556316[0m
+[2026-05-09T22:09:56.347+0000] {log.py:232} WARNING - [32m22:09:56 | logger          | INFO     | Аномалия для локации 5 не сохранена (уже существует)[0m
+[2026-05-09T22:09:56.348+0000] {log.py:232} WARNING - [32m22:09:56 | logger          | INFO     | Аномалий в локации 5 не обнаружено[0m
+[2026-05-09T22:09:57.353+0000] {log.py:232} WARNING - [32m22:09:57 | logger          | INFO     | Проверка локации 6 (координаты 40.2, 20.4)[0m
+[2026-05-09T22:09:57.355+0000] {logging_mixin.py:188} INFO - {'temp': 12.554499626159668, 'wind_speed': 5.86037540435791, 'humidity': 96.0, 'pressure': 1018.2999877929688, 'latitude': 40.25, 'longitude': 20.4375, 'timestamp': 1778364000, 'raw_json': {'latitude': 40.25, 'longitude': 20.4375, 'elevation': 264.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778364000, 'interval': 900, 'temperature_2m': 12.554499626159668, 'wind_speed_10m': 5.86037540435791, 'relative_humidity_2m': 96.0, 'pressure_msl': 1018.2999877929688}}}
+[2026-05-09T22:09:57.358+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x7379a8a166f0>
+[2026-05-09T22:09:57.359+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T22:09:57.361+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T22:09:57.362+0000] {logging_mixin.py:188} INFO - Найдено похожих: 5 в радиусе 3.0° от (40.25, 20.4375)
+[2026-05-09T22:09:57.362+0000] {log.py:232} WARNING - [32m22:09:57 | logger          | INFO     | Аномалий в temperature НЕ найдено! Среднее: 13.874499702453614, текущее: 12.554499626159668[0m
+[2026-05-09T22:09:57.363+0000] {log.py:232} WARNING - [32m22:09:57 | logger          | INFO     | Аномалий в pressure НЕ найдено! Среднее: 1017.3199829101562, текущее: 1018.2999877929688[0m
+[2026-05-09T22:09:57.364+0000] {log.py:232} WARNING - [32m22:09:57 | logger          | INFO     | Аномалий в humidity НЕ найдено! Среднее: 91.0, текущее: 96.0[0m
+[2026-05-09T22:09:57.364+0000] {log.py:232} WARNING - [32m22:09:57 | logger          | INFO     | Аномалия: wind_speed: 5.86037540435791! Среднее: 3.9298510551452637[0m
+[2026-05-09T22:09:57.366+0000] {log.py:232} WARNING - [32m22:09:57 | logger          | INFO     | Аномалия для локации 6 не сохранена (уже существует)[0m
+[2026-05-09T22:09:57.367+0000] {log.py:232} WARNING - [32m22:09:57 | logger          | INFO     | Аномалий в локации 6 не обнаружено[0m
+[2026-05-09T22:09:58.370+0000] {log.py:232} WARNING - [32m22:09:58 | logger          | INFO     | Проверка локации 7 (координаты 70.2, 30.4)[0m
+[2026-05-09T22:09:58.373+0000] {logging_mixin.py:188} INFO - {'temp': 3.4144999980926514, 'wind_speed': 24.119998931884766, 'humidity': 79.0, 'pressure': 1020.2999877929688, 'latitude': 70.20964050292969, 'longitude': 30.406463623046875, 'timestamp': 1778364000, 'raw_json': {'latitude': 70.20964050292969, 'longitude': 30.406463623046875, 'elevation': 0.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778364000, 'interval': 900, 'temperature_2m': 3.4144999980926514, 'wind_speed_10m': 24.119998931884766, 'relative_humidity_2m': 79.0, 'pressure_msl': 1020.2999877929688}}}
+[2026-05-09T22:09:58.376+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x7379a883b3e0>
+[2026-05-09T22:09:58.377+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T22:09:58.379+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T22:09:58.380+0000] {logging_mixin.py:188} INFO - Найдено похожих: 4 в радиусе 3.0° от (70.20964050292969, 30.406463623046875)
+[2026-05-09T22:09:58.381+0000] {log.py:232} WARNING - [32m22:09:58 | logger          | INFO     | Аномалий в temperature НЕ найдено! Среднее: 3.6395000219345093, текущее: 3.4144999980926514[0m
+[2026-05-09T22:09:58.381+0000] {log.py:232} WARNING - [32m22:09:58 | logger          | INFO     | Аномалий в pressure НЕ найдено! Среднее: 1021.5, текущее: 1020.2999877929688[0m
+[2026-05-09T22:09:58.382+0000] {log.py:232} WARNING - [32m22:09:58 | logger          | INFO     | Аномалий в humidity НЕ найдено! Среднее: 80.0, текущее: 79.0[0m
+[2026-05-09T22:09:58.383+0000] {log.py:232} WARNING - [32m22:09:58 | logger          | INFO     | Аномалий в wind_speed НЕ найдено! Среднее: 23.219998359680176, текущее: 24.119998931884766[0m
+[2026-05-09T22:09:58.384+0000] {log.py:232} WARNING - [32m22:09:58 | logger          | INFO     | Аномалий в локации 7 не обнаружено[0m
+[2026-05-09T22:09:59.387+0000] {log.py:232} WARNING - [32m22:09:59 | logger          | INFO     | Проверка локации 8 (координаты 55.45, 37.37)[0m
+[2026-05-09T22:09:59.389+0000] {logging_mixin.py:188} INFO - {'temp': 8.741499900817871, 'wind_speed': 6.989935398101807, 'humidity': 56.0, 'pressure': 1022.5999755859375, 'latitude': 55.4375, 'longitude': 37.375, 'timestamp': 1778364000, 'raw_json': {'latitude': 55.4375, 'longitude': 37.375, 'elevation': 183.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778364000, 'interval': 900, 'temperature_2m': 8.741499900817871, 'wind_speed_10m': 6.989935398101807, 'relative_humidity_2m': 56.0, 'pressure_msl': 1022.5999755859375}}}
+[2026-05-09T22:09:59.392+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x7379a8afc4a0>
+[2026-05-09T22:09:59.393+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T22:09:59.395+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T22:09:59.396+0000] {logging_mixin.py:188} INFO - Найдено похожих: 6 в радиусе 3.0° от (55.4375, 37.375)
+[2026-05-09T22:09:59.396+0000] {log.py:232} WARNING - [32m22:09:59 | logger          | INFO     | Аномалий в temperature НЕ найдено! Среднее: 9.299832979838053, текущее: 8.741499900817871[0m
+[2026-05-09T22:09:59.397+0000] {log.py:232} WARNING - [32m22:09:59 | logger          | INFO     | Аномалий в pressure НЕ найдено! Среднее: 1022.5833129882812, текущее: 1022.5999755859375[0m
+[2026-05-09T22:09:59.398+0000] {log.py:232} WARNING - [32m22:09:59 | logger          | INFO     | Аномалий в humidity НЕ найдено! Среднее: 56.666666666666664, текущее: 56.0[0m
+[2026-05-09T22:09:59.398+0000] {log.py:232} WARNING - [32m22:09:59 | logger          | INFO     | Аномалий в wind_speed НЕ найдено! Среднее: 6.965148131052653, текущее: 6.989935398101807[0m
+[2026-05-09T22:09:59.400+0000] {log.py:232} WARNING - [32m22:09:59 | logger          | INFO     | Аномалий в локации 8 не обнаружено[0m
+[2026-05-09T22:10:00.404+0000] {log.py:232} WARNING - [32m22:10:00 | logger          | INFO     | Проверка локации 9 (координаты 40.42, 74.0)[0m
+[2026-05-09T22:10:00.407+0000] {logging_mixin.py:188} INFO - {'temp': 6.638000011444092, 'wind_speed': 1.9881649017333984, 'humidity': 82.60759735107422, 'pressure': 1017.4000244140625, 'latitude': 40.456939697265625, 'longitude': 74.00564575195312, 'timestamp': 1778364000, 'raw_json': {'latitude': 40.456939697265625, 'longitude': 74.00564575195312, 'elevation': 2231.0, 'timezone': None, 'timezone_abbreviation': None, 'utc_offset_seconds': 0, 'current': {'time': 1778364000, 'interval': 900, 'temperature_2m': 6.638000011444092, 'wind_speed_10m': 1.9881649017333984, 'relative_humidity_2m': 82.60759735107422, 'pressure_msl': 1017.4000244140625}}}
+[2026-05-09T22:10:00.409+0000] {logging_mixin.py:188} INFO - <services.db.models.Weather object at 0x7379a883b3e0>
+[2026-05-09T22:10:00.411+0000] {logging_mixin.py:188} INFO - Проверка аномалий
+[2026-05-09T22:10:00.413+0000] {logging_mixin.py:188} INFO - Ищем похожие места
+[2026-05-09T22:10:00.413+0000] {logging_mixin.py:188} INFO - Найдено похожих: 5 в радиусе 3.0° от (40.456939697265625, 74.00564575195312)
+[2026-05-09T22:10:00.414+0000] {log.py:232} WARNING - [32m22:10:00 | logger          | INFO     | Аномалия: temperature: 6.638000011444092! Среднее: 8.017999839782714[0m
+[2026-05-09T22:10:00.414+0000] {log.py:232} WARNING - [32m22:10:00 | logger          | INFO     | Аномалий в pressure НЕ найдено! Среднее: 1017.760009765625, текущее: 1017.4000244140625[0m
+[2026-05-09T22:10:00.415+0000] {log.py:232} WARNING - [32m22:10:00 | logger          | INFO     | Аномалия: humidity: 82.60759735107422! Среднее: 74.24678649902344[0m
+[2026-05-09T22:10:00.416+0000] {log.py:232} WARNING - [32m22:10:00 | logger          | INFO     | Аномалия: wind_speed: 1.9881649017333984! Среднее: 2.8244017124176026[0m
+[2026-05-09T22:10:00.417+0000] {log.py:232} WARNING - [32m22:10:00 | logger          | INFO     | Аномалия для локации 9 не сохранена (уже существует)[0m
+[2026-05-09T22:10:00.418+0000] {log.py:232} WARNING - [32m22:10:00 | logger          | INFO     | Аномалий в локации 9 не обнаружено[0m
+[2026-05-09T22:10:01.420+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-09T22:10:01.422+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-09T22:10:01.429+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=check_locations, task_id=check_all_locations, run_id=manual__2026-05-09T22:09:49.528135+00:00, execution_date=20260509T220949, start_date=20260509T220951, end_date=20260509T221001
+[2026-05-09T22:10:01.452+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-09T22:10:01.465+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-09T22:10:01.467+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

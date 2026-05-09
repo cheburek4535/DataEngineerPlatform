@@ -1,0 +1,294 @@
+2026-05-09 18:30:27 | logger | INFO     | check_locations.py:11 | task_check_all_locations | Проверяем все локации
+2026-05-09 18:30:27 | logger | INFO     | check_locations.py:11 | task_check_all_locations | Проверяем все локации
+2026-05-09 18:30:27 | logger | INFO     | check_locations.py:11 | task_check_all_locations | Проверяем все локации
+2026-05-09 18:30:28 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 1 (координаты 59.57, 30.19)
+2026-05-09 18:30:28 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 1 (координаты 59.57, 30.19)
+2026-05-09 18:30:28 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 1 (координаты 59.57, 30.19)
+2026-05-09 18:30:29 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 1 не обнаружено
+2026-05-09 18:30:30 | logger | ERROR    | service.py:31 | check_all_locations | Ошибка при проверке локации 1: 'Logger' object is not callable
+2026-05-09 18:30:30 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 2 (координаты 58.33, 31.1)
+2026-05-09 18:30:30 | logger | ERROR    | service.py:31 | check_all_locations | Ошибка при проверке локации 1: 'Logger' object is not callable
+2026-05-09 18:30:30 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 2 (координаты 58.33, 31.1)
+2026-05-09 18:30:30 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 2 (координаты 58.33, 31.1)
+2026-05-09 18:30:31 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 2 не обнаружено
+2026-05-09 18:30:31 | logger | ERROR    | service.py:31 | check_all_locations | Ошибка при проверке локации 2: 'Logger' object is not callable
+2026-05-09 18:30:31 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 3 (координаты 61.23, 29.12)
+2026-05-09 18:30:31 | logger | ERROR    | service.py:31 | check_all_locations | Ошибка при проверке локации 2: 'Logger' object is not callable
+2026-05-09 18:30:31 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 3 (координаты 61.23, 29.12)
+2026-05-09 18:30:32 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 3 (координаты 61.23, 29.12)
+2026-05-09 18:30:32 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 3 не обнаружено
+2026-05-09 18:30:33 | logger | ERROR    | service.py:31 | check_all_locations | Ошибка при проверке локации 3: 'Logger' object is not callable
+2026-05-09 18:30:33 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 4 (координаты 12.99, 99.12)
+2026-05-09 18:30:33 | logger | ERROR    | service.py:31 | check_all_locations | Ошибка при проверке локации 3: 'Logger' object is not callable
+2026-05-09 18:30:33 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 4 (координаты 12.99, 99.12)
+2026-05-09 18:30:33 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 4 (координаты 12.99, 99.12)
+2026-05-09 18:30:33 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 4 не обнаружено
+2026-05-09 18:30:34 | logger | ERROR    | service.py:31 | check_all_locations | Ошибка при проверке локации 4: 'Logger' object is not callable
+2026-05-09 18:30:34 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 5 (координаты 40.4, 40.4)
+2026-05-09 18:30:34 | logger | ERROR    | service.py:31 | check_all_locations | Ошибка при проверке локации 4: 'Logger' object is not callable
+2026-05-09 18:30:34 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 5 (координаты 40.4, 40.4)
+2026-05-09 18:30:34 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 5 (координаты 40.4, 40.4)
+2026-05-09 18:30:34 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 5 не обнаружено
+2026-05-09 18:30:35 | logger | ERROR    | service.py:31 | check_all_locations | Ошибка при проверке локации 5: 'Logger' object is not callable
+2026-05-09 18:30:35 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 6 (координаты 40.2, 20.4)
+2026-05-09 18:30:35 | logger | ERROR    | service.py:31 | check_all_locations | Ошибка при проверке локации 5: 'Logger' object is not callable
+2026-05-09 18:30:35 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 6 (координаты 40.2, 20.4)
+2026-05-09 18:30:35 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 6 не обнаружено
+2026-05-09 18:30:36 | logger | ERROR    | service.py:31 | check_all_locations | Ошибка при проверке локации 6: 'Logger' object is not callable
+2026-05-09 18:30:36 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 7 (координаты 70.2, 30.4)
+2026-05-09 18:30:36 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 7 не обнаружено
+2026-05-09 18:30:37 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 8 (координаты 55.45, 37.37)
+2026-05-09 18:30:37 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 8 (координаты 55.45, 37.37)
+2026-05-09 18:30:37 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 8 (координаты 55.45, 37.37)
+2026-05-09 18:30:37 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 8 не обнаружено
+2026-05-09 18:30:38 | logger | ERROR    | service.py:31 | check_all_locations | Ошибка при проверке локации 8: 'Logger' object is not callable
+2026-05-09 18:30:38 | logger | ERROR    | service.py:31 | check_all_locations | Ошибка при проверке локации 8: 'Logger' object is not callable
+2026-05-09 18:49:16 | logger | INFO     | check_locations.py:11 | task_check_all_locations | Проверяем все локации
+2026-05-09 18:49:16 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 1 (координаты 59.57, 30.19)
+2026-05-09 18:49:17 | logger | INFO     | anomalies.py:72 | check_anomalies | Аномалия: temperature: 8.243499755859375! Среднее: 9.413649988174438
+2026-05-09 18:49:17 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1025.4800048828124, текущее: 1025.300048828125
+2026-05-09 18:49:17 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 53.4, текущее: 51.0
+2026-05-09 18:49:17 | logger | INFO     | anomalies.py:72 | check_anomalies | Аномалия: wind_speed: 14.039999961853027! Среднее: 12.204000067710876
+2026-05-09 18:49:17 | logger | WARNING  | service.py:20 | check_all_locations | Обнаружена аномалия в локации 1 (координаты 59.57, 30.19). Дополнительные данные: {'wind_speed': {'avg': 12.204000067710876, 'value': 14.039999961853027}, 'temperature': {'avg': 9.413649988174438, 'value': 8.243499755859375}}
+2026-05-09 18:49:18 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 2 (координаты 58.33, 31.1)
+2026-05-09 18:49:18 | logger | INFO     | anomalies.py:72 | check_anomalies | Аномалия: temperature: 12.312999725341797! Среднее: 9.677227237007834
+2026-05-09 18:49:18 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1025.345458984375, текущее: 1024.0
+2026-05-09 18:49:18 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 53.0, текущее: 49.0
+2026-05-09 18:49:18 | logger | INFO     | anomalies.py:72 | check_anomalies | Аномалия: wind_speed: 19.799999237060547! Среднее: 12.894545446742665
+2026-05-09 18:49:18 | logger | WARNING  | service.py:20 | check_all_locations | Обнаружена аномалия в локации 2 (координаты 58.33, 31.1). Дополнительные данные: {'wind_speed': {'avg': 12.894545446742665, 'value': 19.799999237060547}, 'temperature': {'avg': 9.677227237007834, 'value': 12.312999725341797}}
+2026-05-09 18:49:19 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 3 (координаты 61.23, 29.12)
+2026-05-09 18:49:19 | logger | INFO     | anomalies.py:72 | check_anomalies | Аномалия: temperature: 7.07450008392334! Среднее: 9.460333307584127
+2026-05-09 18:49:19 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1025.4500020345051, текущее: 1026.5999755859375
+2026-05-09 18:49:19 | logger | INFO     | anomalies.py:72 | check_anomalies | Аномалия: humidity: 64.0! Среднее: 53.916666666666664
+2026-05-09 18:49:19 | logger | INFO     | anomalies.py:72 | check_anomalies | Аномалия: wind_speed: 2.1600000858306885! Среднее: 12.0
+2026-05-09 18:49:19 | logger | WARNING  | service.py:20 | check_all_locations | Обнаружена аномалия в локации 3 (координаты 61.23, 29.12). Дополнительные данные: {'humidity': {'avg': 53.916666666666664, 'value': 64.0}, 'wind_speed': {'avg': 12.0, 'value': 2.1600000858306885}, 'temperature': {'avg': 9.460333307584127, 'value': 7.07450008392334}}
+2026-05-09 18:49:20 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 4 (координаты 12.99, 99.12)
+2026-05-09 18:49:20 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 21.225999355316162, текущее: 21.338499069213867
+2026-05-09 18:49:20 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1011.0749816894531, текущее: 1011.0
+2026-05-09 18:49:20 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 93.30513572692871, текущее: 92.8785629272461
+2026-05-09 18:49:20 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в wind_speed НЕ найдено! Среднее: 2.6758923530578613, текущее: 2.6758923530578613
+2026-05-09 18:49:20 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 4 не обнаружено
+2026-05-09 18:49:21 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 5 (координаты 40.4, 40.4)
+2026-05-09 18:49:21 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 9.613499641418457, текущее: 9.425999641418457
+2026-05-09 18:49:21 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1018.0, текущее: 1018.0
+2026-05-09 18:49:21 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 58.0, текущее: 61.0
+2026-05-09 18:49:21 | logger | INFO     | anomalies.py:72 | check_anomalies | Аномалия: wind_speed: 2.1897945404052734! Среднее: 1.8974485993385315
+2026-05-09 18:49:21 | logger | WARNING  | service.py:20 | check_all_locations | Обнаружена аномалия в локации 5 (координаты 40.4, 40.4). Дополнительные данные: {'wind_speed': {'avg': 1.8974485993385315, 'value': 2.1897945404052734}}
+2026-05-09 18:49:22 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 6 (координаты 40.2, 20.4)
+2026-05-09 18:49:22 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 14.754499753316244, текущее: 14.554499626159668
+2026-05-09 18:49:22 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1016.6666463216146, текущее: 1016.7999877929688
+2026-05-09 18:49:22 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 87.66666666666667, текущее: 89.0
+2026-05-09 18:49:22 | logger | INFO     | anomalies.py:72 | check_anomalies | Аномалия: wind_speed: 2.3051247596740723! Среднее: 2.6428348223368325
+2026-05-09 18:49:22 | logger | WARNING  | service.py:20 | check_all_locations | Обнаружена аномалия в локации 6 (координаты 40.2, 20.4). Дополнительные данные: {'wind_speed': {'avg': 2.6428348223368325, 'value': 2.3051247596740723}}
+2026-05-09 18:49:23 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 7 (координаты 70.2, 30.4)
+2026-05-09 18:49:23 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 3.864500045776367, текущее: 3.864500045776367
+2026-05-09 18:49:23 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1022.7000122070312, текущее: 1022.5
+2026-05-09 18:49:23 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 81.0, текущее: 82.0
+2026-05-09 18:49:23 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в wind_speed НЕ найдено! Среднее: 22.319997787475586, текущее: 22.319997787475586
+2026-05-09 18:49:23 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 7 не обнаружено
+2026-05-09 18:49:24 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 8 (координаты 55.45, 37.37)
+2026-05-09 18:49:25 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 9.578999519348145, текущее: 9.541500091552734
+2026-05-09 18:49:25 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1022.5749816894531, текущее: 1022.5
+2026-05-09 18:49:25 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 57.0, текущее: 57.0
+2026-05-09 18:49:25 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в wind_speed НЕ найдено! Среднее: 6.952754497528076, текущее: 6.952754497528076
+2026-05-09 18:49:25 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 8 не обнаружено
+2026-05-09 18:49:26 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 9 (координаты 40.42, 74.0)
+2026-05-09 18:49:26 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 9 не обнаружено
+2026-05-09 18:53:38 | logger | INFO     | check_locations.py:11 | task_check_all_locations | Проверяем все локации
+2026-05-09 18:53:46 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 9 (координаты 40.42, 74.0)
+2026-05-09 18:53:46 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 8.937999725341797, текущее: 8.937999725341797
+2026-05-09 18:53:46 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1018.0, текущее: 1018.0
+2026-05-09 18:53:46 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 68.67291259765625, текущее: 68.67291259765625
+2026-05-09 18:53:46 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в wind_speed НЕ найдено! Среднее: 3.3818929195404053, текущее: 3.3818929195404053
+2026-05-09 18:53:46 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 9 не обнаружено
+2026-05-09 19:00:01 | logger | INFO     | check_locations.py:11 | task_check_all_locations | Проверяем все локации
+2026-05-09 19:00:09 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 9 (координаты 40.42, 74.0)
+2026-05-09 19:00:09 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 8.937999725341797, текущее: 8.937999725341797
+2026-05-09 19:00:09 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1018.0, текущее: 1018.0
+2026-05-09 19:00:09 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 68.67291259765625, текущее: 68.67291259765625
+2026-05-09 19:00:09 | logger | INFO     | anomalies.py:93 | check_anomalies | Аномалий в wind_speed НЕ найдено! Среднее: 3.3818929195404053, текущее: 3.3818929195404053
+2026-05-09 19:00:09 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 9 не обнаружено
+2026-05-09 22:07:14 | logger | INFO     | check_locations.py:11 | task_check_all_locations | Проверяем все локации
+2026-05-09 22:07:14 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 1 (координаты 59.57, 30.19)
+2026-05-09 22:07:14 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 5.94350004196167! Среднее: 9.189807671767015
+2026-05-09 22:07:14 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1025.392305814303, текущее: 1024.699951171875
+2026-05-09 22:07:14 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: humidity: 64.0! Среднее: 54.69230769230769
+2026-05-09 22:07:14 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 8.279999732971191! Среднее: 11.713846133305477
+2026-05-09 22:07:14 | logger | INFO     | anomalies.py:119 | save_anomaly | Обновляем аномалию для локации 1:  (3 новых параметров или прошло более суток)
+2026-05-09 22:07:14 | logger | WARNING  | service.py:20 | check_all_locations | Обнаружена аномалия в локации 1 (координаты 59.57, 30.19). Дополнительные данные: {'humidity': {'avg': 54.69230769230769, 'value': 64.0}, 'wind_speed': {'avg': 11.713846133305477, 'value': 8.279999732971191}, 'temperature': {'avg': 9.189807671767015, 'value': 5.94350004196167}}
+2026-05-09 22:07:15 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 2 (координаты 58.33, 31.1)
+2026-05-09 22:07:15 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 11.162999153137207! Среднее: 9.330749920436315
+2026-05-09 22:07:15 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1025.25, текущее: 1023.4000244140625
+2026-05-09 22:07:15 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 54.285714285714285, текущее: 49.0
+2026-05-09 22:07:15 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 25.559999465942383! Среднее: 12.702857085636683
+2026-05-09 22:07:15 | logger | INFO     | anomalies.py:119 | save_anomaly | Обновляем аномалию для локации 2:  (2 новых параметров или прошло более суток)
+2026-05-09 22:07:15 | logger | WARNING  | service.py:20 | check_all_locations | Обнаружена аномалия в локации 2 (координаты 58.33, 31.1). Дополнительные данные: {'wind_speed': {'avg': 12.702857085636683, 'value': 25.559999465942383}, 'temperature': {'avg': 9.330749920436315, 'value': 11.162999153137207}}
+2026-05-09 22:07:16 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 3 (координаты 61.23, 29.12)
+2026-05-09 22:07:16 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 5.774499893188477! Среднее: 9.093666585286458
+2026-05-09 22:07:16 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1025.286669921875, текущее: 1025.800048828125
+2026-05-09 22:07:16 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: humidity: 61.0! Среднее: 54.733333333333334
+2026-05-09 22:07:16 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 4.679999828338623! Среднее: 12.167999935150146
+2026-05-09 22:07:16 | logger | INFO     | anomalies.py:119 | save_anomaly | Обновляем аномалию для локации 3:  (3 новых параметров или прошло более суток)
+2026-05-09 22:07:16 | logger | WARNING  | service.py:20 | check_all_locations | Обнаружена аномалия в локации 3 (координаты 61.23, 29.12). Дополнительные данные: {'humidity': {'avg': 54.733333333333334, 'value': 61.0}, 'wind_speed': {'avg': 12.167999935150146, 'value': 4.679999828338623}, 'temperature': {'avg': 9.093666585286458, 'value': 5.774499893188477}}
+2026-05-09 22:07:17 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 4 (координаты 12.99, 99.12)
+2026-05-09 22:07:18 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 21.178499603271483, текущее: 20.988500595092773
+2026-05-09 22:07:18 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1010.97998046875, текущее: 1010.5999755859375
+2026-05-09 22:07:18 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 92.5363525390625, текущее: 89.46121978759766
+2026-05-09 22:07:18 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 1.6595180034637451! Среднее: 2.472617483139038
+2026-05-09 22:07:18 | logger | WARNING  | service.py:20 | check_all_locations | Обнаружена аномалия в локации 4 (координаты 12.99, 99.12). Дополнительные данные: {'wind_speed': {'avg': 2.472617483139038, 'value': 1.6595180034637451}}
+2026-05-09 22:07:19 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 5 (координаты 40.4, 40.4)
+2026-05-09 22:07:19 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 7.426000118255615! Среднее: 9.175999736785888
+2026-05-09 22:07:19 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1018.1400024414063, текущее: 1018.7000122070312
+2026-05-09 22:07:19 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: humidity: 74.0! Среднее: 61.2
+2026-05-09 22:07:19 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 1.6099690198898315! Среднее: 1.8399526834487916
+2026-05-09 22:07:19 | logger | INFO     | anomalies.py:119 | save_anomaly | Обновляем аномалию для локации 5:  (3 новых параметров или прошло более суток)
+2026-05-09 22:07:19 | logger | WARNING  | service.py:20 | check_all_locations | Обнаружена аномалия в локации 5 (координаты 40.4, 40.4). Дополнительные данные: {'humidity': {'avg': 61.2, 'value': 74.0}, 'wind_speed': {'avg': 1.8399526834487916, 'value': 1.6099690198898315}, 'temperature': {'avg': 9.175999736785888, 'value': 7.426000118255615}}
+2026-05-09 22:07:20 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 6 (координаты 40.2, 20.4)
+2026-05-09 22:07:20 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 12.554499626159668! Среднее: 14.2044997215271
+2026-05-09 22:07:20 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1017.0749816894531, текущее: 1018.2999877929688
+2026-05-09 22:07:20 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 89.75, текущее: 96.0
+2026-05-09 22:07:20 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 5.86037540435791! Среднее: 3.447219967842102
+2026-05-09 22:07:20 | logger | INFO     | anomalies.py:119 | save_anomaly | Обновляем аномалию для локации 6:  (2 новых параметров или прошло более суток)
+2026-05-09 22:07:20 | logger | WARNING  | service.py:20 | check_all_locations | Обнаружена аномалия в локации 6 (координаты 40.2, 20.4). Дополнительные данные: {'wind_speed': {'avg': 3.447219967842102, 'value': 5.86037540435791}, 'temperature': {'avg': 14.2044997215271, 'value': 12.554499626159668}}
+2026-05-09 22:07:21 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 7 (координаты 70.2, 30.4)
+2026-05-09 22:07:21 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 3.7145000298817954, текущее: 3.4144999980926514
+2026-05-09 22:07:21 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1021.9000040690104, текущее: 1020.2999877929688
+2026-05-09 22:07:21 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 80.33333333333333, текущее: 79.0
+2026-05-09 22:07:21 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в wind_speed НЕ найдено! Среднее: 22.919998168945312, текущее: 24.119998931884766
+2026-05-09 22:07:21 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 7 не обнаружено
+2026-05-09 22:07:22 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 8 (координаты 55.45, 37.37)
+2026-05-09 22:07:22 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 9.41149959564209, текущее: 8.741499900817871
+2026-05-09 22:07:22 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1022.57998046875, текущее: 1022.5999755859375
+2026-05-09 22:07:22 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 56.8, текущее: 56.0
+2026-05-09 22:07:22 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в wind_speed НЕ найдено! Среднее: 6.960190677642823, текущее: 6.989935398101807
+2026-05-09 22:07:22 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 8 не обнаружено
+2026-05-09 22:07:23 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 9 (координаты 40.42, 74.0)
+2026-05-09 22:07:23 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 6.638000011444092! Среднее: 8.36299979686737
+2026-05-09 22:07:23 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1017.8500061035156, текущее: 1017.4000244140625
+2026-05-09 22:07:23 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: humidity: 82.60759735107422! Среднее: 72.15658378601074
+2026-05-09 22:07:23 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 1.9881649017333984! Среднее: 3.0334609150886536
+2026-05-09 22:07:23 | logger | WARNING  | service.py:20 | check_all_locations | Обнаружена аномалия в локации 9 (координаты 40.42, 74.0). Дополнительные данные: {'humidity': {'avg': 72.15658378601074, 'value': 82.60759735107422}, 'wind_speed': {'avg': 3.0334609150886536, 'value': 1.9881649017333984}, 'temperature': {'avg': 8.36299979686737, 'value': 6.638000011444092}}
+2026-05-09 22:09:52 | logger | INFO     | check_locations.py:11 | task_check_all_locations | Проверяем все локации
+2026-05-09 22:09:52 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 1 (координаты 59.57, 30.19)
+2026-05-09 22:09:52 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 5.94350004196167! Среднее: 8.896781176328659
+2026-05-09 22:09:52 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1025.25, текущее: 1024.699951171875
+2026-05-09 22:09:52 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: humidity: 64.0! Среднее: 55.3125
+2026-05-09 22:09:52 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 8.279999732971191! Среднее: 11.924999922513962
+2026-05-09 22:09:52 | logger | INFO     | anomalies.py:99 | check_anomalies | Аномалия для локации 1 не сохранена (уже существует)
+2026-05-09 22:09:52 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 1 не обнаружено
+2026-05-09 22:09:53 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 2 (координаты 58.33, 31.1)
+2026-05-09 22:09:53 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 11.162999153137207! Среднее: 9.030088116140927
+2026-05-09 22:09:53 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1025.1411779067096, текущее: 1023.4000244140625
+2026-05-09 22:09:53 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: humidity: 49.0! Среднее: 54.94117647058823
+2026-05-09 22:09:53 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 25.559999465942383! Среднее: 12.727058719186221
+2026-05-09 22:09:53 | logger | INFO     | anomalies.py:119 | save_anomaly | Обновляем аномалию для локации 2:  (1 новых параметров или прошло более суток)
+2026-05-09 22:09:53 | logger | WARNING  | service.py:20 | check_all_locations | Обнаружена аномалия в локации 2 (координаты 58.33, 31.1). Дополнительные данные: {'humidity': {'avg': 54.94117647058823, 'value': 49.0}, 'wind_speed': {'avg': 12.727058719186221, 'value': 25.559999465942383}, 'temperature': {'avg': 9.030088116140927, 'value': 11.162999153137207}}
+2026-05-09 22:09:54 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 3 (координаты 61.23, 29.12)
+2026-05-09 22:09:54 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 5.774499893188477! Среднее: 8.849222103754679
+2026-05-09 22:09:54 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1025.177781846788, текущее: 1025.800048828125
+2026-05-09 22:09:54 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: humidity: 61.0! Среднее: 55.27777777777778
+2026-05-09 22:09:54 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 4.679999828338623! Среднее: 12.27999989191691
+2026-05-09 22:09:54 | logger | INFO     | anomalies.py:99 | check_anomalies | Аномалия для локации 3 не сохранена (уже существует)
+2026-05-09 22:09:54 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 3 не обнаружено
+2026-05-09 22:09:55 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 4 (координаты 12.99, 99.12)
+2026-05-09 22:09:55 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 21.146833101908367, текущее: 20.988500595092773
+2026-05-09 22:09:55 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1010.9166463216146, текущее: 1010.5999755859375
+2026-05-09 22:09:55 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 92.02383041381836, текущее: 89.46121978759766
+2026-05-09 22:09:55 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 1.6595180034637451! Среднее: 2.3371009031931558
+2026-05-09 22:09:55 | logger | INFO     | anomalies.py:99 | check_anomalies | Аномалия для локации 4 не сохранена (уже существует)
+2026-05-09 22:09:55 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 4 не обнаружено
+2026-05-09 22:09:56 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 5 (координаты 40.4, 40.4)
+2026-05-09 22:09:56 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 7.426000118255615! Среднее: 8.88433313369751
+2026-05-09 22:09:56 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1018.2333374023438, текущее: 1018.7000122070312
+2026-05-09 22:09:56 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: humidity: 74.0! Среднее: 63.333333333333336
+2026-05-09 22:09:56 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 1.6099690198898315! Среднее: 1.8016220728556316
+2026-05-09 22:09:56 | logger | INFO     | anomalies.py:99 | check_anomalies | Аномалия для локации 5 не сохранена (уже существует)
+2026-05-09 22:09:56 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 5 не обнаружено
+2026-05-09 22:09:57 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 6 (координаты 40.2, 20.4)
+2026-05-09 22:09:57 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 13.874499702453614, текущее: 12.554499626159668
+2026-05-09 22:09:57 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1017.3199829101562, текущее: 1018.2999877929688
+2026-05-09 22:09:57 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 91.0, текущее: 96.0
+2026-05-09 22:09:57 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 5.86037540435791! Среднее: 3.9298510551452637
+2026-05-09 22:09:57 | logger | INFO     | anomalies.py:99 | check_anomalies | Аномалия для локации 6 не сохранена (уже существует)
+2026-05-09 22:09:57 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 6 не обнаружено
+2026-05-09 22:09:58 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 7 (координаты 70.2, 30.4)
+2026-05-09 22:09:58 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 3.6395000219345093, текущее: 3.4144999980926514
+2026-05-09 22:09:58 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1021.5, текущее: 1020.2999877929688
+2026-05-09 22:09:58 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 80.0, текущее: 79.0
+2026-05-09 22:09:58 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в wind_speed НЕ найдено! Среднее: 23.219998359680176, текущее: 24.119998931884766
+2026-05-09 22:09:58 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 7 не обнаружено
+2026-05-09 22:09:59 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 8 (координаты 55.45, 37.37)
+2026-05-09 22:09:59 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 9.299832979838053, текущее: 8.741499900817871
+2026-05-09 22:09:59 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1022.5833129882812, текущее: 1022.5999755859375
+2026-05-09 22:09:59 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 56.666666666666664, текущее: 56.0
+2026-05-09 22:09:59 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в wind_speed НЕ найдено! Среднее: 6.965148131052653, текущее: 6.989935398101807
+2026-05-09 22:09:59 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 8 не обнаружено
+2026-05-09 22:10:00 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 9 (координаты 40.42, 74.0)
+2026-05-09 22:10:00 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 6.638000011444092! Среднее: 8.017999839782714
+2026-05-09 22:10:00 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1017.760009765625, текущее: 1017.4000244140625
+2026-05-09 22:10:00 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: humidity: 82.60759735107422! Среднее: 74.24678649902344
+2026-05-09 22:10:00 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 1.9881649017333984! Среднее: 2.8244017124176026
+2026-05-09 22:10:00 | logger | INFO     | anomalies.py:99 | check_anomalies | Аномалия для локации 9 не сохранена (уже существует)
+2026-05-09 22:10:00 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 9 не обнаружено
+2026-05-09 22:16:02 | logger | INFO     | check_locations.py:11 | task_check_all_locations | Проверяем все локации
+2026-05-09 22:16:02 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 1 (координаты 59.57, 30.19)
+2026-05-09 22:16:02 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 5.94350004196167! Среднее: 8.696289363660311
+2026-05-09 22:16:02 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1025.1526328638981, текущее: 1024.699951171875
+2026-05-09 22:16:02 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: humidity: 64.0! Среднее: 55.73684210526316
+2026-05-09 22:16:02 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 8.279999732971191! Среднее: 12.069473567761873
+2026-05-09 22:16:02 | logger | INFO     | anomalies.py:99 | check_anomalies | Аномалия для локации 1 не сохранена (уже существует)
+2026-05-09 22:16:02 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 1 не обнаружено
+2026-05-09 22:16:03 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 2 (координаты 58.33, 31.1)
+2026-05-09 22:16:03 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 11.162999153137207! Среднее: 8.819624853134155
+2026-05-09 22:16:03 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1025.0650024414062, текущее: 1023.4000244140625
+2026-05-09 22:16:03 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: humidity: 49.0! Среднее: 55.4
+2026-05-09 22:16:03 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 25.559999465942383! Среднее: 12.743999862670899
+2026-05-09 22:16:03 | logger | INFO     | anomalies.py:99 | check_anomalies | Аномалия для локации 2 не сохранена (уже существует)
+2026-05-09 22:16:03 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 2 не обнаружено
+2026-05-09 22:16:04 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 3 (координаты 61.23, 29.12)
+2026-05-09 22:16:04 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 5.774499893188477! Среднее: 8.674618902660551
+2026-05-09 22:16:04 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1025.1000046502977, текущее: 1025.800048828125
+2026-05-09 22:16:04 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 55.666666666666664, текущее: 61.0
+2026-05-09 22:16:04 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 4.679999828338623! Среднее: 12.359999861036028
+2026-05-09 22:16:04 | logger | INFO     | anomalies.py:99 | check_anomalies | Аномалия для локации 3 не сохранена (уже существует)
+2026-05-09 22:16:04 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 3 не обнаружено
+2026-05-09 22:16:05 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 4 (координаты 12.99, 99.12)
+2026-05-09 22:16:05 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 21.12421417236328, текущее: 20.988500595092773
+2026-05-09 22:16:05 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1010.8714076450893, текущее: 1010.5999755859375
+2026-05-09 22:16:05 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 91.65774318150112, текущее: 89.46121978759766
+2026-05-09 22:16:05 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 1.6595180034637451! Среднее: 2.2403033460889543
+2026-05-09 22:16:05 | logger | INFO     | anomalies.py:99 | check_anomalies | Аномалия для локации 4 не сохранена (уже существует)
+2026-05-09 22:16:05 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 4 не обнаружено
+2026-05-09 22:16:06 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 5 (координаты 40.4, 40.4)
+2026-05-09 22:16:06 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 7.426000118255615! Среднее: 8.67599984577724
+2026-05-09 22:16:06 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1018.3000052315848, текущее: 1018.7000122070312
+2026-05-09 22:16:06 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: humidity: 74.0! Среднее: 64.85714285714286
+2026-05-09 22:16:06 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в wind_speed НЕ найдено! Среднее: 1.7742430652890886, текущее: 1.6099690198898315
+2026-05-09 22:16:06 | logger | INFO     | anomalies.py:99 | check_anomalies | Аномалия для локации 5 не сохранена (уже существует)
+2026-05-09 22:16:06 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 5 не обнаружено
+2026-05-09 22:16:07 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 6 (координаты 40.2, 20.4)
+2026-05-09 22:16:07 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 13.654499689737955, текущее: 12.554499626159668
+2026-05-09 22:16:07 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1017.4833170572916, текущее: 1018.2999877929688
+2026-05-09 22:16:07 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 91.83333333333333, текущее: 96.0
+2026-05-09 22:16:07 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 5.86037540435791! Среднее: 4.251605113347371
+2026-05-09 22:16:07 | logger | INFO     | anomalies.py:99 | check_anomalies | Аномалия для локации 6 не сохранена (уже существует)
+2026-05-09 22:16:07 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 6 не обнаружено
+2026-05-09 22:16:08 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 7 (координаты 70.2, 30.4)
+2026-05-09 22:16:08 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 3.594500017166138, текущее: 3.4144999980926514
+2026-05-09 22:16:08 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1021.2599975585938, текущее: 1020.2999877929688
+2026-05-09 22:16:08 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 79.8, текущее: 79.0
+2026-05-09 22:16:08 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в wind_speed НЕ найдено! Среднее: 23.399998474121094, текущее: 24.119998931884766
+2026-05-09 22:16:08 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 7 не обнаружено
+2026-05-09 22:16:09 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 8 (координаты 55.45, 37.37)
+2026-05-09 22:16:09 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в temperature НЕ найдено! Среднее: 9.220071111406599, текущее: 8.741499900817871
+2026-05-09 22:16:09 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1022.585693359375, текущее: 1022.5999755859375
+2026-05-09 22:16:09 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 56.57142857142857, текущее: 56.0
+2026-05-09 22:16:09 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в wind_speed НЕ найдено! Среднее: 6.968689169202532, текущее: 6.989935398101807
+2026-05-09 22:16:09 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 8 не обнаружено
+2026-05-09 22:16:10 | logger | INFO     | service.py:16 | check_all_locations | Проверка локации 9 (координаты 40.42, 74.0)
+2026-05-09 22:16:10 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: temperature: 6.638000011444092! Среднее: 7.787999868392944
+2026-05-09 22:16:10 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в pressure НЕ найдено! Среднее: 1017.7000122070312, текущее: 1017.4000244140625
+2026-05-09 22:16:10 | logger | INFO     | anomalies.py:94 | check_anomalies | Аномалий в humidity НЕ найдено! Среднее: 75.64025497436523, текущее: 82.60759735107422
+2026-05-09 22:16:10 | logger | INFO     | anomalies.py:73 | check_anomalies | Аномалия: wind_speed: 1.9881649017333984! Среднее: 2.685028910636902
+2026-05-09 22:16:10 | logger | INFO     | anomalies.py:99 | check_anomalies | Аномалия для локации 9 не сохранена (уже существует)
+2026-05-09 22:16:10 | logger | INFO     | service.py:26 | check_all_locations | Аномалий в локации 9 не обнаружено
