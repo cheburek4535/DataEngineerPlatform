@@ -144,6 +144,23 @@ services:
     # Команда запуска должна учитывать, что main лежит в src.api
     command: uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
 
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.12
+    container_name: clickhouse
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    environment:
+      CLICKHOUSE_DB: weather_analytics
+      CLICKHOUSE_USER: default
+      CLICKHOUSE_PASSWORD: ch_password
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+      - ./clickhouse/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "clickhouse-client", "--user", "default", "--password", "ch_password", "--query", "SELECT 1"]
+      interval: 10s
+      retries: 5
 
   redis:
     # Redis is limited to 7.2-bookworm due to licencing change
@@ -331,3 +348,4 @@ services:
 volumes:
   postgres-db-volume:
   weather_db_data:
+  clickhouse_data:

@@ -65,7 +65,7 @@ def get_session():
     """Возвращает сессию для использования в скриптах"""
     return SessionLocal()
 
-from models import *
+from services.db.models import *
 def recreate_db():
     try:
         logger.info("Удаляем старые таблицы")
