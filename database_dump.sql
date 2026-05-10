@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict FBgE0k7ejdsFyTQxkRrfnAKMOjhWjap5LCgT55okWdkXUta2bamdcXjRsfYkVBI
+\restrict ghpuhPAMTgB3ShFaRWdz5GRFg0N9UbzuGTMUlnhEe8RUfmv7kcfRSXPrjTW8S2a
 
 -- Dumped from database version 13.23 (Debian 13.23-1.pgdg13+1)
 -- Dumped by pg_dump version 13.23 (Debian 13.23-1.pgdg13+1)
@@ -22,28 +22,30 @@ SET row_security = off;
 -- Data for Name: locations_to_track; Type: TABLE DATA; Schema: public; Owner: weather_user
 --
 
-INSERT INTO public.locations_to_track VALUES (1, 59.57, 30.19, 900, '2026-05-09 22:16:02.113949+00', '2026-05-09 18:09:13.532767+00');
-INSERT INTO public.locations_to_track VALUES (2, 58.33, 31.1, 900, '2026-05-09 22:16:03.132412+00', '2026-05-09 18:19:04.340942+00');
-INSERT INTO public.locations_to_track VALUES (3, 61.23, 29.12, 900, '2026-05-09 22:16:04.151797+00', '2026-05-09 18:20:02.44677+00');
-INSERT INTO public.locations_to_track VALUES (4, 12.99, 99.12, 900, '2026-05-09 22:16:05.16866+00', '2026-05-09 18:20:19.143679+00');
-INSERT INTO public.locations_to_track VALUES (5, 40.4, 40.4, 900, '2026-05-09 22:16:06.185485+00', '2026-05-09 18:20:52.581667+00');
-INSERT INTO public.locations_to_track VALUES (6, 40.2, 20.4, 900, '2026-05-09 22:16:07.202132+00', '2026-05-09 18:21:02.978129+00');
-INSERT INTO public.locations_to_track VALUES (7, 70.2, 30.4, 900, '2026-05-09 22:16:08.217496+00', '2026-05-09 18:21:21.503532+00');
-INSERT INTO public.locations_to_track VALUES (8, 55.45, 37.37, 900, '2026-05-09 22:16:09.233842+00', '2026-05-09 18:22:10.635184+00');
-INSERT INTO public.locations_to_track VALUES (9, 40.42, 74, 0, '2026-05-09 22:16:10.254649+00', '2026-05-09 18:48:38.919623+00');
+INSERT INTO public.locations_to_track VALUES (2, 58.33, 31.1, 900, '2026-05-10 12:30:50.414013+00', '2026-05-09 18:19:04.340942+00');
+INSERT INTO public.locations_to_track VALUES (3, 61.23, 29.12, 900, '2026-05-10 12:30:51.552015+00', '2026-05-09 18:20:02.44677+00');
+INSERT INTO public.locations_to_track VALUES (4, 12.99, 99.12, 900, '2026-05-10 12:30:52.672194+00', '2026-05-09 18:20:19.143679+00');
+INSERT INTO public.locations_to_track VALUES (5, 40.4, 40.4, 900, '2026-05-10 12:30:53.776524+00', '2026-05-09 18:20:52.581667+00');
+INSERT INTO public.locations_to_track VALUES (6, 40.2, 20.4, 900, '2026-05-10 12:30:54.950414+00', '2026-05-09 18:21:02.978129+00');
+INSERT INTO public.locations_to_track VALUES (7, 70.2, 30.4, 900, '2026-05-10 12:30:56.123458+00', '2026-05-09 18:21:21.503532+00');
+INSERT INTO public.locations_to_track VALUES (8, 55.45, 37.37, 900, '2026-05-10 12:30:57.224746+00', '2026-05-09 18:22:10.635184+00');
+INSERT INTO public.locations_to_track VALUES (9, 40.42, 74, 0, '2026-05-10 12:30:58.33743+00', '2026-05-09 18:48:38.919623+00');
+INSERT INTO public.locations_to_track VALUES (1, 59.57, 30.19, 900, '2026-05-10 19:24:43.364495+00', '2026-05-09 18:09:13.532767+00');
 
 
 --
 -- Data for Name: anomalies; Type: TABLE DATA; Schema: public; Owner: weather_user
 --
 
-INSERT INTO public.anomalies VALUES (1, 1, 5.94350004196167, 64, 8.279999732971191, NULL, '{"humidity": {"avg": 54.69230769230769, "value": 64.0}, "wind_speed": {"avg": 11.713846133305477, "value": 8.279999732971191}, "temperature": {"avg": 9.189807671767015, "value": 5.94350004196167}}', '2026-05-09 22:07:14.702438+00');
-INSERT INTO public.anomalies VALUES (3, 3, 5.774499893188477, 61, 4.679999828338623, NULL, '{"humidity": {"avg": 54.733333333333334, "value": 61.0}, "wind_speed": {"avg": 12.167999935150146, "value": 4.679999828338623}, "temperature": {"avg": 9.093666585286458, "value": 5.774499893188477}}', '2026-05-09 22:07:16.939647+00');
-INSERT INTO public.anomalies VALUES (6, 4, NULL, NULL, 1.6595180034637451, NULL, '{"wind_speed": {"avg": 2.472617483139038, "value": 1.6595180034637451}}', '2026-05-09 22:07:18.05918+00');
-INSERT INTO public.anomalies VALUES (4, 5, 7.426000118255615, 74, 1.6099690198898315, NULL, '{"humidity": {"avg": 61.2, "value": 74.0}, "wind_speed": {"avg": 1.8399526834487916, "value": 1.6099690198898315}, "temperature": {"avg": 9.175999736785888, "value": 7.426000118255615}}', '2026-05-09 22:07:19.254738+00');
-INSERT INTO public.anomalies VALUES (5, 6, 12.554499626159668, NULL, 5.86037540435791, NULL, '{"wind_speed": {"avg": 3.447219967842102, "value": 5.86037540435791}, "temperature": {"avg": 14.2044997215271, "value": 12.554499626159668}}', '2026-05-09 22:07:20.39587+00');
-INSERT INTO public.anomalies VALUES (7, 9, 6.638000011444092, 82.60759735107422, 1.9881649017333984, NULL, '{"humidity": {"avg": 72.15658378601074, "value": 82.60759735107422}, "wind_speed": {"avg": 3.0334609150886536, "value": 1.9881649017333984}, "temperature": {"avg": 8.36299979686737, "value": 6.638000011444092}}', '2026-05-09 22:07:23.739853+00');
-INSERT INTO public.anomalies VALUES (2, 2, 11.162999153137207, 49, 25.559999465942383, NULL, '{"humidity": {"avg": 54.94117647058823, "value": 49.0}, "wind_speed": {"avg": 12.727058719186221, "value": 25.559999465942383}, "temperature": {"avg": 9.030088116140927, "value": 11.162999153137207}}', '2026-05-09 22:09:53.279581+00');
+INSERT INTO public.anomalies VALUES (1, 1, 13.893499374389648, 41, 17.280000686645508, NULL, '{"humidity": {"avg": 55.0, "value": 41.0}, "wind_speed": {"avg": 12.583636262200095, "value": 17.280000686645508}, "temperature": {"avg": 8.911840742284602, "value": 13.893499374389648}}', '2026-05-10 12:30:49.269516+00');
+INSERT INTO public.anomalies VALUES (2, 2, 11.71299934387207, 49, 25.19999885559082, NULL, '{"wind_speed": {"avg": 13.132173766260562, "value": 25.19999885559082}, "temperature": {"avg": 9.033630246701447, "value": 11.71299934387207}}', '2026-05-10 12:30:50.41094+00');
+INSERT INTO public.anomalies VALUES (3, 3, 14.924500465393066, 36, 4.679999828338623, NULL, '{"humidity": {"avg": 54.208333333333336, "value": 36.0}, "temperature": {"avg": 9.279083172480265, "value": 14.924500465393066}}', '2026-05-10 12:30:51.549099+00');
+INSERT INTO public.anomalies VALUES (6, 4, NULL, NULL, 4.829906940460205, NULL, '{"wind_speed": {"avg": 2.5640037953853607, "value": 4.829906940460205}}', '2026-05-10 12:30:52.669045+00');
+INSERT INTO public.anomalies VALUES (4, 5, 13.076000213623047, 74, 4.896529674530029, NULL, '{"wind_speed": {"avg": 2.1645288914442062, "value": 4.896529674530029}, "temperature": {"avg": 9.225999891757965, "value": 13.076000213623047}}', '2026-05-10 12:30:53.773018+00');
+INSERT INTO public.anomalies VALUES (5, 6, 21.904499053955078, 52, 6.297428131103516, NULL, '{"humidity": {"avg": 86.14285714285714, "value": 52.0}, "wind_speed": {"avg": 4.543865544455392, "value": 6.297428131103516}, "temperature": {"avg": 14.833071027483259, "value": 21.904499053955078}}', '2026-05-10 12:30:54.944179+00');
+INSERT INTO public.anomalies VALUES (8, 7, 4.764500141143799, 97, 11.159998893737793, NULL, '{"humidity": {"avg": 82.66666666666667, "value": 97.0}, "wind_speed": {"avg": 21.35999854405721, "value": 11.159998893737793}, "temperature": {"avg": 3.789500037829081, "value": 4.764500141143799}}', '2026-05-10 12:30:56.111496+00');
+INSERT INTO public.anomalies VALUES (9, 8, 13.491499900817871, 45, 11.770402908325195, NULL, '{"humidity": {"avg": 55.125, "value": 45.0}, "wind_speed": {"avg": 7.568903386592865, "value": 11.770402908325195}, "temperature": {"avg": 9.753999710083008, "value": 13.491499900817871}}', '2026-05-10 12:30:57.212987+00');
+INSERT INTO public.anomalies VALUES (7, 9, 9.63800048828125, 96.04521942138672, 7.907717704772949, NULL, '{"humidity": {"avg": 78.5552498953683, "value": 96.04521942138672}, "wind_speed": {"avg": 3.4311273097991943, "value": 7.907717704772949}, "temperature": {"avg": 8.05228567123413, "value": 9.63800048828125}}', '2026-05-10 12:30:58.333069+00');
 
 
 --
@@ -109,6 +111,15 @@ INSERT INTO public.raw_weather VALUES (56, 40.25, 20.4375, '{"temp": 12.55449962
 INSERT INTO public.raw_weather VALUES (57, 70.20964050292969, 30.406463623046875, '{"temp": 3.4144999980926514, "humidity": 79.0, "latitude": 70.20964050292969, "pressure": 1020.2999877929688, "raw_json": {"current": {"time": 1778364000, "interval": 900, "pressure_msl": 1020.2999877929688, "temperature_2m": 3.4144999980926514, "wind_speed_10m": 24.119998931884766, "relative_humidity_2m": 79.0}, "latitude": 70.20964050292969, "timezone": null, "elevation": 0.0, "longitude": 30.406463623046875, "utc_offset_seconds": 0, "timezone_abbreviation": null}, "longitude": 30.406463623046875, "timestamp": 1778364000, "wind_speed": 24.119998931884766}', '2026-05-09 22:16:08.204418+00');
 INSERT INTO public.raw_weather VALUES (58, 55.4375, 37.375, '{"temp": 8.741499900817871, "humidity": 56.0, "latitude": 55.4375, "pressure": 1022.5999755859375, "raw_json": {"current": {"time": 1778364000, "interval": 900, "pressure_msl": 1022.5999755859375, "temperature_2m": 8.741499900817871, "wind_speed_10m": 6.989935398101807, "relative_humidity_2m": 56.0}, "latitude": 55.4375, "timezone": null, "elevation": 183.0, "longitude": 37.375, "utc_offset_seconds": 0, "timezone_abbreviation": null}, "longitude": 37.375, "timestamp": 1778364000, "wind_speed": 6.989935398101807}', '2026-05-09 22:16:09.219927+00');
 INSERT INTO public.raw_weather VALUES (59, 40.456939697265625, 74.00564575195312, '{"temp": 6.638000011444092, "humidity": 82.60759735107422, "latitude": 40.456939697265625, "pressure": 1017.4000244140625, "raw_json": {"current": {"time": 1778364000, "interval": 900, "pressure_msl": 1017.4000244140625, "temperature_2m": 6.638000011444092, "wind_speed_10m": 1.9881649017333984, "relative_humidity_2m": 82.60759735107422}, "latitude": 40.456939697265625, "timezone": null, "elevation": 2231.0, "longitude": 74.00564575195312, "utc_offset_seconds": 0, "timezone_abbreviation": null}, "longitude": 74.00564575195312, "timestamp": 1778364000, "wind_speed": 1.9881649017333984}', '2026-05-09 22:16:10.236171+00');
+INSERT INTO public.raw_weather VALUES (60, 59.56721878051758, 30.180068969726562, '{"temp": 13.893499374389648, "humidity": 41.0, "latitude": 59.56721878051758, "pressure": 1017.4000244140625, "raw_json": {"current": {"time": 1778416200, "interval": 900, "pressure_msl": 1017.4000244140625, "temperature_2m": 13.893499374389648, "wind_speed_10m": 17.280000686645508, "relative_humidity_2m": 41.0}, "latitude": 59.56721878051758, "timezone": null, "elevation": 81.0, "longitude": 30.180068969726562, "utc_offset_seconds": 0, "timezone_abbreviation": null}, "longitude": 30.180068969726562, "timestamp": 1778416200, "wind_speed": 17.280000686645508}', '2026-05-10 12:30:48.780309+00');
+INSERT INTO public.raw_weather VALUES (61, 58.336692810058594, 31.097198486328125, '{"temp": 11.71299934387207, "humidity": 55.0, "latitude": 58.336692810058594, "pressure": 1017.5999755859375, "raw_json": {"current": {"time": 1778416200, "interval": 900, "pressure_msl": 1017.5999755859375, "temperature_2m": 11.71299934387207, "wind_speed_10m": 25.19999885559082, "relative_humidity_2m": 55.0}, "latitude": 58.336692810058594, "timezone": null, "elevation": 18.0, "longitude": 31.097198486328125, "utc_offset_seconds": 0, "timezone_abbreviation": null}, "longitude": 31.097198486328125, "timestamp": 1778416200, "wind_speed": 25.19999885559082}', '2026-05-10 12:30:50.279089+00');
+INSERT INTO public.raw_weather VALUES (62, 61.229698181152344, 29.11181640625, '{"temp": 14.924500465393066, "humidity": 36.0, "latitude": 61.229698181152344, "pressure": 1017.5, "raw_json": {"current": {"time": 1778416200, "interval": 900, "pressure_msl": 1017.5, "temperature_2m": 14.924500465393066, "wind_speed_10m": 12.59999942779541, "relative_humidity_2m": 36.0}, "latitude": 61.229698181152344, "timezone": null, "elevation": 119.0, "longitude": 29.11181640625, "utc_offset_seconds": 0, "timezone_abbreviation": null}, "longitude": 29.11181640625, "timestamp": 1778416200, "wind_speed": 12.59999942779541}', '2026-05-10 12:30:51.416455+00');
+INSERT INTO public.raw_weather VALUES (63, 12.970123291015625, 99.16363525390625, '{"temp": 21.488500595092773, "humidity": 93.75057220458984, "latitude": 12.970123291015625, "pressure": 1012.0, "raw_json": {"current": {"time": 1778416200, "interval": 900, "pressure_msl": 1012.0, "temperature_2m": 21.488500595092773, "wind_speed_10m": 4.829906940460205, "relative_humidity_2m": 93.75057220458984}, "latitude": 12.970123291015625, "timezone": null, "elevation": 760.0, "longitude": 99.16363525390625, "utc_offset_seconds": 0, "timezone_abbreviation": null}, "longitude": 99.16363525390625, "timestamp": 1778416200, "wind_speed": 4.829906940460205}', '2026-05-10 12:30:52.55421+00');
+INSERT INTO public.raw_weather VALUES (64, 40.375, 40.375, '{"temp": 13.076000213623047, "humidity": 70.0, "latitude": 40.375, "pressure": 1017.0999755859375, "raw_json": {"current": {"time": 1778416200, "interval": 900, "pressure_msl": 1017.0999755859375, "temperature_2m": 13.076000213623047, "wind_speed_10m": 4.896529674530029, "relative_humidity_2m": 70.0}, "latitude": 40.375, "timezone": null, "elevation": 1619.0, "longitude": 40.375, "utc_offset_seconds": 0, "timezone_abbreviation": null}, "longitude": 40.375, "timestamp": 1778416200, "wind_speed": 4.896529674530029}', '2026-05-10 12:30:53.675359+00');
+INSERT INTO public.raw_weather VALUES (65, 40.25, 20.4375, '{"temp": 21.904499053955078, "humidity": 52.0, "latitude": 40.25, "pressure": 1014.5, "raw_json": {"current": {"time": 1778416200, "interval": 900, "pressure_msl": 1014.5, "temperature_2m": 21.904499053955078, "wind_speed_10m": 6.297428131103516, "relative_humidity_2m": 52.0}, "latitude": 40.25, "timezone": null, "elevation": 264.0, "longitude": 20.4375, "utc_offset_seconds": 0, "timezone_abbreviation": null}, "longitude": 20.4375, "timestamp": 1778416200, "wind_speed": 6.297428131103516}', '2026-05-10 12:30:54.779371+00');
+INSERT INTO public.raw_weather VALUES (66, 70.20964050292969, 30.406463623046875, '{"temp": 4.764500141143799, "humidity": 97.0, "latitude": 70.20964050292969, "pressure": 1012.7000122070312, "raw_json": {"current": {"time": 1778416200, "interval": 900, "pressure_msl": 1012.7000122070312, "temperature_2m": 4.764500141143799, "wind_speed_10m": 11.159998893737793, "relative_humidity_2m": 97.0}, "latitude": 70.20964050292969, "timezone": null, "elevation": 0.0, "longitude": 30.406463623046875, "utc_offset_seconds": 0, "timezone_abbreviation": null}, "longitude": 30.406463623046875, "timestamp": 1778416200, "wind_speed": 11.159998893737793}', '2026-05-10 12:30:55.953207+00');
+INSERT INTO public.raw_weather VALUES (67, 55.4375, 37.375, '{"temp": 13.491499900817871, "humidity": 45.0, "latitude": 55.4375, "pressure": 1018.5, "raw_json": {"current": {"time": 1778416200, "interval": 900, "pressure_msl": 1018.5, "temperature_2m": 13.491499900817871, "wind_speed_10m": 11.770402908325195, "relative_humidity_2m": 45.0}, "latitude": 55.4375, "timezone": null, "elevation": 183.0, "longitude": 37.375, "utc_offset_seconds": 0, "timezone_abbreviation": null}, "longitude": 37.375, "timestamp": 1778416200, "wind_speed": 11.770402908325195}', '2026-05-10 12:30:57.125903+00');
+INSERT INTO public.raw_weather VALUES (68, 40.456939697265625, 74.00564575195312, '{"temp": 9.63800048828125, "humidity": 96.04521942138672, "latitude": 40.456939697265625, "pressure": 1016.5999755859375, "raw_json": {"current": {"time": 1778416200, "interval": 900, "pressure_msl": 1016.5999755859375, "temperature_2m": 9.63800048828125, "wind_speed_10m": 7.907717704772949, "relative_humidity_2m": 96.04521942138672}, "latitude": 40.456939697265625, "timezone": null, "elevation": 2231.0, "longitude": 74.00564575195312, "utc_offset_seconds": 0, "timezone_abbreviation": null}, "longitude": 74.00564575195312, "timestamp": 1778416200, "wind_speed": 7.907717704772949}', '2026-05-10 12:30:58.228196+00');
 
 
 --
@@ -174,13 +185,22 @@ INSERT INTO public.weather VALUES (56, 40.25, 20.4375, '2026-05-09 22:16:07.1878
 INSERT INTO public.weather VALUES (57, 70.20964050292969, 30.406463623046875, '2026-05-09 22:16:08.204418+00', 3.4144999980926514, 1020.2999877929688, 79, 24.119998931884766, '2026-05-09 22:16:08.209694+00');
 INSERT INTO public.weather VALUES (58, 55.4375, 37.375, '2026-05-09 22:16:09.219927+00', 8.741499900817871, 1022.5999755859375, 56, 6.989935398101807, '2026-05-09 22:16:09.225801+00');
 INSERT INTO public.weather VALUES (59, 40.456939697265625, 74.00564575195312, '2026-05-09 22:16:10.236171+00', 6.638000011444092, 1017.4000244140625, 82.60759735107422, 1.9881649017333984, '2026-05-09 22:16:10.242163+00');
+INSERT INTO public.weather VALUES (60, 59.56721878051758, 30.180068969726562, '2026-05-10 12:30:48.780309+00', 13.893499374389648, 1017.4000244140625, 41, 17.280000686645508, '2026-05-10 12:30:49.250542+00');
+INSERT INTO public.weather VALUES (61, 58.336692810058594, 31.097198486328125, '2026-05-10 12:30:50.279089+00', 11.71299934387207, 1017.5999755859375, 55, 25.19999885559082, '2026-05-10 12:30:50.402483+00');
+INSERT INTO public.weather VALUES (62, 61.229698181152344, 29.11181640625, '2026-05-10 12:30:51.416455+00', 14.924500465393066, 1017.5, 36, 12.59999942779541, '2026-05-10 12:30:51.540787+00');
+INSERT INTO public.weather VALUES (63, 12.970123291015625, 99.16363525390625, '2026-05-10 12:30:52.55421+00', 21.488500595092773, 1012, 93.75057220458984, 4.829906940460205, '2026-05-10 12:30:52.660066+00');
+INSERT INTO public.weather VALUES (64, 40.375, 40.375, '2026-05-10 12:30:53.675359+00', 13.076000213623047, 1017.0999755859375, 70, 4.896529674530029, '2026-05-10 12:30:53.762744+00');
+INSERT INTO public.weather VALUES (65, 40.25, 20.4375, '2026-05-10 12:30:54.779371+00', 21.904499053955078, 1014.5, 52, 6.297428131103516, '2026-05-10 12:30:54.929025+00');
+INSERT INTO public.weather VALUES (66, 70.20964050292969, 30.406463623046875, '2026-05-10 12:30:55.953207+00', 4.764500141143799, 1012.7000122070312, 97, 11.159998893737793, '2026-05-10 12:30:56.108248+00');
+INSERT INTO public.weather VALUES (67, 55.4375, 37.375, '2026-05-10 12:30:57.125903+00', 13.491499900817871, 1018.5, 45, 11.770402908325195, '2026-05-10 12:30:57.209671+00');
+INSERT INTO public.weather VALUES (68, 40.456939697265625, 74.00564575195312, '2026-05-10 12:30:58.228196+00', 9.63800048828125, 1016.5999755859375, 96.04521942138672, 7.907717704772949, '2026-05-10 12:30:58.322246+00');
 
 
 --
 -- Name: anomalies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: weather_user
 --
 
-SELECT pg_catalog.setval('public.anomalies_id_seq', 7, true);
+SELECT pg_catalog.setval('public.anomalies_id_seq', 9, true);
 
 
 --
@@ -194,19 +214,19 @@ SELECT pg_catalog.setval('public.locations_to_track_id_seq', 9, true);
 -- Name: raw_weather_id_seq; Type: SEQUENCE SET; Schema: public; Owner: weather_user
 --
 
-SELECT pg_catalog.setval('public.raw_weather_id_seq', 59, true);
+SELECT pg_catalog.setval('public.raw_weather_id_seq', 68, true);
 
 
 --
 -- Name: weather_id_seq; Type: SEQUENCE SET; Schema: public; Owner: weather_user
 --
 
-SELECT pg_catalog.setval('public.weather_id_seq', 59, true);
+SELECT pg_catalog.setval('public.weather_id_seq', 68, true);
 
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict FBgE0k7ejdsFyTQxkRrfnAKMOjhWjap5LCgT55okWdkXUta2bamdcXjRsfYkVBI
+\unrestrict ghpuhPAMTgB3ShFaRWdz5GRFg0N9UbzuGTMUlnhEe8RUfmv7kcfRSXPrjTW8S2a
 
