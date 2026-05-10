@@ -1,0 +1,41 @@
+[2026-05-10T12:12:45.316+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-10T12:12:45.333+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sync_to_clickhouse.sync_anomalies manual__2026-05-10T12:12:41.120900+00:00 [queued]>
+[2026-05-10T12:12:45.338+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sync_to_clickhouse.sync_anomalies manual__2026-05-10T12:12:41.120900+00:00 [queued]>
+[2026-05-10T12:12:45.339+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-10T12:12:45.347+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): sync_anomalies> on 2026-05-10 12:12:41.120900+00:00
+[2026-05-10T12:12:45.357+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=210) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-05-10T12:12:45.358+0000] {standard_task_runner.py:64} INFO - Started process 212 to run task
+[2026-05-10T12:12:45.358+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sync_to_clickhouse', 'sync_anomalies', 'manual__2026-05-10T12:12:41.120900+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/sync_to_clickhouse.py', '--cfg-path', '/tmp/tmpfcimpli0']
+[2026-05-10T12:12:45.360+0000] {standard_task_runner.py:91} INFO - Job 16: Subtask sync_anomalies
+[2026-05-10T12:12:45.401+0000] {task_command.py:426} INFO - Running <TaskInstance: sync_to_clickhouse.sync_anomalies manual__2026-05-10T12:12:41.120900+00:00 [running]> on host dfa1561081ea
+[2026-05-10T12:12:45.461+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Cheburek' AIRFLOW_CTX_DAG_ID='sync_to_clickhouse' AIRFLOW_CTX_TASK_ID='sync_anomalies' AIRFLOW_CTX_EXECUTION_DATE='2026-05-10T12:12:41.120900+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-10T12:12:41.120900+00:00'
+[2026-05-10T12:12:45.463+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-10T12:12:45.519+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-10T12:12:45.519+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/sync_to_clickhouse.py", line 58, in sync_anomalies
+    a.id, a.loc.lat, a.loc.lon, a.location_id, a.anomaly_temperature, a.anomaly_pressure, a.anomaly_humidity, a.anomaly_wind_speed, str(a.additional_data), a.found_at
+          ^^^^^
+AttributeError: 'Anomaly' object has no attribute 'loc'
+[2026-05-10T12:12:45.529+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=sync_to_clickhouse, task_id=sync_anomalies, run_id=manual__2026-05-10T12:12:41.120900+00:00, execution_date=20260510T121241, start_date=20260510T121245, end_date=20260510T121245
+[2026-05-10T12:12:45.539+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 16 for task sync_anomalies ('Anomaly' object has no attribute 'loc'; 212)
+[2026-05-10T12:12:45.572+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-10T12:12:45.590+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-10T12:12:45.591+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

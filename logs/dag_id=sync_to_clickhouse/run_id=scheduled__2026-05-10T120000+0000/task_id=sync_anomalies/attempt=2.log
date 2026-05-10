@@ -1,0 +1,89 @@
+[2026-05-10T12:17:02.392+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-10T12:17:02.412+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sync_to_clickhouse.sync_anomalies scheduled__2026-05-10T12:00:00+00:00 [queued]>
+[2026-05-10T12:17:02.418+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sync_to_clickhouse.sync_anomalies scheduled__2026-05-10T12:00:00+00:00 [queued]>
+[2026-05-10T12:17:02.419+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2026-05-10T12:17:02.428+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): sync_anomalies> on 2026-05-10 12:00:00+00:00
+[2026-05-10T12:17:02.435+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=89) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-05-10T12:17:02.437+0000] {standard_task_runner.py:64} INFO - Started process 91 to run task
+[2026-05-10T12:17:02.437+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sync_to_clickhouse', 'sync_anomalies', 'scheduled__2026-05-10T12:00:00+00:00', '--job-id', '22', '--raw', '--subdir', 'DAGS_FOLDER/sync_to_clickhouse.py', '--cfg-path', '/tmp/tmpvj1utcar']
+[2026-05-10T12:17:02.439+0000] {standard_task_runner.py:91} INFO - Job 22: Subtask sync_anomalies
+[2026-05-10T12:17:02.482+0000] {task_command.py:426} INFO - Running <TaskInstance: sync_to_clickhouse.sync_anomalies scheduled__2026-05-10T12:00:00+00:00 [running]> on host 4e4ce2b3f892
+[2026-05-10T12:17:02.545+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Cheburek' AIRFLOW_CTX_DAG_ID='sync_to_clickhouse' AIRFLOW_CTX_TASK_ID='sync_anomalies' AIRFLOW_CTX_EXECUTION_DATE='2026-05-10T12:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-10T12:00:00+00:00'
+[2026-05-10T12:17:02.547+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-10T12:17:02.591+0000] {transform.py:120} ERROR - Error serializing column `anomaly_temperature` into data type `Float64`
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/common.py", line 51, in write_array
+    dest += buff.pack(*column)
+            ^^^^^^^^^^^^^^^^^^
+struct.error: required argument is not a float
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/transform.py", line 114, in chunk_gen
+    col_type.write_column(data, output, context)
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/datatypes/base.py", line 216, in write_column
+    self.write_column_data(column, dest, ctx)
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/datatypes/base.py", line 231, in write_column_data
+    self._write_column_binary(column, dest, ctx)
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/datatypes/numeric.py", line 202, in _write_column_binary
+    write_array(self._array_type, column, dest)
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/common.py", line 56, in write_array
+    raise DataError(f'Unable to create Python array{col_msg}.  This is usually caused by trying to insert None ' +
+clickhouse_connect.driver.exceptions.DataError: Unable to create Python array.  This is usually caused by trying to insert None values into a ClickHouse column that is not Nullable
+[2026-05-10T12:17:02.594+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-10T12:17:02.595+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/common.py", line 51, in write_array
+    dest += buff.pack(*column)
+            ^^^^^^^^^^^^^^^^^^
+struct.error: required argument is not a float
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/sync_to_clickhouse.py", line 60, in sync_anomalies
+    ch.insert('anomalies', data,
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/client.py", line 978, in insert
+    return self.data_insert(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/httpclient.py", line 347, in data_insert
+    response = self._raw_request(block_gen, params, headers, error_handler=error_handler, server_wait=False)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/httpclient.py", line 569, in _raw_request
+    error_handler(response)
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/httpclient.py", line 331, in error_handler
+    raise ex
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/transform.py", line 114, in chunk_gen
+    col_type.write_column(data, output, context)
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/datatypes/base.py", line 216, in write_column
+    self.write_column_data(column, dest, ctx)
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/datatypes/base.py", line 231, in write_column_data
+    self._write_column_binary(column, dest, ctx)
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/datatypes/numeric.py", line 202, in _write_column_binary
+    write_array(self._array_type, column, dest)
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/common.py", line 56, in write_array
+    raise DataError(f'Unable to create Python array{col_msg}.  This is usually caused by trying to insert None ' +
+clickhouse_connect.driver.exceptions.DataError: Unable to create Python array.  This is usually caused by trying to insert None values into a ClickHouse column that is not Nullable
+[2026-05-10T12:17:02.605+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=sync_to_clickhouse, task_id=sync_anomalies, run_id=scheduled__2026-05-10T12:00:00+00:00, execution_date=20260510T120000, start_date=20260510T121702, end_date=20260510T121702
+[2026-05-10T12:17:02.616+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 22 for task sync_anomalies (Unable to create Python array.  This is usually caused by trying to insert None values into a ClickHouse column that is not Nullable; 91)
+[2026-05-10T12:17:02.651+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-10T12:17:02.666+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-10T12:17:02.668+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

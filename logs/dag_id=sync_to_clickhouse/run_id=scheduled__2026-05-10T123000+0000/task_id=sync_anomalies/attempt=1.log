@@ -1,0 +1,21 @@
+[2026-05-10T12:45:04.036+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-10T12:45:04.052+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sync_to_clickhouse.sync_anomalies scheduled__2026-05-10T12:30:00+00:00 [queued]>
+[2026-05-10T12:45:04.057+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sync_to_clickhouse.sync_anomalies scheduled__2026-05-10T12:30:00+00:00 [queued]>
+[2026-05-10T12:45:04.057+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-10T12:45:04.068+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): sync_anomalies> on 2026-05-10 12:30:00+00:00
+[2026-05-10T12:45:04.076+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=316) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-05-10T12:45:04.078+0000] {standard_task_runner.py:64} INFO - Started process 318 to run task
+[2026-05-10T12:45:04.078+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sync_to_clickhouse', 'sync_anomalies', 'scheduled__2026-05-10T12:30:00+00:00', '--job-id', '34', '--raw', '--subdir', 'DAGS_FOLDER/sync_to_clickhouse.py', '--cfg-path', '/tmp/tmpwt34hz0d']
+[2026-05-10T12:45:04.080+0000] {standard_task_runner.py:91} INFO - Job 34: Subtask sync_anomalies
+[2026-05-10T12:45:04.119+0000] {task_command.py:426} INFO - Running <TaskInstance: sync_to_clickhouse.sync_anomalies scheduled__2026-05-10T12:30:00+00:00 [running]> on host 4ee2d23a95b9
+[2026-05-10T12:45:04.192+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Cheburek' AIRFLOW_CTX_DAG_ID='sync_to_clickhouse' AIRFLOW_CTX_TASK_ID='sync_anomalies' AIRFLOW_CTX_EXECUTION_DATE='2026-05-10T12:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-10T12:30:00+00:00'
+[2026-05-10T12:45:04.194+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-10T12:45:04.249+0000] {log.py:232} WARNING - [32m12:45:04 | logger          | INFO     | Синхронизировано 2 записей anomalies[0m
+[2026-05-10T12:45:04.250+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-10T12:45:04.251+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-10T12:45:04.260+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=sync_to_clickhouse, task_id=sync_anomalies, run_id=scheduled__2026-05-10T12:30:00+00:00, execution_date=20260510T123000, start_date=20260510T124504, end_date=20260510T124504
+[2026-05-10T12:45:04.291+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-10T12:45:04.304+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-10T12:45:04.305+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

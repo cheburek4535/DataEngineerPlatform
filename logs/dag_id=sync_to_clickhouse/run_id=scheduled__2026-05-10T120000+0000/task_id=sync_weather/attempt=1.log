@@ -1,0 +1,21 @@
+[2026-05-10T12:15:59.209+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-10T12:15:59.227+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sync_to_clickhouse.sync_weather scheduled__2026-05-10T12:00:00+00:00 [queued]>
+[2026-05-10T12:15:59.232+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sync_to_clickhouse.sync_weather scheduled__2026-05-10T12:00:00+00:00 [queued]>
+[2026-05-10T12:15:59.233+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-10T12:15:59.242+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): sync_weather> on 2026-05-10 12:00:00+00:00
+[2026-05-10T12:15:59.250+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=67) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-05-10T12:15:59.252+0000] {standard_task_runner.py:64} INFO - Started process 69 to run task
+[2026-05-10T12:15:59.251+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sync_to_clickhouse', 'sync_weather', 'scheduled__2026-05-10T12:00:00+00:00', '--job-id', '20', '--raw', '--subdir', 'DAGS_FOLDER/sync_to_clickhouse.py', '--cfg-path', '/tmp/tmp8x7fre4j']
+[2026-05-10T12:15:59.253+0000] {standard_task_runner.py:91} INFO - Job 20: Subtask sync_weather
+[2026-05-10T12:15:59.299+0000] {task_command.py:426} INFO - Running <TaskInstance: sync_to_clickhouse.sync_weather scheduled__2026-05-10T12:00:00+00:00 [running]> on host 4e4ce2b3f892
+[2026-05-10T12:15:59.372+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Cheburek' AIRFLOW_CTX_DAG_ID='sync_to_clickhouse' AIRFLOW_CTX_TASK_ID='sync_weather' AIRFLOW_CTX_EXECUTION_DATE='2026-05-10T12:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-10T12:00:00+00:00'
+[2026-05-10T12:15:59.373+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-10T12:15:59.409+0000] {log.py:232} WARNING - [32m12:15:59 | logger          | INFO     | Нет новых данных для синхронизации weather[0m
+[2026-05-10T12:15:59.411+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-10T12:15:59.411+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-10T12:15:59.419+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=sync_to_clickhouse, task_id=sync_weather, run_id=scheduled__2026-05-10T12:00:00+00:00, execution_date=20260510T120000, start_date=20260510T121559, end_date=20260510T121559
+[2026-05-10T12:15:59.466+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-10T12:15:59.483+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-10T12:15:59.484+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
