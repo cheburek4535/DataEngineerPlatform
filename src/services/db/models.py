@@ -1,10 +1,11 @@
 from sqlalchemy.orm import Mapped, relationship
-from sqlalchemy import Integer, Column, DateTime, ForeignKey, Float
+from sqlalchemy import Integer, Column, DateTime, ForeignKey, Float, String, Numeric
 from sqlalchemy.sql import func
-from typing import List
+from typing import List, Optional
 from datetime import datetime
 from sqlalchemy.dialects.postgresql import JSONB
 from services.db.db import Base
+import decimal
 
 
 class RawWeather(Base):
@@ -54,8 +55,47 @@ class Anomaly(Base):
     anomaly_pressure: Mapped[float] = Column(Float, index=True, nullable=True)
     additional_data: Mapped[dict] = Column(JSONB)
     found_at: Mapped[datetime] = Column(DateTime(timezone=True), server_default=func.now())
+    #updated_at: Mapped[datetime] = Column(DateTime(timezone=True), onupdate=func.now())
 
     location: Mapped["LocationToTrack"] = relationship(
         "LocationToTrack",
         back_populates="anomalies"
     )
+
+
+class RawCurrency(Base):
+    __tablename__ = 'raw_currencies'
+    id : Mapped[int] = Column(Integer, primary_key=True, index=True)
+    json_data: Mapped[dict] = Column(JSONB)
+    collected_at: Mapped[datetime] = Column(DateTime(timezone=True), server_default=func.now())
+
+class CurrencyHistory(Base):
+    __tablename__ = 'currency_history'
+    id: Mapped[int] = Column(Integer, primary_key=True, index=True)
+    name: Mapped[str] = Column(String(64), index=True, nullable=False)
+    code: Mapped[str] = Column(String(3), nullable=False)
+    value_in_rubles: Mapped[decimal.Decimal] = Column(Numeric(precision=16, scale=6), index=True, nullable=False)
+    timestamp: Mapped[datetime] = Column(DateTime(timezone=True), server_default=func.now())
+
+class Currency(Base):
+    __tablename__ = 'currencies'
+    id : Mapped[int] = Column(Integer, primary_key=True, index=True)
+    name: Mapped[str] = Column(String(64), index=True, nullable=False)
+    code: Mapped[str] = Column(String(3), nullable=False)
+    value_in_rubles: Mapped[decimal.Decimal] = Column(Numeric(precision=16, scale=6), index=True, nullable=False)
+    created_at: Mapped[datetime] = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime] = Column(DateTime(timezone=True), nullable=True, onupdate=func.now())
+
+    sharp_changes: Mapped[List["CurrencySharpChange"]] = relationship("CurrencySharpChange", back_populates="currency", cascade="all, delete-orphan")
+
+class CurrencySharpChange(Base):
+    __tablename__ = 'currency_sharp_changes'
+    id : Mapped[int] = Column(Integer, primary_key=True, index=True)
+    change_percents: Mapped[float] = Column(Float, index=True, nullable=False)
+    value_in_rubles: Mapped[decimal.Decimal] = Column(Numeric(precision=16, scale=6), index=True, nullable=False)
+    previous_value: Mapped[decimal.Decimal] = Column(Numeric(precision=16, scale=6), nullable=True)
+    currency_id: Mapped[int] = Column(Integer, ForeignKey('currencies.id'), nullable=False)
+    #additional_data: Mapped[Optional[dict]] = Column(JSONB, nullable=True)
+    found_at: Mapped[datetime] = Column(DateTime(timezone=True), nullable=True, server_default=func.now())
+
+    currency: Mapped["Currency"] = relationship("Currency", back_populates="sharp_changes")

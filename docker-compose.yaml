@@ -172,6 +172,11 @@ services:
       GF_SECURITY_ADMIN_PASSWORD: admin
     volumes:
       - grafana_data:/var/lib/grafana
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+    networks:
+      - default
 
 
   redis:
@@ -362,3 +367,7 @@ volumes:
   weather_db_data:
   clickhouse_data:
   grafana_data:
+
+networks:
+  default:
+    name: monitoring

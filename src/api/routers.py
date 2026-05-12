@@ -1,10 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import and_
 from services.db.db import get_db
 import api.schemas as schemas
-from services.locations.service import add_location_to_track
-from typing import List, Optional
+from services.weather.locations import add_location_to_track
+from typing import List
 from services.db import models
 
 locations_router = APIRouter(prefix="/locations", tags=["Локации"])

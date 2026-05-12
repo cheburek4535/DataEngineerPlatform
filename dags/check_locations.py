@@ -1,7 +1,7 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from services.db.db import get_session
-from services.locations.service import check_all_locations
+from services.weather.locations.service import check_all_locations
 from logger import logger
 from datetime import datetime, timedelta
 
@@ -23,7 +23,7 @@ with DAG(
     dag_id='check_locations',
     description='Проверка всех локаций на аномалии',
     start_date=datetime(2026, 5, 9),
-    schedule_interval='*/30 * * * *', #30 минут
+    schedule_interval='*/120 * * * *', #120 минут
     catchup=False,
     default_args=default_args,
     tags=['anomalies', 'etl'],

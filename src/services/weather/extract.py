@@ -69,7 +69,6 @@ def get_weather(lon: float, lat: float) -> Optional[dict]:
 
 
 def collect_raw_weather(db: Session, weather: dict) -> dict:
-        print(weather)
         db_weather = RawWeather(
             lat=weather['latitude'],
             lon=weather['longitude'],

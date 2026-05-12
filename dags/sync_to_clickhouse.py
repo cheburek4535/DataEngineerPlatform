@@ -45,21 +45,85 @@ def sync_weather(**context):
 def sync_anomalies(**context):
     pg = get_session()
     ch = get_ch_client()
-    result = ch.query("SELECT max(id) FROM anomalies")
+
+    # Clear and reload
+    ch.command("TRUNCATE TABLE anomalies")
+
+    rows = pg.query(models.Anomaly).all()
+    data = [
+        [
+            a.id, a.location.lat, a.location.lon, a.location_id,
+            a.anomaly_temperature, a.anomaly_pressure,
+            a.anomaly_humidity, a.anomaly_wind_speed,
+            str(a.additional_data), a.found_at
+        ]
+        for a in rows
+    ]
+
+    if data:
+        ch.insert(
+            'anomalies',
+            data,
+            column_names=[
+                'id', 'lat', 'lon', 'location_id', 'anomaly_temperature',
+                'anomaly_pressure', 'anomaly_humidity', 'anomaly_wind_speed',
+                'additional_data', 'found_at'
+            ]
+        )
+        logger.info(f"Синхронизировано {len(data)} записей anomalies")
+    else:
+        logger.info("Таблица anomalies в PG пуста")
+
+    pg.close()
+
+
+
+def sync_currency(**context):
+    pg = get_session()
+    ch = get_ch_client()
+
+    ch.command("TRUNCATE TABLE IF EXISTS weather_analytics.currencies")
+
+    rows = pg.query(models.Currency).all()
+    data = [
+        [r.id, r.name, r.code, float(r.value_in_rubles), r.created_at, r.updated_at]  # Decimal → float
+        for r in rows
+    ]
+
+    ch.insert('weather_analytics.currencies', data,
+              column_names=['id', 'name', 'code', 'value_in_rubles', 'created_at', 'updated_at'])
+    logger.info(f"✅ {len(data)} currencies")
+    pg.close()
+
+def sync_currency_sharp_changes(**context):
+    pg = get_session()
+    ch = get_ch_client()
+
+    # max(id) из CH
+    result = ch.query("SELECT max(id) FROM weather_analytics.currency_sharp_changes")
     max_id = result.result_rows[0][0] or 0
 
-    new_rows = pg.query(models.Anomaly).filter(models.Anomaly.id > max_id).all()
+    new_rows = pg.query(models.CurrencySharpChange).filter(
+        models.CurrencySharpChange.id > max_id
+    ).all()
 
     if not new_rows:
-        logger.info("Нет новых данных для синхронизации anomalies")
+        logger.info("Нет новых sharp_changes")
         pg.close()
         return
+
     data = [[
-        a.id, a.location.lat, a.location.lon, a.location_id, a.anomaly_temperature, a.anomaly_pressure, a.anomaly_humidity, a.anomaly_wind_speed, str(a.additional_data), a.found_at
-    ] for a in new_rows]
-    ch.insert('anomalies', data,
-              column_names=['id', 'lat', 'lon', 'location_id', 'anomaly_temperature', 'anomaly_pressure', 'anomaly_humidity', 'anomaly_wind_speed', 'additional_data', 'found_at'])
-    logger.info(f"Синхронизировано {len(data)} записей anomalies")
+        r.id,
+        float(r.change_percents),
+        float(r.value_in_rubles),
+        float(r.previous_value) if r.previous_value else None,
+        r.currency.code,  # ← currency.code вместо currency_id!
+        r.found_at
+    ] for r in new_rows]
+
+    ch.insert('weather_analytics.currency_sharp_changes', data,
+              column_names=['id', 'change_percents', 'value_in_rubles', 'previous_value', 'currency_code', 'found_at'])
+    logger.info(f"✅ {len(data)} sharp_changes")
     pg.close()
 
 default_args = {
@@ -72,7 +136,7 @@ with DAG(
     dag_id='sync_to_clickhouse',
     default_args=default_args,
     description='Синхронизация PostgreSQL с ClickHouse',
-    schedule_interval='*/15 * * * *',
+    schedule_interval='*/120 * * * *',
     start_date=datetime(2026, 5, 10),
     catchup=False,
     tags=['clickhouse', 'sync'],
@@ -87,4 +151,14 @@ with DAG(
         task_id='sync_anomalies',
         python_callable=sync_anomalies,
     )
-    sync_w >> sync_a
+
+    sync_c = PythonOperator(
+        task_id='sync_currency',
+        python_callable=sync_currency,
+    )
+
+    sync_sc = PythonOperator(
+        task_id='sync_currency_sharp_changes',
+        python_callable=sync_currency_sharp_changes,
+    )
+    sync_w >> sync_a >> sync_c >> sync_sc
