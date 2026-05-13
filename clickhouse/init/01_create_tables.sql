@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS weather_analytics.currencies (
     code LowCardinality(String),
     value_in_rubles Decimal128(16),  -- ClickHouse Decimal
     created_at DateTime64(3, 'UTC') DEFAULT now64(3),
-    updated_at DateTime64(3, 'UTC')
+    updated_at Nullable(DateTime64(3, 'UTC'))
 )
 ENGINE = MergeTree()
 ORDER BY (code, created_at)  -- code основной!
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS weather_analytics.currency_sharp_changes (
     id UInt64,
     change_percents Float64,
     value_in_rubles Decimal128(16),
-    previous_value Decimal128(16),
+    previous_value Nullable(Decimal128(16)),
     currency_code LowCardinality(String),  -- ← code вместо ID! FK нет в CH
     found_at DateTime64(3, 'UTC') DEFAULT now64(3)
 )

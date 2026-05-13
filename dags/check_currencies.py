@@ -23,7 +23,7 @@ with DAG(
     dag_id='check_currencies',
     description='Проверка всех валют на скачки и сбор данных',
     start_date=datetime(2026, 5, 12),
-    schedule_interval='*/120 * * * *', #120 минут
+    schedule_interval='*/60 * * * *', #120 минут
     catchup=False,
     default_args=default_args,
     tags=['anomalies', 'etl', 'currencies'],
