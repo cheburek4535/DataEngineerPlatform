@@ -47,7 +47,7 @@ def check_all_locations(db: Session):
                     else:
                         # Микро-пауза в 0.05 сек между обычными запросами.
                         # Она нужна, чтобы база данных успевала отдыхать и не было микро-спама к API.
-                        time.sleep(0.05)
+                        time.sleep(0.02)
             except Exception as e:
                 logger.error(f"Ошибка при проверке локации {location.id}: {e}")
                 db.rollback()

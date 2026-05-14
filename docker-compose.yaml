@@ -157,6 +157,7 @@ services:
     volumes:
       - clickhouse_data:/var/lib/clickhouse
       - ./clickhouse/init:/docker-entrypoint-initdb.d
+      - ./clickhouse/dumps:/var/lib/clickhouse_dumps # папка для дампов на хосте
     healthcheck:
       test: ["CMD", "clickhouse-client", "--user", "default", "--password", "ch_password", "--query", "SELECT 1"]
       interval: 10s
