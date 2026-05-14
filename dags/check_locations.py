@@ -23,7 +23,7 @@ with DAG(
     dag_id='check_locations',
     description='Проверка всех локаций на аномалии',
     start_date=datetime(2026, 5, 9),
-    schedule_interval='*/360 * * * *', #120 минут
+    schedule_interval='*/36000 * * * *', #120 минут
     catchup=False,
     default_args=default_args,
     tags=['anomalies', 'etl'],

@@ -18,7 +18,7 @@ def compare_weather(db: Session, structured_weather: Weather) -> Optional[dict]:
     similar_places = []
     if lon is not None and lat is not None:
         print("Ищем похожие места")
-        radius = 1.0
+        radius = 0.5
         similar_places = db.query(Weather).filter(
             and_(  # ← 4 УСЛОВИЯ and_, НЕ or_!
                 Weather.lat >= lat - radius,
@@ -45,7 +45,7 @@ def compare_weather(db: Session, structured_weather: Weather) -> Optional[dict]:
     avg_humidity = sum(humidities) / len(humidities)
     avg_wind = sum(winds) / len(winds)
 
-    threshold = 0.5
+    threshold = 0.6
     anomaly = {
             'temperature': abs(temperature - avg_temp) > threshold * abs(avg_temp) if temperature else False,
             'pressure': abs(pressure - avg_pressure) > threshold * abs(avg_pressure) if pressure else False,

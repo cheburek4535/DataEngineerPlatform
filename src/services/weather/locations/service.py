@@ -5,13 +5,14 @@ from datetime import datetime, timezone
 from logger import logger
 import time
 from sqlalchemy.orm import Session
+from sqlalchemy.sql import desc
 import random
 from typing import List, Optional
 
 
 def check_all_locations(db: Session):
     try:
-        locations = db.query(LocationToTrack).all()
+        locations = db.query(LocationToTrack).order_by(desc(LocationToTrack.id)).all()
         # Счетчик для контроля лимита в минуту
         location_counter = 0
         for location in locations:
@@ -35,8 +36,8 @@ def check_all_locations(db: Session):
 
                     # Увеличиваем счетчик после успешной обработки локации
                     location_counter += 1
-                    if location_counter >= 4999:
-                        logger.warning("Достигнут лимит 4999 локаций")
+                    if location_counter >= 2500:
+                        logger.warning("Достигнут лимит 2500 локаций")
                         break
 
                     # ХИТРОСТЬ: Если обработали 500 локаций и это ЕЩЕ НЕ конец списка
