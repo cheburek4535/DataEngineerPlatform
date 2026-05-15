@@ -195,6 +195,8 @@ curl -X POST http://localhost:8000/locations/add \
 ---
 
 *Создано как самообразовательный проект для входа в data engineering.*
+
+## Скриншоты дашбордов Grafana
 ```
 <img width="1574" height="728" alt="{E4354A01-207D-4A35-B64C-E545308A2DDF}" src="https://github.com/user-attachments/assets/7af57633-c861-4365-ae8b-16a591e10f69" />
 
@@ -202,5 +204,3 @@ curl -X POST http://localhost:8000/locations/add \
 
 <img width="1573" height="804" alt="{62B85150-53D6-424D-9E34-53C0F7CD19BB}" src="https://github.com/user-attachments/assets/3dd4bcf4-0ea5-4090-b879-e60ddfe6f852" />
 
-
-Замени `yourusername` на свой ник на GitHub. Скриншоты дашбордов Grafana и графа DAG в Airflow добавь в репу — это сразу выделит проект среди других. Удачи со стажировкой.
