@@ -18,13 +18,14 @@ def compare_weather(db: Session, structured_weather: Weather) -> Optional[dict]:
     similar_places = []
     if lon is not None and lat is not None:
         print("Ищем похожие места")
-        radius = 0.5
+        radius = 0.3
         similar_places = db.query(Weather).filter(
-            and_(  # ← 4 УСЛОВИЯ and_, НЕ or_!
+            and_(
                 Weather.lat >= lat - radius,
                 Weather.lat <= lat + radius,
                 Weather.lon >= lon - radius,
-                Weather.lon <= lon + radius
+                Weather.lon <= lon + radius,
+                Weather.collected_at > datetime.now(timezone.utc) - timedelta(days=31),
             )
         ).all()
         print(f"Найдено похожих: {len(similar_places)} в радиусе {radius}° от ({lat}, {lon})")
@@ -45,7 +46,7 @@ def compare_weather(db: Session, structured_weather: Weather) -> Optional[dict]:
     avg_humidity = sum(humidities) / len(humidities)
     avg_wind = sum(winds) / len(winds)
 
-    threshold = 0.6
+    threshold = 0.65
     anomaly = {
             'temperature': abs(temperature - avg_temp) > threshold * abs(avg_temp) if temperature else False,
             'pressure': abs(pressure - avg_pressure) > threshold * abs(avg_pressure) if pressure else False,
@@ -101,48 +102,48 @@ def check_anomalies(db: Session, lat: float, lon: float, loc: LocationToTrack) -
 
     return None
 
-def check_anomalies_for_batch(db: Session, loc: LocationToTrack, weather: Weather) -> Optional[Anomaly]:
-    # Функция принимает готовый объект weather, собранный ранее пакетным запросом
-    if weather:
-        print("Проверка аномалий")
-        anomalies = compare_weather(db, weather)
-        if anomalies:
-            # Собираем все аномалии для этой локации
-            anomalies_to_save = {}
-            anomalies_data = {}
-
-            for key, is_anomaly in anomalies.items():
-                if is_anomaly and key != 'averages':
-                    anomaly_value = getattr(weather, key)
-                    logger.info(f"Аномалия: {key}: {anomaly_value}! Среднее: {anomalies['averages'][key]}")
-
-                    # Определяем правильное название поля для БД
-                    if key == "temperature":
-                        anomalies_to_save['anomaly_temperature'] = anomaly_value
-                    elif key == "pressure":
-                        anomalies_to_save['anomaly_pressure'] = anomaly_value
-                    elif key == "humidity":
-                        anomalies_to_save['anomaly_humidity'] = anomaly_value
-                    elif key == "wind_speed":
-                        anomalies_to_save['anomaly_wind_speed'] = anomaly_value
-
-                    # Сохраняем данные для additional_data
-                    anomalies_data[key] = {
-                        "value": anomaly_value,
-                        "avg": anomalies['averages'][key]
-                    }
-                else:
-                    if key != 'averages':
-                        value = getattr(weather, key)
-                        logger.info(f"Аномалий в {key} НЕ найдено! Среднее: {anomalies['averages'][key]}, текущее: {value}")
-
-            if anomalies_to_save:
-                saved_anomaly = save_anomaly(db, anomalies_to_save, loc, anomalies_data)
-                if not saved_anomaly:
-                    logger.info(f"Аномалия для локации {loc.id} не сохранена (уже существует)")
-                return saved_anomaly
-
-    return None
+# def check_anomalies_for_batch(db: Session, loc: LocationToTrack, weather: Weather) -> Optional[Anomaly]:
+#     # Функция принимает готовый объект weather, собранный ранее пакетным запросом
+#     if weather:
+#         print("Проверка аномалий")
+#         anomalies = compare_weather(db, weather)
+#         if anomalies:
+#             # Собираем все аномалии для этой локации
+#             anomalies_to_save = {}
+#             anomalies_data = {}
+#
+#             for key, is_anomaly in anomalies.items():
+#                 if is_anomaly and key != 'averages':
+#                     anomaly_value = getattr(weather, key)
+#                     logger.info(f"Аномалия: {key}: {anomaly_value}! Среднее: {anomalies['averages'][key]}")
+#
+#                     # Определяем правильное название поля для БД
+#                     if key == "temperature":
+#                         anomalies_to_save['anomaly_temperature'] = anomaly_value
+#                     elif key == "pressure":
+#                         anomalies_to_save['anomaly_pressure'] = anomaly_value
+#                     elif key == "humidity":
+#                         anomalies_to_save['anomaly_humidity'] = anomaly_value
+#                     elif key == "wind_speed":
+#                         anomalies_to_save['anomaly_wind_speed'] = anomaly_value
+#
+#                     # Сохраняем данные для additional_data
+#                     anomalies_data[key] = {
+#                         "value": anomaly_value,
+#                         "avg": anomalies['averages'][key]
+#                     }
+#                 else:
+#                     if key != 'averages':
+#                         value = getattr(weather, key)
+#                         logger.info(f"Аномалий в {key} НЕ найдено! Среднее: {anomalies['averages'][key]}, текущее: {value}")
+#
+#             if anomalies_to_save:
+#                 saved_anomaly = save_anomaly(db, anomalies_to_save, loc, anomalies_data)
+#                 if not saved_anomaly:
+#                     logger.info(f"Аномалия для локации {loc.id} не сохранена (уже существует)")
+#                 return saved_anomaly
+#
+#     return None
 
 
 def save_anomaly(db: Session, anomalies: Dict[str, float], loc: LocationToTrack, data: dict) -> Optional[Anomaly]:

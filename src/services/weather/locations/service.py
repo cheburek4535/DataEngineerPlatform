@@ -5,14 +5,14 @@ from datetime import datetime, timezone
 from logger import logger
 import time
 from sqlalchemy.orm import Session
-from sqlalchemy.sql import desc
+from sqlalchemy.sql import desc, asc
 import random
 from typing import List, Optional
 
 
 def check_all_locations(db: Session):
     try:
-        locations = db.query(LocationToTrack).order_by(desc(LocationToTrack.id)).all()
+        locations = db.query(LocationToTrack).order_by(asc(LocationToTrack.id)).all()
         # Счетчик для контроля лимита в минуту
         location_counter = 0
         for location in locations:
@@ -36,8 +36,8 @@ def check_all_locations(db: Session):
 
                     # Увеличиваем счетчик после успешной обработки локации
                     location_counter += 1
-                    if location_counter >= 2500:
-                        logger.warning("Достигнут лимит 2500 локаций")
+                    if location_counter >= 5000:
+                        logger.warning("Достигнут лимит 5000 локаций")
                         break
 
                     # ХИТРОСТЬ: Если обработали 500 локаций и это ЕЩЕ НЕ конец списка
@@ -46,7 +46,7 @@ def check_all_locations(db: Session):
                             f"Обработано {location_counter} локаций. Спим 60 секунд для сброса минутного лимита API...")
                         time.sleep(60)
                     else:
-                        # Микро-пауза в 0.05 сек между обычными запросами.
+                        # Микро-пауза в 0.02 сек между обычными запросами.
                         # Она нужна, чтобы база данных успевала отдыхать и не было микро-спама к API.
                         time.sleep(0.02)
             except Exception as e:

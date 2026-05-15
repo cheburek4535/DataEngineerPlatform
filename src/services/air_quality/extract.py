@@ -1,8 +1,9 @@
-#A101325b!$ABab
 from typing import Optional, List, Dict
 import requests
 from logger import logger
 import urllib.parse
+from sqlalchemy.orm import Session
+from services.db.models import RawAirQuality
 
 OPENAQ_API_KEY = "522fb004826777c1888ce980d9517b32bceeac75fa7db3c02c563a99e1525177"
 OPENAQ_BASE_URL = "https://api.openaq.org/v3"
@@ -71,7 +72,7 @@ def get_latest_measurements(sensor_id: int) -> Optional[Dict]:
         return None
 
 
-def extract_air_quality(lat: float, lon: float, radius_meters: int = 10000) -> Optional[Dict]:
+def extract_air_quality(lat: float, lon: float, radius_meters: int = 25000) -> Optional[Dict]:
     """
     Основная функция: по координатам получает сводку качества воздуха.
 
@@ -133,7 +134,6 @@ def extract_air_quality(lat: float, lon: float, radius_meters: int = 10000) -> O
     return {
         "lat": lat,
         "lon": lon,
-        "timestamp": latest_timestamp,
         "measurements": all_measurements,
         "raw_json": {
             "locations": locations,
@@ -141,4 +141,15 @@ def extract_air_quality(lat: float, lon: float, radius_meters: int = 10000) -> O
         }
     }
 
-print(extract_air_quality(47.38, 8.54))
+def collect_raw_aq(db: Session, data: dict) -> dict:
+        db_aq = RawAirQuality(
+            lat=data['lat'],
+            lon=data['lon'],
+            data_json=data
+        )
+        db.add(db_aq)
+        db.commit()
+        db.refresh(db_aq)
+        return db_aq
+
+# print(extract_air_quality(40.42, -74.00))

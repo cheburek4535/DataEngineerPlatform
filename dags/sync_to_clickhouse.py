@@ -136,7 +136,7 @@ with DAG(
     dag_id='sync_to_clickhouse',
     default_args=default_args,
     description='Синхронизация PostgreSQL с ClickHouse',
-    schedule_interval='*/120 * * * *',
+    schedule_interval=None,
     start_date=datetime(2026, 5, 10),
     catchup=False,
     tags=['clickhouse', 'sync'],

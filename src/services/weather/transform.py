@@ -14,7 +14,6 @@ def save_structured_weather(db: Session, raw_weather: RawWeather) -> dict:
             humidity=raw_weather.data_json['humidity'],
             wind_speed=raw_weather.data_json['wind_speed'],
         )
-    print(db_weather)
     db.add(db_weather)
     db.commit()
     return db_weather
