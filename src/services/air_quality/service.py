@@ -16,19 +16,19 @@ def check_all_locations(db: Session):
         # Счетчик для контроля лимита в минуту
         location_counter = 0
 
-        known_coords = (
-            db.query(func.distinct(RawAirQuality.lat, RawAirQuality.lon))
-            .all()
-        )
+        # known_coords = (
+        #     db.query(func.distinct(RawAirQuality.lat, RawAirQuality.lon))
+        #     .all()
+        # )
         known_set = {(lat, lon) for lat, lon in known_coords}
         for location in locations:
             try:
                 for location in locations:
-                    if (location.lat, location.lon) not in known_set:
-                        # Пропускаем, API почти наверняка не вернёт данные
-                        logger.info(f"Пропускаем локацию {location.id} — нет AirQuality данных")
-                        db.commit()
-                        continue
+                    # if (location.lat, location.lon) not in known_set:
+                    #     # Пропускаем, API почти наверняка не вернёт данные
+                    #     logger.info(f"Пропускаем локацию {location.id} — нет AirQuality данных")
+                    #     db.commit()
+                    #     continue
 
                     logger.info(f"Проверка локации {location.id} (координаты {location.lat}, {location.lon})")
                     check = collect_aq(db, location)
