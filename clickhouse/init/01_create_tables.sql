@@ -59,6 +59,27 @@ PARTITION BY toYYYYMM(found_at)
 SETTINGS index_granularity = 8192;
 
 
+CREATE TABLE IF NOT EXISTS weather_analytics.air_quality
+(
+    id UInt64,
+    location_id UInt64,
+    lat Float64,
+    lon Float64,
+    pm25 Nullable(Float64),
+    pm10 Nullable(Float64),
+    no2 Nullable(Float64),
+    o3 Nullable(Float64),
+    so2 Nullable(Float64),
+    co Nullable(Float64),
+    collected_at DateTime64(3, 'UTC') DEFAULT now64(3),
+    is_good Nullable(Bool),
+    aq_level LowCardinality(String)
+)
+ENGINE = MergeTree()
+PARTITION BY toYYYYMM(collected_at)
+ORDER BY (collected_at, location_id, lat, lon)
+SETTINGS index_granularity = 8192;
+
 
 
 

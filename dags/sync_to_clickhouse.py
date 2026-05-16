@@ -126,6 +126,44 @@ def sync_currency_sharp_changes(**context):
     logger.info(f"✅ {len(data)} sharp_changes")
     pg.close()
 
+def sync_air_quality(**context):
+    pg = get_session()
+    ch = get_ch_client()
+
+    result = ch.query("SELECT max(id) FROM air_quality")
+    max_id = result.result_rows[0][0] or 0
+
+    new_rows = pg.query(models.AirQuality).filter(models.AirQuality.id > max_id).all()
+
+    if not new_rows:
+        logger.info("Нет новых данных для синхронизации air quality")
+        pg.close()
+        return
+
+    data = [
+        [
+            a.id, a.location.lat, a.location.lon, a.location_id,
+            a.pm25, a.pm10,
+            a.no2, a.o3,
+            a.so2, a.co, a.collected_at, a.is_good, a.air_quality_level
+        ]
+        for a in new_rows
+    ]
+
+    if data:
+        ch.insert(
+            'air_quality',
+            data,
+            column_names=[
+                'id', 'lat', 'lon', 'location_id', 'pm25', 'pm10', 'no2', 'o3', 'so2', 'co', 'collected_at', 'is_good', 'aq_level'
+            ]
+        )
+        logger.info(f"Синхронизировано {len(data)} записей air_quality")
+    else:
+        logger.info("Таблица air_quality в PG пуста")
+
+    pg.close()
+
 default_args = {
     'owner': 'Cheburek',
     'retries': 1,
@@ -161,4 +199,8 @@ with DAG(
         task_id='sync_currency_sharp_changes',
         python_callable=sync_currency_sharp_changes,
     )
-    sync_w >> sync_a >> sync_c >> sync_sc
+    sync_aq = PythonOperator(
+        task_id='sync_air_quality',
+        python_callable=sync_air_quality,
+    )
+    sync_w >> sync_a >> sync_c >> sync_sc >> sync_aq

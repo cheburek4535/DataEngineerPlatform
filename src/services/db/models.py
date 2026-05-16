@@ -185,6 +185,16 @@ class AirQuality(Base):
     def is_good(cls):
         return cls.air_quality_level == 0
 
+
+class ApiPollProgress(Base):
+    __tablename__ = "api_poll_progress"
+    id: Mapped[int] = Column(Integer, primary_key=True)
+    batch_id: Mapped[str] = Column(String, nullable=False)  # напр. "daily_2026-05-15"
+    last_location_id: Mapped[int] = Column(Integer, nullable=False)
+    updated_at: Mapped[datetime] = Column(DateTime(timezone=True),
+                                          default=func.now(), onupdate=func.now())
+
+
 class RawCurrency(Base):
     __tablename__ = 'raw_currencies'
     id : Mapped[int] = Column(Integer, primary_key=True, index=True)

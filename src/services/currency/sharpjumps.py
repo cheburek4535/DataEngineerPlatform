@@ -33,7 +33,7 @@ def compare_currency_rates(db: Session, current_rate: Currency) -> Optional[dict
 
     avg_rate = sum(rates) / len(rates)
 
-    threshold = 0.03  # 3%
+    threshold = 0.02  # 2%
     is_anomaly = abs(value_rub - Decimal(str(avg_rate))) > Decimal(str(threshold)) * Decimal(str(abs(avg_rate)))
     if not is_anomaly:
         return None
