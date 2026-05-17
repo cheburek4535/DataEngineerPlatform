@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from services.db.models import RawWeather
 import openmeteo_requests
 import json
-
+from services.minio.storage import save_raw_json
 import requests_cache
 from retry_requests import retry
 
@@ -25,8 +25,8 @@ def get_weather(lon: float, lat: float) -> Optional[dict]:
 
     try:
         responses = openmeteo.weather_api(url, params=params)
-
         response = responses[0]
+
         current = response.Current()
         current_temperature = current.Variables(0).Value()
         current_wind_speed = current.Variables(1).Value()
@@ -61,6 +61,8 @@ def get_weather(lon: float, lat: float) -> Optional[dict]:
                 }
             }))
         }
+
+        save_raw_json(bucket="raw-data", prefix="weather", data=data)
 
         return data
     except Exception as e:

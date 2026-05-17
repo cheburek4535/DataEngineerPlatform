@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from services.db.models import RawAirQuality
 import time
 from services.api_limiter import ApiLimiter, RateLimitExceeded
+from services.minio.storage import save_raw_json
 
 OPENAQ_API_KEY = "522fb004826777c1888ce980d9517b32bceeac75fa7db3c02c563a99e1525177"
 OPENAQ_BASE_URL = "https://api.openaq.org/v3"
@@ -25,7 +26,7 @@ def _get_with_rate_limit(url: str, limiter: ApiLimiter, timeout: int = 15) -> re
     if response.status_code == 429:
         retry_after = response.headers.get("Retry-After")
         wait_time = limiter.handle_429(retry_after)
-        logger.warning(f"OpenAQ вернул 429, спим {wait_time} сек.")
+        logger.warning(f"OpenAQ вернул 429, спим {wait_time} сек")
         if wait_time > 0:
             time.sleep(wait_time)
 
@@ -49,6 +50,8 @@ def find_nearby_locations(lat: float, lon: float, limiter: ApiLimiter, radius_me
     try:
         response = _get_with_rate_limit(url, limiter, timeout=15)
         data = response.json()
+        save_raw_json(bucket="raw-data", prefix="air_quality/locations", data=data)
+
         locations = data.get("results", [])
         logger.info(f"OpenAQ: найдено {len(locations)} станций в радиусе {radius_meters}м от ({lat}, {lon})")
         return locations
@@ -66,6 +69,8 @@ def get_latest_measurements(sensor_id: int, limiter: ApiLimiter) -> Optional[Dic
     try:
         response = _get_with_rate_limit(url, limiter, timeout=15)
         data = response.json()
+        save_raw_json(bucket="raw-data", prefix="air_quality/measurements", data=data)
+
         results = data.get("results", [])
         return results[0] if results else None
     except RateLimitExceeded:

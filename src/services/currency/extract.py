@@ -1,5 +1,5 @@
 import requests
-from datetime import datetime, timedelta
+from services.minio.storage import save_raw_json
 from logger import logger
 from sqlalchemy.orm import Session
 
@@ -24,6 +24,8 @@ def get_currency() -> dict:
         response = requests.get(url)
         response.raise_for_status()
         data = response.json()
+
+        save_raw_json(bucket="raw-data", prefix="currency", data=data)
         valutes = data.get('Valute', {})
 
         return valutes

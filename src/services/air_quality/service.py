@@ -1,9 +1,9 @@
 
-from services.db.models import LocationToTrack, ApiPollProgress
+from services.db.models import LocationToTrack, ApiPollProgress, AirQuality, RawAirQuality
 from datetime import datetime, timezone
 from logger import logger
 from sqlalchemy.orm import Session
-from sqlalchemy.sql import asc
+from sqlalchemy.sql import asc, func
 
 from typing import Optional
 from services.api_limiter import ApiLimiter, RateLimitExceeded
@@ -28,6 +28,12 @@ def check_all_locations(db: Session, batch_id: str, max_locations_per_run: Optio
         progress = init_api_poll_progress(db, batch_id)
         last_id = progress.last_location_id
 
+        # known_coords = (
+        #     db.query(func.distinct(RawAirQuality.lat, RawAirQuality.lon))
+        #     .all()
+        # )
+        # known_set = {(lat, lon) for lat, lon in known_coords}
+
         locations = (
             db.query(LocationToTrack)
             .filter(LocationToTrack.id > last_id)
@@ -38,6 +44,11 @@ def check_all_locations(db: Session, batch_id: str, max_locations_per_run: Optio
         processed = 0
 
         for location in locations:
+            # if (location.lat, location.lon) not in known_set:
+            #     # Пропускаем, API почти наверняка не вернёт данные
+            #     logger.debug(f"Пропускаем локацию {location.id} — нет AirQuality данных")
+            #     db.commit()
+            #     continue
             try:
                 logger.info(
                     f"Проверка локации {location.id} (координаты {location.lat}, {location.lon})"

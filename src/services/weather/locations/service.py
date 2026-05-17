@@ -12,7 +12,7 @@ from typing import List, Optional
 
 def check_all_locations(db: Session):
     try:
-        locations = db.query(LocationToTrack).order_by(asc(LocationToTrack.id)).all()
+        locations = db.query(LocationToTrack).order_by(desc(LocationToTrack.id)).all()
         # Счетчик для контроля лимита в минуту
         location_counter = 0
         for location in locations:
@@ -161,7 +161,7 @@ def generate_locs_for_track(db: Session, count: int) -> Optional[List[LocationTo
     try:
         exists_locs = db.query(LocationToTrack).all()
         current_count = len(exists_locs)
-        MAX_LIMIT = 4999
+        MAX_LIMIT = 10000
 
         if current_count >= MAX_LIMIT:
             logger.warning("Уже максимальное кол-во локаций в БД")
@@ -198,4 +198,4 @@ def generate_locs_for_track(db: Session, count: int) -> Optional[List[LocationTo
 # add_location_to_track(db,55.45, 37.37, 180)
 # add_location_to_track(db,67.52, 42.69, 180)
 # add_location_to_track(db,14.88, 52.42, 180)
-generate_locs_for_track(db=get_session(), count=1699)
+generate_locs_for_track(db=get_session(), count=5001)

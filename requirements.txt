@@ -6,3 +6,4 @@ psycopg2-binary
 fastapi
 uvicorn
 clickhouse-connect
+minio
