@@ -4,20 +4,9 @@ from logger import logger
 from sqlalchemy.orm import Session
 
 from services.db.models import RawCurrency
+from services.kafka.producer_confluent import send_message
 
 def get_currency() -> dict:
-    """
-        Получаем курс указанной валюты к рублю по данным ЦБ РФ.
-        :param base: Код валюты (например, 'USD', 'EUR'), базовая валюта относительно рубля.
-                     Если base='RUB', то курс 1.
-        :return: Словарь с ключами:
-            - 'timestamp': время получения данных,
-            - 'base': указанный код валюты,
-            - 'rate': текущий курс валюты к рублю,
-            - 'previous': предыдущий курс,
-            - 'name': название валюты.
-            или None при ошибке.
-        """
     url = "https://www.cbr-xml-daily.ru/daily_json.js"
 
     try:
@@ -26,6 +15,22 @@ def get_currency() -> dict:
         data = response.json()
 
         save_raw_json(bucket="raw-data", prefix="currency", data=data)
+
+        # Отправляем в Kafka
+        logger.info("Sending to Kafka...")
+        success = send_message(
+            topic='currencies.raw',
+            key=data.get('Date'),
+            value=data
+        )
+
+        if success:
+            logger.info("✅ Successfully sent to Kafka")
+            # return True
+        else:
+            logger.error("❌ Failed to send to Kafka")
+            # raise Exception("Failed to send to Kafka")
+            
         valutes = data.get('Valute', {})
 
         return valutes

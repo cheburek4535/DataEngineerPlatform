@@ -29,7 +29,11 @@ def check_all_locations(db: Session, batch_id: str, max_locations_per_run: Optio
         last_id = progress.last_location_id
 
         # known_coords = (
-        #     db.query(func.distinct(RawAirQuality.lat, RawAirQuality.lon))
+        #     db.query(
+        #         RawAirQuality.lat,
+        #         RawAirQuality.lon,
+        #     )
+        #     .distinct()
         #     .all()
         # )
         # known_set = {(lat, lon) for lat, lon in known_coords}

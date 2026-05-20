@@ -7,3 +7,5 @@ fastapi
 uvicorn
 clickhouse-connect
 minio
+kafka-python
+confluent-kafka
