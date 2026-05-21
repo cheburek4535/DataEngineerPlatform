@@ -151,3 +151,4 @@ def compare_currency_rates(db: Session, current_rate: Currency) -> Optional[dict
     )
 
     return anomaly
+
