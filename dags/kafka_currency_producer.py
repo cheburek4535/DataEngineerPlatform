@@ -18,6 +18,7 @@ with DAG(
     schedule_interval='0 */1 * * *',
     catchup=False,
     tags=['currency', 'kafka', 'producer'],
+max_active_runs=1,
 ) as dag:
 
     fetch_currency = PythonOperator(

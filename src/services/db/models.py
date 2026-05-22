@@ -12,8 +12,8 @@ from sqlalchemy.ext.hybrid import hybrid_property
 class RawWeather(Base):
     __tablename__ = 'raw_weather'
     id: Mapped[int] = Column(Integer, primary_key=True, index=True)
-    lat: Mapped[float] = Column(Float, index=True, nullable=False)
-    lon: Mapped[float] = Column(Float, index=True, nullable=False)
+    # lat: Mapped[float] = Column(Float, index=True, nullable=False)
+    # lon: Mapped[float] = Column(Float, index=True, nullable=False)
     data_json: Mapped[dict] = Column(JSONB)
     collected_at: Mapped[datetime] = Column(DateTime(timezone=True), server_default=func.now())
 
@@ -72,10 +72,11 @@ class Anomaly(Base):
 class RawAirQuality(Base):
     __tablename__ = 'raw_air_quality'
     id: Mapped[int] = Column(Integer, primary_key=True, index=True)
-    lat: Mapped[float] = Column(Float, index=True, nullable=False)
-    lon: Mapped[float] = Column(Float, index=True, nullable=False)
+    # lat: Mapped[float] = Column(Float, index=True, nullable=False)
+    # lon: Mapped[float] = Column(Float, index=True, nullable=False)
     json_data: Mapped[dict] = Column(JSONB)
-    collected_at: Mapped[datetime] = Column(DateTime(timezone=True), server_default=func.now())
+    collected_at: Mapped[datetime] = Column(DateTime(timezone=True))
+    created_at: Mapped[datetime] = Column(DateTime(timezone=True), server_default=func.now())
 
 class AirQuality(Base):
     __tablename__ = 'air_quality'

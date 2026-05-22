@@ -36,9 +36,10 @@ def process_raw_weather_message(message_value: dict) -> bool:
 
 def save_raw_weather(db: Session, weather: dict) -> RawWeather:
     db_weather = RawWeather(
-        lat=weather['latitude'],
-        lon=weather['longitude'],
-        data_json=weather
+        # lat=weather['latitude'],
+        # lon=weather['longitude'],
+        data_json=weather,
+        collected_at=weather.get('timestamp', datetime.now(timezone.utc)),
     )
     db.add(db_weather)
     db.flush()
@@ -48,8 +49,8 @@ def save_raw_weather(db: Session, weather: dict) -> RawWeather:
 
 def save_structured_weather(db: Session, raw_weather: RawWeather) -> Weather:
     db_weather = Weather(
-            lat=raw_weather.lat,
-            lon=raw_weather.lon,
+            lat=raw_weather.data_json['latitude'],
+            lon=raw_weather.data_json['longitude'],
             timestamp=raw_weather.collected_at,
             temperature=raw_weather.data_json['temp'],
             pressure=raw_weather.data_json['pressure'],

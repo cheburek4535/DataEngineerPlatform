@@ -27,5 +27,6 @@ with DAG(
     catchup=False,
     default_args=default_args,
     tags=['anomalies', 'etl'],
+max_active_runs=1,
 )    as dag:
     check_locations = PythonOperator(task_id='check_all_locations', python_callable=task_check_all_locations)

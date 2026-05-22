@@ -178,6 +178,7 @@ with DAG(
     start_date=datetime(2026, 5, 10),
     catchup=False,
     tags=['clickhouse', 'sync'],
+max_active_runs=1,
 ) as dag:
 
     sync_w = PythonOperator(

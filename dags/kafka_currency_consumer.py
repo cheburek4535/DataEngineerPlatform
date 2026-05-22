@@ -56,18 +56,28 @@ def run_currency_consumer():
                 messages_processed += 1
             else:
                 logger.error("Failed to process message")
+    except Exception as e:
+        logger.error(e)
+        raise
 
     finally:
         consumer.close()
         logger.info(f"Processed {messages_processed} messages")
 
+default_args = {
+    'owner': 'Cheburek',
+    'start_date': datetime(2026, 5, 21),
+    'retries': 0
+}
 
 with DAG(
         'kafka_currency_consumer',
+    default_args=default_args,
         start_date=datetime(2026, 5, 21),
         description='Process currency data from Kafka',
         schedule_interval='*/15 * * * *',  # Каждые 15 минут
         catchup=False,
+    max_active_runs=1,
         tags=['currency', 'kafka', 'consumer'],
 ) as dag:
     consume_and_process = PythonOperator(

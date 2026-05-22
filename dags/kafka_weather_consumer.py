@@ -27,7 +27,7 @@ def run_weather_consumer():
 
     messages_processed = 0
     max_messages = 5000
-    timeout_seconds = 900
+    timeout_seconds = 1500
 
     import time
     start = time.time()
@@ -65,13 +65,21 @@ def run_weather_consumer():
         consumer.close()
         logger.info(f"Processed {messages_processed} messages")
 
+default_args = {
+    'owner': 'Cheburek',
+    'start_date': datetime(2026, 5, 21),
+    'retries': 0
+}
+
 with DAG(
    'kafka_weather_consumer',
+    default_args=default_args,
         start_date=datetime(2026, 5, 21),
         description='Process weather data from Kafka',
-        schedule_interval='*/120 * * * *',
+        schedule_interval=None,
         catchup=False,
         tags=['weather', 'kafka', 'consumer'],
+max_active_runs=1,
 ) as dag:
     consume_and_process = PythonOperator(
         task_id='consume_and_process_weather',

@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.sql import and_
 from services.db.db import get_db
 import api.schemas as schemas
-from services.weather.locations import add_location_to_track
+from services.weather.locations.service import add_location_to_track
 from typing import List
 from services.db import models
 

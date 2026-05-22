@@ -78,6 +78,7 @@ with DAG(
     schedule_interval=None,
     catchup=False,
     tags=['weather', 'kafka', 'producer'],
+max_active_runs=1,
 ) as dag:
 
     fetch_weather = PythonOperator(
