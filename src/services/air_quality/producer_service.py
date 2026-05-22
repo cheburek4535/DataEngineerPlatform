@@ -49,9 +49,11 @@ def find_nearby_locations(lat: float, lon: float, limiter: ApiLimiter, radius_me
     try:
         response = _get_with_rate_limit(url, limiter, timeout=15)
         data = response.json()
-        save_raw_json(bucket="raw-data", prefix="air_quality/locations", data=data)
+
 
         locations = data.get("results", [])
+        if len(locations) > 0:
+            save_raw_json(bucket="raw-data", prefix="air_quality/locations", data=data)
         logger.info(f"OpenAQ: найдено {len(locations)} станций в радиусе {radius_meters}м от ({lat}, {lon})")
         return locations
     except RateLimitExceeded:
@@ -130,7 +132,7 @@ def extract_air_quality(loc_id: int, lat: float, lon: float, limiter: ApiLimiter
         }
     }
     logger.info(f"Отправляем в kafka")
-    success = send_message("air_quality.raw", data.get("collected_at"), data)
+    success = send_message("air_quality.raw", data.get("collected_at").isoformat(), data)
     if not success:
         raise Exception("Failed to send data to Kafka")
 

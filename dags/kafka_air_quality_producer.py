@@ -8,10 +8,8 @@ from services.db.models import LocationToTrack, ApiPollProgress
 from logger import logger
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import asc
-
-from typing import Optional
 from services.api_limiter import ApiLimiter, RateLimitExceeded
-from services.air_quality.transform import collect_aq
+
 
 
 
@@ -123,7 +121,7 @@ with DAG(
 max_active_runs=1,
 ) as dag:
 
-    fetch_weather = PythonOperator(
+    fetch_aq = PythonOperator(
             task_id='fetch_and_publish_aq',
-        python_callable=check_all_locations()
+        python_callable=check_all_locations
     )

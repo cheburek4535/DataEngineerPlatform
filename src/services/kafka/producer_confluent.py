@@ -2,7 +2,7 @@ from confluent_kafka import Producer
 import json
 from logger import logger
 import socket
-import time
+from datetime import datetime
 
 # logger = logging.getLogger(__name__)
 #
@@ -172,8 +172,12 @@ def get_producer():
     return producer
 
 
+def _json_serializer_default(obj):
+    if isinstance(obj, datetime):
+        return obj.isoformat()
+    raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
+
 def send_message(topic, key=None, value=None):
-    """Отправляет сообщение в Kafka"""
     prod = get_producer()
 
     if prod is None:
@@ -181,9 +185,13 @@ def send_message(topic, key=None, value=None):
         return False
 
     try:
-        # Преобразуем value в JSON строку
+        # Преобразуем value в JSON строку, с обработкой datetime
         if isinstance(value, (dict, list)):
-            value = json.dumps(value, ensure_ascii=False)
+            value = json.dumps(
+                value,
+                ensure_ascii=False,
+                default=_json_serializer_default   # обрабатывает datetime
+            )
 
         # Преобразуем key в строку
         if key is not None and not isinstance(key, str):
@@ -191,7 +199,6 @@ def send_message(topic, key=None, value=None):
 
         logger.info(f"Sending message to {topic}...")
 
-        # Асинхронная отправка
         prod.produce(
             topic=topic,
             key=key,
@@ -199,7 +206,6 @@ def send_message(topic, key=None, value=None):
             callback=delivery_report
         )
 
-        # Ждем отправки всех сообщений
         prod.flush(timeout=30)
         logger.info("Message sent successfully")
         return True

@@ -75,7 +75,7 @@ with DAG(
     default_args=default_args,
         start_date=datetime(2026, 5, 21),
         description='Process currency data from Kafka',
-        schedule_interval='*/15 * * * *',  # Каждые 15 минут
+        schedule_interval=None,
         catchup=False,
     max_active_runs=1,
         tags=['currency', 'kafka', 'consumer'],

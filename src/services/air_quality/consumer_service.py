@@ -37,7 +37,8 @@ def save_raw_aq(db: Session, data: dict) -> RawAirQuality:
     db_aq = RawAirQuality(
         # lat=data['lat'],
         # lon=data['lon'],
-        json_data=data
+        json_data=data,
+        collected_at=data.get('collected_at'),
     )
     db.add(db_aq)
     db.flush()
@@ -46,11 +47,6 @@ def save_raw_aq(db: Session, data: dict) -> RawAirQuality:
 
 
 def transform_air_quality(raw_aq: RawAirQuality) -> Optional[Dict]:
-    """
-    Из сырого ответа OpenAQ извлекает структурированные данные.
-    Группирует измерения всех станций вокруг одной точки в одну строку:
-    берёт среднее PM2.5, среднее NO₂ и т.д. по всем станциям поблизости.
-    """
     measurements = raw_aq.json_data.get("measurements", [])
     if not measurements:
         return None
