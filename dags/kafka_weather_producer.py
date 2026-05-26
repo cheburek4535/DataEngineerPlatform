@@ -4,6 +4,7 @@ from datetime import datetime, timedelta, timezone
 from logger import logger
 from services.db.db import get_session
 from services.db.models import LocationToTrack
+# from services.telergam.alerts import send_alert
 from services.weather.producer_service import get_weather
 from sqlalchemy.sql import asc
 import time
@@ -41,6 +42,7 @@ def collect_weather_for_locations(**context):
                     location_counter += 1
                     if location_counter >= 5000:
                         logger.warning("Достигнут лимит 5000 локаций")
+                        # send_alert("Достигнут лимит 5000 локаций при обработке weather")
                         break
 
                     # ХИТРОСТЬ: Если обработали 500 локаций и это ЕЩЕ НЕ конец списка

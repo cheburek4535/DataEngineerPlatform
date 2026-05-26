@@ -9,7 +9,7 @@ from sqlalchemy import and_
 from services.db.models import RawCurrency, Currency, CurrencyHistory, CurrencySharpChange
 from services.db.db import get_session
 from logger import logger
-
+# from services.telergam.alerts import send_alert
 
 
 def process_raw_currency_message(message_value: dict) -> bool:
@@ -40,6 +40,7 @@ def process_raw_currency_message(message_value: dict) -> bool:
 
         db.commit()
         logger.info("✅ Successfully processed currency data")
+        # send_alert("✅ Данные о курсах валют успешно обработаны")
         return True
     except Exception as e:
         db.rollback()

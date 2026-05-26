@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from datetime import datetime
 from services.db.models import RawCurrency
 from services.kafka.producer_confluent import send_message
+# from services.telergam.alerts import send_alert
 
 
 def get_currency() -> dict:
@@ -35,7 +36,8 @@ def get_currency() -> dict:
         if not success:
             raise Exception("Failed to send data to Kafka")
 
-        logger.info(f"✅ Successfully sent currency data to Kafka for date: {data.get('Date')}")
+        logger.info(f"Successfully sent currency data to Kafka for date: {data.get('Date')}")
+        # send_alert("✅ Данные о курсах валют успешно отправлены в Kafka")
         return data
 
     except Exception as e:

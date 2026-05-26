@@ -1,7 +1,7 @@
 
-
+import requests
 from services.db.db import get_session
-from services.db.models import RawWeather, Weather, LocationToTrack, Anomaly
+from services.db.models import RawWeather, Weather, Anomaly
 from typing import Optional, Dict
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
@@ -22,7 +22,8 @@ def process_raw_weather_message(message_value: dict) -> bool:
 
         weather = save_structured_weather(db, raw_weather)
 
-        anomalies = check_anomalies(db, weather, loc_id)
+        # anomalies = check_anomalies(db, weather, loc_id)
+
 
         db.commit()
         logger.info(f"Successfully processed weather data")
@@ -34,12 +35,58 @@ def process_raw_weather_message(message_value: dict) -> bool:
     finally:
         db.close()
 
+
+def process_raw_weather_batch(messages_batch: list) -> bool:
+    """Обрабатывает батч сообщений: сохраняет данные и проверяет аномалии через Go"""
+    db = get_session()
+
+    try:
+        # Сохраняем все записи
+        weather_records = []
+        for message_value in messages_batch:
+            loc_id = message_value.get('location_id')
+            if loc_id is None:
+                continue
+
+            raw_weather = save_raw_weather(db, message_value)
+            weather = save_structured_weather(db, raw_weather)
+            weather_records.append(weather)
+
+        # Формируем данные для отправки в Go (список как в Go структуре APIWeather)
+        go_batch = []
+        for weather in weather_records:
+            go_batch.append({
+                "id": weather.id,
+                "loc_id": weather.lat,  # или свой loc_id если есть связь
+                "lat": weather.lat,
+                "lon": weather.lon,
+                "temperature": weather.temperature,
+                "pressure": weather.pressure,
+                "humidity": weather.humidity,
+                "wind_speed": weather.wind_speed,
+                "collected_at": weather.timestamp.isoformat()
+            })
+
+        # Отправляем батч в Go и обрабатываем аномалии
+        if go_batch:
+            check_anomalies_go(db, go_batch)
+
+        db.commit()
+        logger.info(f"Successfully processed batch of {len(messages_batch)} weather data")
+        return True
+    except Exception as e:
+        db.rollback()
+        logger.error(f"Failed to process weather batch: {e}")
+        return False
+    finally:
+        db.close()
+
 def save_raw_weather(db: Session, weather: dict) -> RawWeather:
     db_weather = RawWeather(
         # lat=weather['latitude'],
         # lon=weather['longitude'],
         data_json=weather,
-        collected_at=weather.get('timestamp', datetime.now(timezone.utc)),
+        collected_at=datetime.fromtimestamp(weather.get('timestamp')),
     )
     db.add(db_weather)
     db.flush()
@@ -160,6 +207,36 @@ def check_anomalies(db: Session, weather: Weather, loc_id: int) -> Optional[Anom
 
     return None
 
+
+def check_anomalies_go(db: Session, batch: list) -> Optional[list]:
+    """Отправляет батч в Go и сохраняет найденные аномалии"""
+    if not batch:
+        return None
+
+    print("Проверка аномалий с Go для батча")
+    response = requests.post("http://golang:8000/weather/batch", json=batch)
+
+    if response.status_code != 200:
+        logger.error(f"Go service returned error: {response.status_code}")
+        return None
+
+    result = response.json()
+    anomalies = result.get('result', [])
+
+    if anomalies:
+        for anomaly in anomalies:
+            anomalies_to_save = anomaly.get('anomalies_to_save', {})
+            loc_id = anomaly.get('loc_id')
+            anomalies_data = anomaly.get('anomalies_data', {})
+
+            if anomalies_to_save and loc_id:
+                saved_anomaly = save_anomaly(db, anomalies_to_save, loc_id, anomalies_data)
+                if not saved_anomaly:
+                    logger.info(f"Аномалия для локации {loc_id} не сохранена (уже существует)")
+
+        return anomalies
+
+    return None
 
 def save_anomaly(db: Session, anomalies: Dict[str, float], loc_id: int, data: dict) -> Optional[Anomaly]:
     exists_anomaly = db.query(Anomaly).filter_by(location_id=loc_id).order_by(Anomaly.found_at.desc()).first()

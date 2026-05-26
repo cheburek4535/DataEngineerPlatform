@@ -6,7 +6,7 @@ from logger import logger
 def run_weather_consumer():
     from confluent_kafka import Consumer, KafkaError
     import json
-    from services.weather.consumer_service import process_raw_weather_message
+    from services.weather.consumer_service import process_raw_weather_batch
 
     consumer_config = {
         'bootstrap.servers': 'redpanda:9092',
@@ -28,9 +28,14 @@ def run_weather_consumer():
     messages_processed = 0
     max_messages = 5000
     timeout_seconds = 1500
+    BATCH_SIZE = 500
 
     import time
     start = time.time()
+
+    # Буфер для батча
+    batch_messages = []  # сами данные
+    batch_kafka_msgs = []  # оригинальные kafka сообщения для коммита
 
     try:
         while messages_processed < max_messages:
@@ -50,18 +55,41 @@ def run_weather_consumer():
                     continue
 
             value = json.loads(msg.value().decode('utf-8'))
-            logger.info(f"Processing weather for location {value.get('location_id')}, timestamp {value.get('timestamp')}")
+            logger.info(f"Buffering weather for location {value.get('location_id')}, timestamp {value.get('timestamp')}")
 
-            if process_raw_weather_message(value):
-                consumer.commit(msg)
-                messages_processed += 1
-            else:
-                logger.error("Failed to process message")
+            batch_messages.append(value)
+            batch_kafka_msgs.append(msg)
+
+            # Если накопили 500 - обрабатываем батч
+            if len(batch_messages) >= BATCH_SIZE:
+                logger.info(f"Processing batch of {len(batch_messages)} messages")
+
+                # Обрабатываем весь батч
+                if process_raw_weather_batch(batch_messages):
+                    # Коммитим только после успешной обработки
+                    for kafka_msg in batch_kafka_msgs:
+                        consumer.commit(kafka_msg)
+                    messages_processed += len(batch_messages)
+                    logger.info(f"Batch processed successfully. Total: {messages_processed}")
+                else:
+                    logger.error("Failed to process batch, messages will be retried")
+
+                # Очищаем буфер
+                batch_messages = []
+                batch_kafka_msgs = []
     except Exception as e:
         logger.error(e)
         raise
 
     finally:
+        # Обрабатываем оставшиеся сообщения
+        if batch_messages:
+            logger.info(f"Processing remaining {len(batch_messages)} messages")
+            if process_raw_weather_batch(batch_messages):
+                for kafka_msg in batch_kafka_msgs:
+                    consumer.commit(kafka_msg)
+                messages_processed += len(batch_messages)
+
         consumer.close()
         logger.info(f"Processed {messages_processed} messages")
 

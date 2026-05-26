@@ -9,3 +9,4 @@ clickhouse-connect
 minio
 kafka-python
 confluent-kafka
+aiogram

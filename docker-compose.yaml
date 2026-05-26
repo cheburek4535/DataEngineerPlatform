@@ -57,15 +57,17 @@ x-airflow-common:
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
     AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
-    AIRFLOW__CORE__FERNET_KEY: ''
+    AIRFLOW__CORE__FERNET_KEY: '81HqDtbqAywKSOumSha3BhWNOdQ26slT6K0YaZeZyPs='
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
-    AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
     # yamllint disable rule:line-length
     # Use simple http server on scheduler for health checks
     # See https://airflow.apache.org/docs/apache-airflow/stable/administration-and-deployment/logging-monitoring/check-health.html#scheduler-health-check-server
     # yamllint enable rule:line-length
     AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
+    AIRFLOW__LOGGING__JWT_SECRET_KEY: 'my-fixed-secret-key-for-logs-2026'
+    AIRFLOW__LOGGING__JWT_ALGORITHM: 'HS256'
     # WARNING: Use _PIP_ADDITIONAL_REQUIREMENTS option ONLY for a quick checks
     # for other purpose (development, test and especially production usage) build/extend Airflow image.
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
@@ -221,6 +223,31 @@ services:
     networks:
       - default
 
+  redpanda-console:
+    container_name: redpanda-console
+    image: docker.redpanda.com/redpandadata/console:v2.7.2
+    networks:
+      - default
+    entrypoint: /bin/sh
+    command: -c 'echo "$$CONSOLE_CONFIG_FILE" > /tmp/config.yml; /app/console'
+    environment:
+      CONFIG_FILEPATH: /tmp/config.yml
+      CONSOLE_CONFIG_FILE: |
+        kafka:
+          brokers: ["redpanda:9092"]
+        redpanda:
+          adminApi:
+            enabled: true
+            urls: ["http://redpanda:9644"]
+    ports:
+      - "8081:8080"
+    depends_on:
+      - redpanda
+
+        
+      
+
+
 
   redis:
     # Redis is limited to 7.2-bookworm due to licencing change
@@ -235,6 +262,22 @@ services:
       retries: 50
       start_period: 30s
     restart: always
+
+  golang:
+    build:
+      context: ./golang
+      dockerfile: Dockerfile
+    container_name: golang
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL_FOR_GO: postgresql://weather_user:weather_pass@weather_db:5432/weather_guard?sslmode=disable
+    depends_on:
+      weather_db:
+        condition: service_healthy
+    restart: always
+    networks:
+      - default
 
   airflow-webserver:
     <<: *airflow-common
@@ -282,6 +325,8 @@ services:
       start_period: 30s
     environment:
       <<: *airflow-common-env
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      ADMIN_TG_ID: ${ADMIN_TG_ID}
       # Required to handle warm shutdown of the celery workers properly
       # See https://airflow.apache.org/docs/docker-stack/entrypoint.html#signal-propagation
       DUMB_INIT_SETSID: "0"
@@ -411,7 +456,10 @@ volumes:
   clickhouse_data:
   grafana_data:
   minio_data:
+  redpanda:
+    driver: local
 
 networks:
   default:
     name: monitoring
+    driver: bridge
