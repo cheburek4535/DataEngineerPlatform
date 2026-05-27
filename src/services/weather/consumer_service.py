@@ -5,10 +5,10 @@ from services.db.models import RawWeather, Weather, Anomaly
 from typing import Optional, Dict
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
-
+import json
 from logger import logger
 from datetime import datetime, timedelta, timezone
-
+import traceback
 
 def process_raw_weather_message(message_value: dict) -> bool:
     db = get_session()
@@ -43,6 +43,8 @@ def process_raw_weather_batch(messages_batch: list) -> bool:
     try:
         # Сохраняем все записи
         weather_records = []
+        loc_ids = []  # Сохраняем loc_id для каждого weather
+
         for message_value in messages_batch:
             loc_id = message_value.get('location_id')
             if loc_id is None:
@@ -51,21 +53,30 @@ def process_raw_weather_batch(messages_batch: list) -> bool:
             raw_weather = save_raw_weather(db, message_value)
             weather = save_structured_weather(db, raw_weather)
             weather_records.append(weather)
+            loc_ids.append(loc_id)
 
-        # Формируем данные для отправки в Go (список как в Go структуре APIWeather)
+        # Формируем данные для отправки в Go
         go_batch = []
-        for weather in weather_records:
-            go_batch.append({
+        for i, weather in enumerate(weather_records):
+            # Убедимся что все значения корректные
+            temperature = float(weather.temperature) if weather.temperature is not None else None
+            pressure = float(weather.pressure) if weather.pressure is not None else None
+            humidity = float(weather.humidity) if weather.humidity is not None else None
+            wind_speed = float(weather.wind_speed) if weather.wind_speed is not None else None
+
+            go_item = {
                 "id": weather.id,
-                "loc_id": weather.lat,  # или свой loc_id если есть связь
-                "lat": weather.lat,
-                "lon": weather.lon,
-                "temperature": weather.temperature,
-                "pressure": weather.pressure,
-                "humidity": weather.humidity,
-                "wind_speed": weather.wind_speed,
-                "collected_at": weather.timestamp.isoformat()
-            })
+                "loc_id": loc_ids[i],  # Используем location_id из исходного сообщения
+                "lat": float(weather.lat),
+                "lon": float(weather.lon),
+                "temperature": temperature,
+                "pressure": pressure,
+                "humidity": humidity,
+                "wind_speed": wind_speed,
+                "collected_at": weather.timestamp.isoformat() if weather.timestamp else datetime.now(
+                    timezone.utc).isoformat()
+            }
+            go_batch.append(go_item)
 
         # Отправляем батч в Go и обрабатываем аномалии
         if go_batch:
@@ -77,10 +88,10 @@ def process_raw_weather_batch(messages_batch: list) -> bool:
     except Exception as e:
         db.rollback()
         logger.error(f"Failed to process weather batch: {e}")
+        logger.error(f"Error details: {traceback.format_exc()}")
         return False
     finally:
         db.close()
-
 def save_raw_weather(db: Session, weather: dict) -> RawWeather:
     db_weather = RawWeather(
         # lat=weather['latitude'],
@@ -214,10 +225,14 @@ def check_anomalies_go(db: Session, batch: list) -> Optional[list]:
         return None
 
     print("Проверка аномалий с Go для батча")
+
+    logger.info(f"Sending batch of {len(batch)} items")
+
     response = requests.post("http://golang:8000/weather/batch", json=batch)
 
     if response.status_code != 200:
         logger.error(f"Go service returned error: {response.status_code}")
+        logger.error(f"Response text: {response.text}")
         return None
 
     result = response.json()

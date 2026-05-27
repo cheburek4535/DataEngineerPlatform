@@ -1,14 +1,18 @@
 from datetime import timezone, datetime
 from typing import Optional, List, Dict
 import requests
+from dotenv import load_dotenv
+
 from logger import logger
 import urllib.parse
 import time
 from services.api_limiter import ApiLimiter, RateLimitExceeded
 from services.minio.storage import save_raw_json
 from services.kafka.producer_confluent import send_message
+import os
+load_dotenv()
 
-OPENAQ_API_KEY = "522fb004826777c1888ce980d9517b32bceeac75fa7db3c02c563a99e1525177"
+OPENAQ_API_KEY = os.getenv('OPENAQ_API_KEY')
 OPENAQ_BASE_URL = "https://api.openaq.org/v3"
 
 HEADERS = {

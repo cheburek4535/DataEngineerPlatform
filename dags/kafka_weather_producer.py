@@ -48,8 +48,8 @@ def collect_weather_for_locations(**context):
                     # ХИТРОСТЬ: Если обработали 500 локаций и это ЕЩЕ НЕ конец списка
                     if location_counter % 500 == 0 and location_counter < len(locations):
                         logger.info(
-                            f"Обработано {location_counter} локаций. Спим 60 секунд для сброса минутного лимита API...")
-                        time.sleep(60)
+                            f"Обработано {location_counter} локаций. Спим 30 секунд для сброса минутного лимита API...")
+                        time.sleep(30)
                     else:
                         # Микро-пауза в 0.01 сек между обычными запросами.
                         # Она нужна, чтобы база данных успевала отдыхать и не было микро-спама к API.
