@@ -8,10 +8,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+print(TOKEN)
 ALERT_CHAT_ID = os.getenv("ADMIN_TG_ID")
 
-
-bot = Bot(token=TOKEN)
+token = TOKEN
+bot = Bot(token=token)
 dp = Dispatcher()
 router = Router()
 dp.include_router(router)
@@ -30,10 +31,14 @@ async def send_alert(text: str, chat_id: int = None) -> None:
 
     try:
             await bot.send_message(chat_id=target_id, text=text)
+            print("Alert sent successfully")
     except Exception as e:
             # тут лучше логировать, но не ронять весь цикл рассылки
             print(f"Failed to send alert to {target_id}: {e}")
 
+
+def send_alert_sync(text: str, chat_id: int = None) -> None:
+    asyncio.run(send_alert(text, chat_id))
 
 async def main():
     await dp.start_polling(bot)

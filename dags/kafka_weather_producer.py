@@ -4,7 +4,7 @@ from datetime import datetime, timedelta, timezone
 from logger import logger
 from services.db.db import get_session
 from services.db.models import LocationToTrack
-# from services.telergam.alerts import send_alert
+# from services.telegram.alerts import send_alert
 from services.weather.producer_service import get_weather
 from sqlalchemy.sql import asc
 import time

@@ -26,8 +26,8 @@ def run_currency_consumer():
     consumer.subscribe(['currencies.raw'])
 
     messages_processed = 0
-    max_messages = 50  # Ограничиваем количество за один запуск
-    timeout_seconds = 300  # Максимум 5 минут
+    max_messages = 150
+    timeout_seconds = 60
 
     import time
     start_time = time.time()
