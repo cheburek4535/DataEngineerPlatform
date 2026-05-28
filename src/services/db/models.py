@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped, relationship
-from sqlalchemy import Integer, Column, DateTime, ForeignKey, Float, String, Numeric
+from sqlalchemy import Integer, Column, DateTime, ForeignKey, Float, String, Numeric, Boolean
 from sqlalchemy.sql import func
 from typing import List, Optional
 from datetime import datetime
@@ -35,9 +35,9 @@ class LocationToTrack(Base):
     id : Mapped[int] = Column(Integer, primary_key=True, index=True)
     lat: Mapped[float] = Column(Float, index=True, nullable=False)
     lon: Mapped[float] = Column(Float, index=True, nullable=False)
-    check_interval: Mapped[int] = Column(Integer, index=True, nullable=False, default=900)
     last_checked_at: Mapped[datetime] = Column(DateTime(timezone=True), nullable=True)
     created_at: Mapped[datetime] = Column(DateTime(timezone=True), server_default=func.now())
+    is_on_land: Mapped[bool] = Column(Boolean, index=True, nullable=True)
 
     anomalies: Mapped[List["Anomaly"]] = relationship(
         "Anomaly",
