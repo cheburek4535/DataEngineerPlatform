@@ -2,38 +2,29 @@ package analyze
 
 import "time"
 
-func Sum[T int | float64](slice []T) T {
-	var result T
-	for _, value := range slice {
-		result += value
-	}
-	return result
-}
-
 // Качество воздуха
 
 type AirQuality struct {
-	ID          int `json:"id"`
-	LocationID  int `json:"location_id"`
-	Pm25        *float64 `json:"pm25"`
-	Pm10        *float64 `json:"pm10"`
-	NO2         *float64 `json:"no2"`
-	O3          *float64 `json:"o3"`
-	SO2         *float64 `json:"so2"`
-	CO          *float64 `json:"co"`
+	ID          int       `json:"id"`
+	LocationID  int       `json:"location_id"`
+	Pm25        *float64  `json:"pm25"`
+	Pm10        *float64  `json:"pm10"`
+	NO2         *float64  `json:"no2"`
+	O3          *float64  `json:"o3"`
+	SO2         *float64  `json:"so2"`
+	CO          *float64  `json:"co"`
 	CollectedAt time.Time `json:"collected_at"`
 }
 
 type AvgAirQuality struct {
-	LocationID  int
-	Pm25 *float64
-	Pm10 *float64
-	NO2  *float64
-	O3   *float64
-	SO2  *float64
-	CO   *float64
+	LocationID int
+	Pm25       *float64
+	Pm10       *float64
+	NO2        *float64
+	O3         *float64
+	SO2        *float64
+	CO         *float64
 }
-
 
 type AirQualityLevel int
 
@@ -46,23 +37,14 @@ const (
 	LevelHazardous
 )
 
-// var levelNames = map[AirQualityLevel]string{
-// 	LevelGood:                "good",
-// 	LevelModerate:            "moderate",
-// 	LevelUnhealthySensitive:  "unhealthy_sensitive",
-// 	LevelUnhealthy:           "unhealthy",
-// 	LevelVeryUnhealthy:       "very_unhealthy",
-// 	LevelHazardous:           "hazardous",
-// }
-
 // Формат: (хорошо, удовлетворительно, вредно для чувствительных, вредно, очень вредно)
 var (
-	PM25Thresholds  = []float64{12, 35, 55, 150, 250}   // µg/m³
-	PM10Thresholds  = []float64{20, 50, 100, 200, 350}  // µg/m³
-	NO2Thresholds   = []float64{0.02, 0.05, 0.1, 0.2, 0.5}  // ppm
-	O3Thresholds    = []float64{0.05, 0.07, 0.1, 0.15, 0.2} // ppm
-	SO2Thresholds   = []float64{0.02, 0.05, 0.1, 0.2, 0.5}  // ppm
-	COThresholds    = []float64{4, 9, 15, 30, 50}         // ppm
+	PM25Thresholds = []float64{12, 35, 55, 150, 250}       // µg/m³
+	PM10Thresholds = []float64{20, 50, 100, 200, 350}      // µg/m³
+	NO2Thresholds  = []float64{0.02, 0.05, 0.1, 0.2, 0.5}  // ppm
+	O3Thresholds   = []float64{0.05, 0.07, 0.1, 0.15, 0.2} // ppm
+	SO2Thresholds  = []float64{0.02, 0.05, 0.1, 0.2, 0.5}  // ppm
+	COThresholds   = []float64{4, 9, 15, 30, 50}           // ppm
 )
 
 func CalculateAirQualityLevel(data AvgAirQuality) *AirQualityLevel {
@@ -135,8 +117,6 @@ func levelForValue(value float64, thresholds []float64) AirQualityLevel {
 	return LevelHazardous
 }
 
-
-
 func calculateAverageAQ(data []AirQuality) *AvgAirQuality {
 	var sumPm25, sumPm10, sumNo2, sumO3, sumSo2, sumCo float64
 	var countPm25, countPm10, countNo2, countO3, countSo2, countCo int
@@ -170,23 +150,45 @@ func calculateAverageAQ(data []AirQuality) *AvgAirQuality {
 
 	avg := &AvgAirQuality{}
 
-	if countPm25 > 0 { val := sumPm25 / float64(countPm25); avg.Pm25 = &val }
-	if countPm10 > 0 { val := sumPm10 / float64(countPm10); avg.Pm10 = &val }
-	if countNo2 > 0  { val := sumNo2 / float64(countNo2);   avg.NO2 = &val }
-	if countO3 > 0   { val := sumO3 / float64(countO3);     avg.O3 = &val }
-	if countSo2 > 0  { val := sumSo2 / float64(countSo2);   avg.SO2 = &val }
-	if countCo > 0   { val := sumCo / float64(countCo);     avg.CO = &val }
+	if countPm25 > 0 {
+		val := sumPm25 / float64(countPm25)
+		avg.Pm25 = &val
+	}
+	if countPm10 > 0 {
+		val := sumPm10 / float64(countPm10)
+		avg.Pm10 = &val
+	}
+	if countNo2 > 0 {
+		val := sumNo2 / float64(countNo2)
+		avg.NO2 = &val
+	}
+	if countO3 > 0 {
+		val := sumO3 / float64(countO3)
+		avg.O3 = &val
+	}
+	if countSo2 > 0 {
+		val := sumSo2 / float64(countSo2)
+		avg.SO2 = &val
+	}
+	if countCo > 0 {
+		val := sumCo / float64(countCo)
+		avg.CO = &val
+	}
 	avg.LocationID = data[0].LocationID
 
 	return avg
 }
 
 func analyze_aq(data []AirQuality) *AirQualityLevel {
-	if len(data) == 0 {return nil}
+	if len(data) == 0 {
+		return nil
+	}
 	avg_aq := calculateAverageAQ(data)
-	if avg_aq == nil {return nil}
+	if avg_aq == nil {
+		return nil
+	}
 	result := CalculateAirQualityLevel(*avg_aq)
-	
+
 	return result
 }
 
@@ -194,7 +196,7 @@ func analyze_aq(data []AirQuality) *AirQualityLevel {
 
 type APIWeather struct {
 	ID          int       `json:"id"`
-	LocId       int       `json:"loc_id"`
+	LocID       int       `json:"loc_id"`
 	Lat         float64   `json:"lat"`
 	Lon         float64   `json:"lon"`
 	Temperature *float64  `json:"temperature"`
@@ -204,12 +206,21 @@ type APIWeather struct {
 	CollectedAt time.Time `json:"collected_at"`
 }
 
+type AvgWeather struct {
+	LocationID  int
+	Temperature *float64
+	Pressure    *float64
+	Humidity    *float64
+	WindSpeed   *float64
+}
+
 type Range struct {
 	Min float64
 	Max float64
 }
 
 type WeatherMetric []Range
+type WeatherLevel int
 
 var (
 	// Температура (°C): Идеал ~20. В обе стороны идет ухудшение.
@@ -223,41 +234,150 @@ var (
 
 	// Влажность (%): Идеал ~50. Вредна как сухость, так и сырость.
 	humidityThresholds = WeatherMetric{
-		{Min: 40.0, Max: 60.0},  // Хорошо
-		{Min: 30.0, Max: 70.0},  // Удовлетворительно
-		{Min: 20.0, Max: 80.0},  // Вредно для чувствительных
-		{Min: 10.0, Max: 90.0},  // Вредно
-		{Min: 0.0, Max: 100.0},  // Очень вредно
+		{Min: 40.0, Max: 60.0}, // Хорошо
+		{Min: 30.0, Max: 70.0}, // Удовлетворительно
+		{Min: 20.0, Max: 80.0}, // Вредно для чувствительных
+		{Min: 10.0, Max: 90.0}, // Вредно
+		{Min: 0.0, Max: 100.0}, // Очень вредно
 	}
 
 	// Давление (гПа): Идеал ~1013.25. Вредно и низкое (циклон), и высокое (антициклон).
 	pressureThresholds = WeatherMetric{
 		{Min: 1008.0, Max: 1018.0}, // Хорошо
 		{Min: 1000.0, Max: 1025.0}, // Удовлетворительно
-		{Min: 990.0,  Max: 1035.0}, // Вредно для чувствительных
-		{Min: 970.0,  Max: 1050.0}, // Вредно
-		{Min: 900.0,  Max: 1100.0}, // Очень вредно
+		{Min: 990.0, Max: 1035.0},  // Вредно для чувствительных
+		{Min: 970.0, Max: 1050.0},  // Вредно
+		{Min: 900.0, Max: 1100.0},  // Очень вредно
 	}
 
-	// Ветер (м/с): У ветра нет "слишком маленького" значения (штиль — это хорошо или ок).
-	// Поэтому здесь проверяем только в одну сторону (Max). Min всегда 0.
 	windThresholds = WeatherMetric{
-		{Min: 0.0, Max: 5.0},  // Хорошо
-		{Min: 0.0, Max: 8.0},  // Удовлетворительно
-		{Min: 0.0, Max: 14.0}, // Вредно для чувствительных
-		{Min: 0.0, Max: 20.0}, // Вредно
-		{Min: 0.0, Max: 60.0}, // Очень вредно
+		{Min: 0.0, Max: 5.0},
+		{Min: 0.0, Max: 8.0},
+		{Min: 0.0, Max: 14.0},
+		{Min: 0.0, Max: 20.0},
+		{Min: 0.0, Max: 60.0},
 	}
 )
 
-
-
 // Функция определяет индекс состояния (0 - хорошо, 4 - очень вредно)
-func getStatusIndex(val float64, metric WeatherMetric) int {
+func getStatusIndex(val float64, metric WeatherMetric) WeatherLevel {
 	for i, r := range metric {
 		if val >= r.Min && val <= r.Max {
-			return i
+			return WeatherLevel(i)
 		}
 	}
 	return 4 // Если вышло за все рамки — это очень вредно
+}
+
+func calculateAverageWeather(data []APIWeather) *AvgWeather {
+	var sumTemperature, sumHumidity, sumPressure, sumWindSpeed float64
+	var countTemperature, countHumidity, countPressure, countWindSpeed int
+
+	for _, item := range data {
+		if item.Temperature != nil {
+			sumTemperature += *item.Temperature
+			countTemperature++
+		}
+		if item.Humidity != nil {
+			sumHumidity += *item.Humidity
+			countHumidity++
+		}
+		if item.Pressure != nil {
+			sumPressure += *item.Pressure
+			countPressure++
+		}
+		if item.WindSpeed != nil {
+			sumWindSpeed += *item.WindSpeed
+			countWindSpeed++
+		}
+	}
+
+	avg := &AvgWeather{}
+
+	if countTemperature > 0 {
+		val := sumTemperature / float64(countTemperature)
+		avg.Temperature = &val
+	}
+	if countPressure > 0 {
+		val := sumPressure / float64(countPressure)
+		avg.Pressure = &val
+	}
+	if countHumidity > 0 {
+		val := sumHumidity / float64(countHumidity)
+		avg.Humidity = &val
+	}
+	if countWindSpeed > 0 {
+		val := sumWindSpeed / float64(countWindSpeed)
+		avg.WindSpeed = &val
+	}
+	avg.LocationID = data[0].LocID
+
+	return avg
+}
+
+func analyze_weather(data []APIWeather) *WeatherLevel {
+	if len(data) == 0 {
+		return nil
+	}
+	avg_aq := calculateAverageWeather(data)
+	if avg_aq == nil {
+		return nil
+	}
+
+	var maxLevel WeatherLevel = -1
+	hasData := false
+
+	if avg_aq.Temperature != nil {
+		level := getStatusIndex(*avg_aq.Temperature, tempThresholds)
+		if level > maxLevel {
+			maxLevel = level
+		}
+		hasData = true
+	}
+	if avg_aq.Pressure != nil {
+		level := getStatusIndex(*avg_aq.Pressure, pressureThresholds)
+		if level > maxLevel {
+			maxLevel = level
+		}
+		hasData = true
+	}
+	if avg_aq.Humidity != nil {
+		level := getStatusIndex(*avg_aq.Humidity, humidityThresholds)
+		if level > maxLevel {
+			maxLevel = level
+		}
+		hasData = true
+	}
+	if avg_aq.WindSpeed != nil {
+		level := getStatusIndex(*avg_aq.WindSpeed, windThresholds)
+		if level > maxLevel {
+			maxLevel = level
+		}
+		hasData = true
+	}
+
+	if !hasData {
+		return nil
+	}
+	return &maxLevel
+
+}
+
+// Аномалии
+
+type Anomaly struct {
+	ID          int
+	LocationID  int
+	Temperature *float64
+	Humidity    *float64
+	Pressure    *float64
+	WindSpeed   *float64
+	FoundAt     time.Time
+}
+type AnomalyLevel int
+
+func processAnomalies(data []Anomaly) AnomalyLevel {
+	if len(data) == 0 {
+		return nil
+	}
 }
