@@ -1,17 +1,16 @@
-# dags/grpc_client.py
+
 """
 gRPC клиент для связи с Go сервисом расчета качества жизни
 """
 import grpc
 import sys
-import os
 from typing import List, Dict, Optional
 
 # Добавляем путь к сгенерированным proto файлам
 sys.path.insert(0, '/opt/airflow/src/generated')
 
-import service_pb2
-import service_pb2_grpc
+import generated.go.service_pb2 as service_pb2
+import generated.go.service_pb2_grpc as service_pb2_grpc
 from google.protobuf import symbol_database as _symbol_database
 from logger import logger
 

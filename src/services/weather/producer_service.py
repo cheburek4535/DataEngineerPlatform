@@ -42,8 +42,8 @@ def get_weather(lat: float, lon: float, loc_id: int) -> Optional[dict]:
             'wind_speed': float(current_wind_speed),
             'humidity': float(current_relative_humidity),
             'pressure': float(current_pressure),
-            'latitude': float(latitude),
-            'longitude': float(longitude),
+            'latitude': lat,
+            'longitude': lon,
             'timestamp': response.Current().Time(),  # Время текущих данных
             'raw_json': json.loads(json.dumps({
                 'latitude': response.Latitude(),

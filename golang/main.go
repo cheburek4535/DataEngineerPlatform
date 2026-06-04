@@ -2,12 +2,15 @@ package main
 
 import (
 	"context"
-	"log"
-	"net/http"
 	analyze "dataengineerpolygon/analyze"
-	"github.com/gin-gonic/gin"
 	pb "dataengineerpolygon/pb"
 	"io"
+	"log"
+	"net"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"google.golang.org/grpc"
 )
 
 type server struct {
@@ -113,6 +116,45 @@ func main() {
 	ctx := context.Background()
 	defer pool.Close()
 
+	
+
+	// r.POST("/life-score", func(c *gin.Context) {
+	// 	var batch []analyze.APIRequest
+	// 	if err := c.ShouldBindJSON(&batch); err != nil {
+	// 		c.JSON(http.StatusBadRequest, analyze.ErrorResponse{Error: err.Error()})
+	// 		return
+	// 	}
+	// 	var result []*analyze.AnalyzeResult
+	// 	for _, l := range batch {
+	// 		qualities := analyze.ProcessData(l)
+	// 		if qualities != nil {
+	// 			result = append(result, qualities)
+	// 		}
+	// 	}
+	// 	c.JSON(http.StatusOK, gin.H{
+	// 		"processed": len(batch),
+	// 		"result":    result,
+	// 	})
+
+	// })
+	
+	// gRPC сервер в горутине
+	go func() {
+		lis, err := net.Listen("tcp", ":50051")
+		if err != nil {
+			log.Fatalf("failed to listen: %v", err)
+		}
+		s := grpc.NewServer(
+			grpc.MaxRecvMsgSize(100*1024*1024),
+			grpc.MaxSendMsgSize(100*1024*1024),
+		)
+		pb.RegisterLifeScoreServiceServer(s, &server{})
+		log.Printf("gRPC server listening on :50051")
+		if err := s.Serve(lis); err != nil {
+			log.Fatalf("failed to serve: %v", err)
+		}
+	}()
+	
 	r := gin.Default()
 
 	r.POST("/weather/batch", func(c *gin.Context) {
@@ -134,28 +176,12 @@ func main() {
 			"result":    result,
 		})
 	})
+	
+	go func() {
+    if err := r.Run(":8000"); err != nil {
+        log.Fatal(err)
+    }
+	}()
 
-	r.POST("/life-score", func(c *gin.Context) {
-		var batch []analyze.APIRequest
-		if err := c.ShouldBindJSON(&batch); err != nil {
-			c.JSON(http.StatusBadRequest, analyze.ErrorResponse{Error: err.Error()})
-			return
-		}
-		var result []*analyze.AnalyzeResult
-		for _, l := range batch {
-			qualities := analyze.ProcessData(l)
-			if qualities != nil {
-				result = append(result, qualities)
-			}
-		}
-		c.JSON(http.StatusOK, gin.H{
-			"processed": len(batch),
-			"result":    result,
-		})
-
-	})
-	if err := r.Run(":8000"); err != nil {
-		log.Fatal(err)
-	}
 }
 

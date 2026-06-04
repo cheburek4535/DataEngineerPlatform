@@ -67,8 +67,8 @@ def process_raw_weather_batch(messages_batch: list) -> bool:
             go_item = {
                 "id": weather.id,
                 "loc_id": loc_ids[i],  # Используем location_id из исходного сообщения
-                "lat": float(weather.lat),
-                "lon": float(weather.lon),
+                "lat": weather.location.lat,
+                "lon": weather.location.lon,
                 "temperature": temperature,
                 "pressure": pressure,
                 "humidity": humidity,
@@ -107,13 +107,14 @@ def save_raw_weather(db: Session, weather: dict) -> RawWeather:
 
 def save_structured_weather(db: Session, raw_weather: RawWeather) -> Weather:
     db_weather = Weather(
-            lat=raw_weather.data_json['latitude'],
-            lon=raw_weather.data_json['longitude'],
+            # lat=round(float(str(raw_weather.data_json['latitude'])), 2),
+            # lon=round(float(str(raw_weather.data_json['longitude'])), 2),
+            location_id=raw_weather.data_json.get('location_id'),
             timestamp=raw_weather.collected_at,
-            temperature=raw_weather.data_json['temp'],
-            pressure=raw_weather.data_json['pressure'],
-            humidity=raw_weather.data_json['humidity'],
-            wind_speed=raw_weather.data_json['wind_speed'],
+            temperature=round(float(str(raw_weather.data_json['temp'])), 2),
+            pressure=round(float(str(raw_weather.data_json['pressure'])), 2),
+            humidity=round(float(str(raw_weather.data_json['humidity'])), 2),
+            wind_speed=round(float(str(raw_weather.data_json['wind_speed'])), 2),
         )
     db.add(db_weather)
     db.flush()

@@ -20,14 +20,20 @@ class RawWeather(Base):
 class Weather(Base):
     __tablename__ = 'weather'
     id: Mapped[int] = Column(Integer, primary_key=True, index=True)
-    lat: Mapped[float] = Column(Float, index=True, nullable=False)
-    lon: Mapped[float] = Column(Float, index=True, nullable=False)
+    # lat: Mapped[float] = Column(Float, index=True, nullable=False)
+    # lon: Mapped[float] = Column(Float, index=True, nullable=False)
+    location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id'), nullable=False)
     timestamp: Mapped[datetime] = Column(DateTime(timezone=True))
     temperature: Mapped[float] = Column(Float, index=True, nullable=False)
     pressure: Mapped[float] = Column(Float, index=True, nullable=False)
     humidity: Mapped[float] = Column(Float, index=True, nullable=False)
     wind_speed: Mapped[float] = Column(Float, index=True, nullable=False)
     collected_at: Mapped[datetime] = Column(DateTime(timezone=True), server_default=func.now())
+
+    location: Mapped["LocationToTrack"] = relationship(
+        "LocationToTrack",
+        back_populates="weather"
+    )
 
 
 class LocationToTrack(Base):
@@ -49,11 +55,16 @@ class LocationToTrack(Base):
         back_populates="location",
         cascade="all, delete-orphan"
     )
-    # life_score: Mapped["AirQuality"] = relationship(
-    #     "AirQuality",
-    #     back_populates="location",
-    #     cascade="all, delete-orphan"
-    # )
+    life_score: Mapped["LocationLifeScore"] = relationship(
+        "LocationLifeScore",
+        back_populates="location",
+        cascade="all, delete-orphan"
+    )
+    weather: Mapped["Weather"] = relationship(
+        "Weather",
+        back_populates="location",
+        cascade="all, delete-orphan"
+    )
 
 
 class Anomaly(Base):
@@ -238,17 +249,19 @@ class CurrencySharpChange(Base):
 
     currency: Mapped["Currency"] = relationship("Currency", back_populates="sharp_changes")
 
-# class LocationLifeScore(Base):
-#     __tablename__ = 'location_life_scores'
-#     id : Mapped[int] = Column(Integer, primary_key=True, index=True)
-#     location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id'), nullable=False)
-#     general_score: Mapped[float] = Column(Float, index=True, nullable=False)
-#     air_quality: Mapped[int] = Column(SmallInteger, index=True, nullable=False)
-#     weather_quality: Mapped[int] = Column(SmallInteger, index=True, nullable=False)
-#     anomalies_danger: Mapped[int] = Column(SmallInteger, index=True, nullable=False)
-#
-#     location: Mapped["LocationToTrack"] = relationship(
-#         "LocationToTrack",
-#         back_populates="life_score",
-#     )
+class LocationLifeScore(Base):
+    __tablename__ = 'location_life_scores'
+    id : Mapped[int] = Column(Integer, primary_key=True, index=True)
+    location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id'), nullable=False)
+    general_score: Mapped[float] = Column(Float, index=True, nullable=False)
+    air_quality: Mapped[int] = Column(SmallInteger, index=True, nullable=False)
+    weather_quality: Mapped[int] = Column(SmallInteger, index=True, nullable=False)
+    anomalies_danger: Mapped[int] = Column(SmallInteger, index=True, nullable=False)
+    created_at: Mapped[datetime] = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime] = Column(DateTime(timezone=True), nullable=True)
+
+    location: Mapped["LocationToTrack"] = relationship(
+        "LocationToTrack",
+        back_populates="life_score",
+    )
 

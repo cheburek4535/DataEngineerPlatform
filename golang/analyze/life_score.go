@@ -181,7 +181,8 @@ func calculateAverageAQ(data []AirQuality) *AvgAirQuality {
 
 func analyzeAQ(data []AirQuality) *AirQualityLevel {
 	if len(data) == 0 {
-		return nil
+		defaultLevel := LevelGood
+        return &defaultLevel
 	}
 	avg_aq := calculateAverageAQ(data)
 	if avg_aq == nil {

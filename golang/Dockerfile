@@ -15,6 +15,6 @@ RUN apk add --no-cache ca-certificates
 
 COPY --from=builder /bin/golang-service /app/golang-service
 
-EXPOSE 8000
+EXPOSE 8000 50051
 
 CMD ["/app/golang-service"]
