@@ -83,7 +83,7 @@
 
 1. **Клонируйте репозиторий**
 ```bash
-git clone https://github.com/yourusername/DataEngineerPlatform.git
+git clone https://github.com/cheburek 4535/DataEngineerPlatform.git
 cd DataEngineerPlatform
 ```
 
@@ -181,6 +181,7 @@ curl -X POST http://localhost:8000/locations/add \
 - **Контейнеризация**: многосервисный Docker Compose, кастомные Dockerfile, управление томами, healthcheck-проверки
 - **Аналитическая инженерия**: колоночные базы данных, партиционирование, материализованные представления, проектирование дашбордов Grafana
 - **Экосистема Python**: SQLAlchemy ORM, FastAPI, Pydantic, clickhouse-connect, логирование
+- **Интеграция Golang**: Отдельный сервис на Go связывается с проектом через gRPC, для ускорения обработки больших данных
 
 ---
 
