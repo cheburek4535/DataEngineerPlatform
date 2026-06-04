@@ -9,3 +9,7 @@ clickhouse-connect
 minio
 confluent-kafka
 aiogram
+grpcio
+grpcio-tools
+google
+protobuf

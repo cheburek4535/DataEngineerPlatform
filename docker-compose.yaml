@@ -270,6 +270,7 @@ services:
     container_name: golang
     ports:
       - "8000:8000"
+      - "50051:50051"
     environment:
       DATABASE_URL_FOR_GO: postgresql://weather_user:weather_pass@weather_db:5432/weather_guard?sslmode=disable
     depends_on:

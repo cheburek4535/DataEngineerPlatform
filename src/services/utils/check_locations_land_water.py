@@ -1,3 +1,5 @@
+import time
+
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import asc
 from logger import logger
@@ -17,8 +19,8 @@ def check_locations_land_water():
         for location in locations:
             is_water = is_on_water(lat=location.lat, lon=location.lon)
             if is_water is None:
-                logger.error(f"Ошибка при проверке локации {location.id}")
-                return None
+                logger.warning(f"Ошибка при проверке локации {location.id} - пропускаем")
+                continue
             elif is_water is False:
                 location.is_on_land = True
                 logger.info(f"Локация {location.id} находится на суше")
@@ -27,6 +29,7 @@ def check_locations_land_water():
                 logger.info(f"Локация {location.id} на воде")
             db.add(location)
             db.commit()
+            time.sleep(0.01)
         logger.info(f"Все локации проверены")
     except Exception as e:
         logger.error(f"Критическая ошибка при проверке локаций на воду {e}")

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped, relationship
-from sqlalchemy import Integer, Column, DateTime, ForeignKey, Float, String, Numeric, Boolean
+from sqlalchemy import Integer, Column, DateTime, ForeignKey, Float, String, Numeric, Boolean, SmallInteger
 from sqlalchemy.sql import func
 from typing import List, Optional
 from datetime import datetime
@@ -49,6 +49,11 @@ class LocationToTrack(Base):
         back_populates="location",
         cascade="all, delete-orphan"
     )
+    # life_score: Mapped["AirQuality"] = relationship(
+    #     "AirQuality",
+    #     back_populates="location",
+    #     cascade="all, delete-orphan"
+    # )
 
 
 class Anomaly(Base):
@@ -232,4 +237,18 @@ class CurrencySharpChange(Base):
     found_at: Mapped[datetime] = Column(DateTime(timezone=True), nullable=True, server_default=func.now())
 
     currency: Mapped["Currency"] = relationship("Currency", back_populates="sharp_changes")
+
+# class LocationLifeScore(Base):
+#     __tablename__ = 'location_life_scores'
+#     id : Mapped[int] = Column(Integer, primary_key=True, index=True)
+#     location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id'), nullable=False)
+#     general_score: Mapped[float] = Column(Float, index=True, nullable=False)
+#     air_quality: Mapped[int] = Column(SmallInteger, index=True, nullable=False)
+#     weather_quality: Mapped[int] = Column(SmallInteger, index=True, nullable=False)
+#     anomalies_danger: Mapped[int] = Column(SmallInteger, index=True, nullable=False)
+#
+#     location: Mapped["LocationToTrack"] = relationship(
+#         "LocationToTrack",
+#         back_populates="life_score",
+#     )
 

@@ -12,7 +12,7 @@ print(TOKEN)
 ALERT_CHAT_ID = os.getenv("ADMIN_TG_ID")
 
 token = TOKEN
-bot = Bot(token=token)
+bot = Bot(token='8001946897:AAFkvShAo2g1k4PPg2plmemOowYMRGa9O8g')
 dp = Dispatcher()
 router = Router()
 dp.include_router(router)

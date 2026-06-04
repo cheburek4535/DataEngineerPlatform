@@ -1,29 +1,30 @@
 package analyze
 
-import "time"
+type APIRequest struct {
+	LocID     int          `json:"loc_id"`
+	AQ        []AirQuality `json:"aq"`
+	Weather   []APIWeatherLS `json:"weather"`
+	Anomalies []Anomaly    `json:"anomalies"`
+}
 
 // Качество воздуха
 
 type AirQuality struct {
-	ID          int       `json:"id"`
-	LocationID  int       `json:"location_id"`
-	Pm25        *float64  `json:"pm25"`
-	Pm10        *float64  `json:"pm10"`
-	NO2         *float64  `json:"no2"`
-	O3          *float64  `json:"o3"`
-	SO2         *float64  `json:"so2"`
-	CO          *float64  `json:"co"`
-	CollectedAt time.Time `json:"collected_at"`
+	Pm25 *float64 `json:"pm25"`
+	Pm10 *float64 `json:"pm10"`
+	NO2  *float64 `json:"no2"`
+	O3   *float64 `json:"o3"`
+	SO2  *float64 `json:"so2"`
+	CO   *float64 `json:"co"`
 }
 
 type AvgAirQuality struct {
-	LocationID int
-	Pm25       *float64
-	Pm10       *float64
-	NO2        *float64
-	O3         *float64
-	SO2        *float64
-	CO         *float64
+	Pm25 *float64
+	Pm10 *float64
+	NO2  *float64
+	O3   *float64
+	SO2  *float64
+	CO   *float64
 }
 
 type AirQualityLevel int
@@ -174,12 +175,11 @@ func calculateAverageAQ(data []AirQuality) *AvgAirQuality {
 		val := sumCo / float64(countCo)
 		avg.CO = &val
 	}
-	avg.LocationID = data[0].LocationID
 
 	return avg
 }
 
-func analyze_aq(data []AirQuality) *AirQualityLevel {
+func analyzeAQ(data []AirQuality) *AirQualityLevel {
 	if len(data) == 0 {
 		return nil
 	}
@@ -194,20 +194,14 @@ func analyze_aq(data []AirQuality) *AirQualityLevel {
 
 // Погода
 
-type APIWeather struct {
-	ID          int       `json:"id"`
-	LocID       int       `json:"loc_id"`
-	Lat         float64   `json:"lat"`
-	Lon         float64   `json:"lon"`
-	Temperature *float64  `json:"temperature"`
-	Pressure    *float64  `json:"pressure"`
-	Humidity    *float64  `json:"humidity"`
-	WindSpeed   *float64  `json:"wind_speed"`
-	CollectedAt time.Time `json:"collected_at"`
+type APIWeatherLS struct {
+	Temperature *float64 `json:"temp"`
+	Pressure    *float64 `json:"pres"`
+	Humidity    *float64 `json:"hum"`
+	WindSpeed   *float64 `json:"wind"`
 }
 
 type AvgWeather struct {
-	LocationID  int
 	Temperature *float64
 	Pressure    *float64
 	Humidity    *float64
@@ -269,7 +263,7 @@ func getStatusIndex(val float64, metric WeatherMetric) WeatherLevel {
 	return 4 // Если вышло за все рамки — это очень вредно
 }
 
-func calculateAverageWeather(data []APIWeather) *AvgWeather {
+func calculateAverageWeather(data []APIWeatherLS) *AvgWeather {
 	var sumTemperature, sumHumidity, sumPressure, sumWindSpeed float64
 	var countTemperature, countHumidity, countPressure, countWindSpeed int
 
@@ -310,12 +304,11 @@ func calculateAverageWeather(data []APIWeather) *AvgWeather {
 		val := sumWindSpeed / float64(countWindSpeed)
 		avg.WindSpeed = &val
 	}
-	avg.LocationID = data[0].LocID
 
 	return avg
 }
 
-func analyze_weather(data []APIWeather) *WeatherLevel {
+func analyzeWeather(data []APIWeatherLS) *WeatherLevel {
 	if len(data) == 0 {
 		return nil
 	}
@@ -366,18 +359,51 @@ func analyze_weather(data []APIWeather) *WeatherLevel {
 // Аномалии
 
 type Anomaly struct {
-	ID          int
-	LocationID  int
-	Temperature *float64
-	Humidity    *float64
-	Pressure    *float64
-	WindSpeed   *float64
-	FoundAt     time.Time
+	Temperature *float64 `json:"temp"`
+	Pressure    *float64 `json:"pres"`
+	Humidity    *float64 `json:"hum"`
+	WindSpeed   *float64 `json:"wind"`
 }
 type AnomalyLevel int
 
 func processAnomalies(data []Anomaly) AnomalyLevel {
+	var level int
 	if len(data) == 0 {
+		level = 0
+	} else if len(data) <= 5 {
+		level = len(data) - 1
+	} else {
+		level = 4
+	}
+	return AnomalyLevel(level)
+
+}
+
+// Общая обработка
+type AnalyzeResult struct {
+	LocationID      int
+	GeneralScore    float64
+	AirQuality      int
+	WeatherQuality  int
+	AnomaliesDanger int
+}
+
+
+func ProcessData(data APIRequest) *AnalyzeResult{
+	aqLevel := analyzeAQ(data.AQ)
+	weatherLevel := analyzeWeather(data.Weather)
+	anomaliesLevel := processAnomalies(data.Anomalies)
+
+	if aqLevel == nil || weatherLevel == nil {
 		return nil
 	}
+	generalLevel := float64((int(*aqLevel) + int(*weatherLevel) + int(anomaliesLevel))) / 3.0
+	return &AnalyzeResult{
+		LocationID:      int(data.LocID),
+		GeneralScore:    float64(generalLevel),
+		AirQuality:      int(*aqLevel),
+		WeatherQuality:  int(*weatherLevel),
+		AnomaliesDanger: int(anomaliesLevel),
+	}
+
 }

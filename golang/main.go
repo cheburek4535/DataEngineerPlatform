@@ -2,230 +2,129 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
-	"math"
 	"net/http"
-	"os"
-	"time"
-
+	analyze "dataengineerpolygon/analyze"
 	"github.com/gin-gonic/gin"
-	"github.com/jackc/pgx/v5/pgxpool"
+	pb "dataengineerpolygon/pb"
+	"io"
 )
 
-type Weather struct {
-	Temperature *float64
-	Pressure    *float64
-	Humidity    *float64
-	WindSpeed   *float64
+type server struct {
+	pb.UnimplementedLifeScoreServiceServer
 }
 
-type APIWeather struct {
-	ID          int       `json:"id"`
-	LocId       int       `json:"loc_id"`
-	Lat         float64   `json:"lat"`
-	Lon         float64   `json:"lon"`
-	Temperature *float64  `json:"temperature"`
-	Pressure    *float64  `json:"pressure"`
-	Humidity    *float64  `json:"humidity"`
-	WindSpeed   *float64  `json:"wind_speed"`
-	CollectedAt time.Time `json:"collected_at"`
+func convertProtoToData(pbLoc *pb.LocationData) analyze.APIRequest {
+    data := analyze.APIRequest{
+        LocID: int(pbLoc.LocId),
+    }
+    
+    // Конвертируем Air Quality
+    for _, pbAq := range pbLoc.Aq {
+        aq := analyze.AirQuality{
+            Pm25: pbAq.Pm25,
+            Pm10: pbAq.Pm10,
+            NO2:  pbAq.No2,
+            O3:   pbAq.O3,
+            SO2:  pbAq.So2,
+            CO:   pbAq.Co,
+        }
+        data.AQ = append(data.AQ, aq)
+    }
+    
+    // Конвертируем Weather
+    for _, pbW := range pbLoc.Weather {
+        w := analyze.APIWeatherLS{
+            Temperature: pbW.Temp,
+            Pressure:    pbW.Pres,
+            Humidity:    pbW.Hum,
+            WindSpeed:   pbW.Wind,
+        }
+        data.Weather = append(data.Weather, w)
+    }
+    
+    // Конвертируем Anomalies
+    for _, pbA := range pbLoc.Anomalies {
+        a := analyze.Anomaly{
+            Temperature: pbA.Temp,
+            Pressure:    pbA.Pres,
+            Humidity:    pbA.Hum,
+            WindSpeed:   pbA.Wind,
+        }
+        data.Anomalies = append(data.Anomalies, a)
+    }
+    
+    return data
 }
 
-type ErrorResponse struct {
-	Error string `json:"error"`
-}
+func (s *server) CalculateBatch(ctx context.Context, req *pb.BatchRequest) (*pb.BatchResponse, error) {
+	var scores []*pb.LifeScoreResponse
 
+	for _, loc := range req.Locations {
+		data := convertProtoToData(loc)
+		result := analyze.ProcessData(data)
 
-func Sum[T int | float64](slice []T) T {
-	var result T
-	for _, value := range slice {
-		result += value
-	}
-	return result
-}
-
-func connectToPostgres() *pgxpool.Pool {
-	ctx := context.Background()
-	dsn := os.Getenv("DATABASE_URL_FOR_GO")
-	if dsn == "" {
-		dsn = "postgresql://weather_user:weather_pass@weather_db:5432/weather_guard"
-	}
-
-	pool, err := pgxpool.New(ctx, dsn)
-	if err != nil {
-		log.Fatal(err)
-	}
-	// defer pool.Close()
-
-	if err := pool.Ping(ctx); err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println("Connected to Postgres")
-	return pool
-}
-func isAnomaly(val *float64, avg, threshold float64, useAbsAvg bool) bool {
-	if val == nil {
-		return false
-	}
-	diff := math.Abs(*val - avg)
-	if useAbsAvg {
-		return diff > threshold*math.Abs(avg)
-	}
-	return diff > threshold*avg
-}
-
-func compareWeather(pool *pgxpool.Pool, ctx context.Context, data APIWeather) map[string]any {
-	lat := data.Lat
-	lon := data.Lon
-	temperature := data.Temperature
-	pressure := data.Pressure
-	humidity := data.Humidity
-	windSpeed := data.WindSpeed
-
-	radius := 0.3
-
-	similarPlacesRows, err := pool.Query(ctx,
-		`SELECT temperature, pressure, humidity, wind_speed FROM weather
-		WHERE lat >= $1 AND lat <= $2 AND lon >= $3 AND lon <= $4 AND collected_at > $5`,
-		lat-radius, lat+radius, lon-radius, lon+radius, time.Now().UTC().AddDate(0, 0, -31))
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer similarPlacesRows.Close()
-
-	var similarPlaces []Weather
-	for similarPlacesRows.Next() {
-		var w Weather
-		if err := similarPlacesRows.Scan(&w.Temperature, &w.Pressure, &w.Humidity, &w.WindSpeed); err != nil {
-			log.Fatal(err)
-		}
-		similarPlaces = append(similarPlaces, w)
-	}
-	if similarPlacesRows.Err() != nil {
-		log.Fatal(similarPlacesRows.Err())
-	}
-	if len(similarPlaces) < 2 {
-		fmt.Println("Похожие места не найдены или их не хватает")
-		return nil
-	}
-
-	var temps []float64
-	var pressures []float64
-	var humidities []float64
-	var winds []float64
-	for _, place := range similarPlaces {
-		if place.Temperature != nil {
-			temps = append(temps, *place.Temperature)
-		}
-		if place.Humidity != nil {
-			humidities = append(humidities, *place.Humidity)
-		}
-		if place.Pressure != nil {
-			pressures = append(pressures, *place.Pressure)
-		}
-		if place.WindSpeed != nil {
-			winds = append(winds, *place.WindSpeed)
+		
+		if result != nil {
+			scores = append(scores, &pb.LifeScoreResponse{
+				LocationId:      int64(result.LocationID),
+				GeneralScore:    result.GeneralScore, // 
+				AirQuality:      int32(result.AirQuality),
+				WeatherQuality:  int32(result.WeatherQuality),
+				AnomaliesDanger: int32(result.AnomaliesDanger),
+			})
 		}
 	}
-	var avgTemp, avgPressure, avgHumidity, avgWind float64
-	if len(temps) > 0 {avgTemp = Sum(temps) / float64(len(temps))}else {avgTemp = 0}
-	if len(humidities) > 0 {avgHumidity = Sum(humidities) / float64(len(humidities))}else {avgHumidity = 0}
-	if len(pressures) > 0 {avgPressure= Sum(pressures) / float64(len(pressures))}else {avgPressure = 0}
-	if len(winds) > 0 {avgWind = Sum(winds) / float64(len(winds))}else {avgWind = 0}
-
-	threshold := 0.65
-	anomaly := map[string]any{
-		"temperature": isAnomaly(temperature, avgTemp, threshold, true),
-		"pressure":    isAnomaly(pressure, avgPressure, threshold, true),
-		"humidity":    isAnomaly(humidity, avgHumidity, threshold, false),
-		"wind_speed":  isAnomaly(windSpeed, avgWind, threshold, false),
-		"averages": map[string]float64{
-			"temperature": avgTemp,
-			"pressure":    avgPressure,
-			"humidity":    avgHumidity,
-			"wind_speed":  avgWind,
-		},
-	}
-	return anomaly
-
+	return &pb.BatchResponse{Scores: scores}, nil
 }
 
-func getField(w APIWeather, field string) *float64 {
-	switch field {
-	case "temperature":
-		return w.Temperature
-	case "humidity":
-		return w.Humidity
-	case "pressure":
-		return w.Pressure
-	case "wind_speed":
-		return w.WindSpeed
-	default:
-		return nil
-	}
-}
-
-func checkAnomalies(pool *pgxpool.Pool, ctx context.Context, data APIWeather) map[string]any {
-	anomalies := compareWeather(pool, ctx, data)
-	if anomalies != nil {
-		var anomalies_to_save map[string]*float64 = make(map[string]*float64)
-		var anomalies_data map[string]map[string]any = make(map[string]map[string]any)
-
-		for key, is_anomaly := range anomalies {
-			if is_anomaly == true && key != "averages" {
-				anomaly_value := getField(data, key)
-				if anomaly_value != nil {
-					fmt.Printf("Аномалия: %s: %v! Среднее: %f\n", key, anomaly_value, anomalies["averages"].(map[string]float64)[key])
-
-					switch key {
-					case "temperature":
-						anomalies_to_save["anomaly_temperature"] = anomaly_value
-					case "pressure":
-						anomalies_to_save["anomaly_pressure"] = anomaly_value
-					case "humidity":
-						anomalies_to_save["anomaly_humidity"] = anomaly_value
-					case "wind_speed":
-						anomalies_to_save["anomaly_wind_speed"] = anomaly_value
-					}
-
-					anomalies_data[key] = map[string]any{"value": anomaly_value, "avg": anomalies["averages"].(map[string]float64)[key]}
-				}
+// Потоковая обработка - более эффективно для больших данных
+func (s *server) CalculateLifeScore(stream pb.LifeScoreService_CalculateLifeScoreServer) error {
+	for {
+		data, err := stream.Recv()
+		if err == io.EOF {
+			return nil
+		}
+		if err != nil {
+			return err
+		}
+		
+		locData := convertProtoToData(data)
+		result := analyze.ProcessData(locData)
+		
+		if result != nil {
+			score := &pb.LifeScoreResponse{
+				LocationId:      int64(result.LocationID),
+				GeneralScore:    result.GeneralScore, 
+				AirQuality:      int32(result.AirQuality),
+				WeatherQuality:  int32(result.WeatherQuality),
+				AnomaliesDanger: int32(result.AnomaliesDanger),
+			}
+			if err := stream.Send(score); err != nil {
+				return err
 			}
 		}
-
-		if len(anomalies_to_save) > 0 {
-			// saved_anomaly := saveAnomaly(pool, ctx, anomalies_to_save, data.LocId, anomalies_data)
-			result := map[string]any{
-				"loc_id":            data.LocId,
-				"anomalies_to_save": anomalies_to_save,
-				"anomalies_data":    anomalies_data,
-			}
-			return result
-		}
 	}
-
-	return nil
 }
+
 
 func main() {
-	pool := connectToPostgres()
+	pool := analyze.ConnectToPostgres()
 	ctx := context.Background()
 	defer pool.Close()
 
 	r := gin.Default()
 
 	r.POST("/weather/batch", func(c *gin.Context) {
-		var batch []APIWeather
+		var batch []analyze.APIWeather
 		if err := c.ShouldBindJSON(&batch); err != nil {
-			c.JSON(http.StatusBadRequest, ErrorResponse{Error: err.Error()})
+			c.JSON(http.StatusBadRequest, analyze.ErrorResponse{Error: err.Error()})
 			return
 		}
 
 		var result []map[string]any = make([]map[string]any, 0, len(batch))
 		for _, w := range batch {
-			anomalies := checkAnomalies(pool, ctx, w)
+			anomalies := analyze.CheckAnomalies(pool, ctx, w)
 			if anomalies != nil {
 				result = append(result, anomalies)
 			}
@@ -234,6 +133,26 @@ func main() {
 			"processed": len(batch),
 			"result":    result,
 		})
+	})
+
+	r.POST("/life-score", func(c *gin.Context) {
+		var batch []analyze.APIRequest
+		if err := c.ShouldBindJSON(&batch); err != nil {
+			c.JSON(http.StatusBadRequest, analyze.ErrorResponse{Error: err.Error()})
+			return
+		}
+		var result []*analyze.AnalyzeResult
+		for _, l := range batch {
+			qualities := analyze.ProcessData(l)
+			if qualities != nil {
+				result = append(result, qualities)
+			}
+		}
+		c.JSON(http.StatusOK, gin.H{
+			"processed": len(batch),
+			"result":    result,
+		})
+
 	})
 	if err := r.Run(":8000"); err != nil {
 		log.Fatal(err)

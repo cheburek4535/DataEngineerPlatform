@@ -1,0 +1,121 @@
+//syntax = "proto3";
+//
+//package lifescore;
+//
+//// Опция для Go пакета
+//option go_package = "./go";
+//
+//// Сервис - это то, что мы можем вызвать удаленно
+//service LifeScoreService {
+//  // RPC метод - удаленная процедура
+//  // Принимает поток LocationData и возвращает поток LifeScore
+//  rpc CalculateLifeScore(stream LocationData) returns (stream LifeScoreResponse);
+//
+//  // Для совместимости со старым подходом - батчевый метод
+//  rpc CalculateBatch(BatchRequest) returns (BatchResponse);
+//}
+//
+//// Сообщения - это наши структуры данных
+//message BatchRequest {
+//  repeated LocationData locations = 1;
+//}
+//
+//message BatchResponse {
+//  repeated LifeScoreResponse scores = 1;
+//}
+//
+//message LocationData {
+//  int64 loc_id = 1;
+//  repeated AirQualityData aq = 2;
+//  repeated WeatherData weather = 3;
+//  repeated AnomalyData anomalies = 4;
+//}
+//
+//message AirQualityData {
+//  optional double pm25 = 1;
+//  optional double pm10 = 2;
+//  optional double no2 = 3;
+//  optional double o3 = 4;
+//  optional double so2 = 5;
+//  optional double co = 6;
+//}
+//
+//message WeatherData {
+//  optional double temp = 1;
+//  optional double pres = 2;
+//  optional double hum = 3;
+//  optional double wind = 4;
+//}
+//
+//message AnomalyData {
+//  optional double temp = 1;
+//  optional double hum = 2;
+//  optional double pres = 3;
+//  optional double wind = 4;
+//}
+//
+//message LifeScoreResponse {
+//  int64 location_id = 1;
+//  double general_score = 2;
+//  int32 air_quality = 3;
+//  int32 weather_quality = 4;
+//  int32 anomalies_danger = 5;
+//}
+
+// proto/go/service.proto
+syntax = "proto3";
+
+package go;
+
+option go_package = "./pb";
+
+service LifeScoreService {
+  rpc CalculateLifeScore(stream LocationData) returns (stream LifeScoreResponse);
+  rpc CalculateBatch(BatchRequest) returns (BatchResponse);
+}
+
+message BatchRequest {
+  repeated LocationData locations = 1;
+}
+
+message BatchResponse {
+  repeated LifeScoreResponse scores = 1;
+}
+
+message LocationData {
+  int64 loc_id = 1;
+  repeated AirQualityData aq = 2;
+  repeated WeatherData weather = 3;
+  repeated AnomalyData anomalies = 4;
+}
+
+message AirQualityData {
+  optional double pm25 = 1;
+  optional double pm10 = 2;
+  optional double no2 = 3;
+  optional double o3 = 4;
+  optional double so2 = 5;
+  optional double co = 6;
+}
+
+message WeatherData {
+  optional double temp = 1;
+  optional double pres = 2;
+  optional double hum = 3;
+  optional double wind = 4;
+}
+
+message AnomalyData {
+  optional double temp = 1;
+  optional double hum = 2;
+  optional double pres = 3;
+  optional double wind = 4;
+}
+
+message LifeScoreResponse {
+  int64 location_id = 1;
+  double general_score = 2;
+  int32 air_quality = 3;
+  int32 weather_quality = 4;
+  int32 anomalies_danger = 5;
+}
