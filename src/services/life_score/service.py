@@ -49,7 +49,7 @@ def calculate_locs_go(data: list[dict]):
     logger.info("Отправляем батч в Go")
 
     # Используем gRPC клиент
-    client = LifeScoreClient(host="host.docker.internal", port=50051)
+    client = LifeScoreClient(host="golang", port=50051)
     try:
         scores = client.calculate_batch(data) # Если все помещается в память
         # scores = client.calculate_scores_streaming(data)  # Для очень больших данных

@@ -25,7 +25,7 @@ import time
 def collect_weather_for_locations(**context):
     db = get_session()
     try:
-        locations = db.query(LocationToTrack).order_by(asc(LocationToTrack.id)).all()
+        locations = db.query(LocationToTrack).filter_by(is_on_land=True).order_by(asc(LocationToTrack.id)).offset(0).all()
         # Счетчик для контроля лимита в минуту
         location_counter = 0
         for location in locations:

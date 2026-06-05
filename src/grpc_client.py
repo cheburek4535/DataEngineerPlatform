@@ -7,25 +7,25 @@ import sys
 from typing import List, Dict, Optional
 
 # Добавляем путь к сгенерированным proto файлам
-sys.path.insert(0, '/opt/airflow/src/generated')
+sys.path.insert(0, '/opt/airflow/src/generated/lifescore')
 
-import generated.go.service_pb2 as service_pb2
-import generated.go.service_pb2_grpc as service_pb2_grpc
+import generated.lifescore.service_pb2 as service_pb2
+import generated.lifescore.service_pb2_grpc as service_pb2_grpc
 from google.protobuf import symbol_database as _symbol_database
 from logger import logger
 
 # Получаем доступ ко всем protobuf классам через symbol_database
 _sym_db = _symbol_database.Default()
 
-# Извлекаем нужные классы по их полным именам в пакете "go"
+# Извлекаем нужные классы по их полным именам в пакете "lifescore"
 try:
-    LocationData = _sym_db.GetSymbol('go.LocationData')
-    AirQualityData = _sym_db.GetSymbol('go.AirQualityData')
-    WeatherData = _sym_db.GetSymbol('go.WeatherData')
-    AnomalyData = _sym_db.GetSymbol('go.AnomalyData')
-    BatchRequest = _sym_db.GetSymbol('go.BatchRequest')
-    BatchResponse = _sym_db.GetSymbol('go.BatchResponse')
-    LifeScoreResponse = _sym_db.GetSymbol('go.LifeScoreResponse')
+    LocationData = _sym_db.GetSymbol('lifescore.LocationData')
+    AirQualityData = _sym_db.GetSymbol('lifescore.AirQualityData')
+    WeatherData = _sym_db.GetSymbol('lifescore.WeatherData')
+    AnomalyData = _sym_db.GetSymbol('lifescore.AnomalyData')
+    BatchRequest = _sym_db.GetSymbol('lifescore.BatchRequest')
+    BatchResponse = _sym_db.GetSymbol('lifescore.BatchResponse')
+    LifeScoreResponse = _sym_db.GetSymbol('lifescore.LifeScoreResponse')
     logger.info("Successfully loaded all protobuf message types")
 except KeyError as e:
     logger.error(f"Failed to load protobuf types: {e}")

@@ -65,7 +65,7 @@
 // proto/go/service.proto
 syntax = "proto3";
 
-package go;
+package lifescore;
 
 option go_package = "./pb";
 

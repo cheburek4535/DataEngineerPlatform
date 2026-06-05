@@ -116,72 +116,44 @@ func main() {
 	ctx := context.Background()
 	defer pool.Close()
 
-	
-
-	// r.POST("/life-score", func(c *gin.Context) {
-	// 	var batch []analyze.APIRequest
-	// 	if err := c.ShouldBindJSON(&batch); err != nil {
-	// 		c.JSON(http.StatusBadRequest, analyze.ErrorResponse{Error: err.Error()})
-	// 		return
-	// 	}
-	// 	var result []*analyze.AnalyzeResult
-	// 	for _, l := range batch {
-	// 		qualities := analyze.ProcessData(l)
-	// 		if qualities != nil {
-	// 			result = append(result, qualities)
-	// 		}
-	// 	}
-	// 	c.JSON(http.StatusOK, gin.H{
-	// 		"processed": len(batch),
-	// 		"result":    result,
-	// 	})
-
-	// })
-	
-	// gRPC сервер в горутине
+	// Запускаем gRPC в горутине
 	go func() {
 		lis, err := net.Listen("tcp", ":50051")
 		if err != nil {
-			log.Fatalf("failed to listen: %v", err)
+			log.Fatalf("gRPC listen error: %v", err)
 		}
 		s := grpc.NewServer(
 			grpc.MaxRecvMsgSize(100*1024*1024),
 			grpc.MaxSendMsgSize(100*1024*1024),
 		)
 		pb.RegisterLifeScoreServiceServer(s, &server{})
-		log.Printf("gRPC server listening on :50051")
+		log.Println("gRPC server listening on :50051")
 		if err := s.Serve(lis); err != nil {
-			log.Fatalf("failed to serve: %v", err)
+			log.Fatalf("gRPC serve error: %v", err)
 		}
 	}()
-	
-	r := gin.Default()
 
+	// HTTP сервер
+	r := gin.Default()
 	r.POST("/weather/batch", func(c *gin.Context) {
 		var batch []analyze.APIWeather
 		if err := c.ShouldBindJSON(&batch); err != nil {
 			c.JSON(http.StatusBadRequest, analyze.ErrorResponse{Error: err.Error()})
 			return
 		}
-
-		var result []map[string]any = make([]map[string]any, 0, len(batch))
+		var result []map[string]any
 		for _, w := range batch {
 			anomalies := analyze.CheckAnomalies(pool, ctx, w)
 			if anomalies != nil {
 				result = append(result, anomalies)
 			}
 		}
-		c.JSON(http.StatusOK, gin.H{
-			"processed": len(batch),
-			"result":    result,
-		})
+		c.JSON(http.StatusOK, gin.H{"processed": len(batch), "result": result})
 	})
-	
-	go func() {
-    if err := r.Run(":8000"); err != nil {
-        log.Fatal(err)
-    }
-	}()
 
+	log.Println("HTTP server listening on :8000")
+	if err := r.Run(":8000"); err != nil {
+		log.Fatal(err)
+	}
 }
 

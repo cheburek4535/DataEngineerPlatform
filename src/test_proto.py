@@ -3,7 +3,7 @@ import sys
 
 sys.path.insert(0, '/opt/airflow/src/generated')
 
-import generated.go.service_pb2 as service_pb2
+import generated.lifescore.service_pb2 as service_pb2
 
 # Проверяем, что доступно в модуле
 print("Available in service_pb2:")
@@ -24,16 +24,16 @@ try:
     sym_db = symbol_database.Default()
 
     # Ищем по полному имени пакета
-    LocationData = sym_db.GetSymbol('go.LocationData')
+    LocationData = sym_db.GetSymbol('lifescore.LocationData')
     loc = LocationData()
-    print("✓ sym_db.GetSymbol('go.LocationData') works")
+    print("✓ sym_db.GetSymbol('lifescore.LocationData') works")
 
     # Проверяем другие типы
-    BatchRequest = sym_db.GetSymbol('go.BatchRequest')
-    LifeScoreResponse = sym_db.GetSymbol('go.LifeScoreResponse')
-    AirQualityData = sym_db.GetSymbol('go.AirQualityData')
-    WeatherData = sym_db.GetSymbol('go.WeatherData')
-    AnomalyData = sym_db.GetSymbol('go.AnomalyData')
+    BatchRequest = sym_db.GetSymbol('lifescore.BatchRequest')
+    LifeScoreResponse = sym_db.GetSymbol('lifescore.LifeScoreResponse')
+    AirQualityData = sym_db.GetSymbol('lifescore.AirQualityData')
+    WeatherData = sym_db.GetSymbol('lifescore.WeatherData')
+    AnomalyData = sym_db.GetSymbol('lifescore.AnomalyData')
     print("✓ All message types accessible via symbol_database")
 
 except Exception as e:

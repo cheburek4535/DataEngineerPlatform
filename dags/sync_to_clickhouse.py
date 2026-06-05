@@ -23,10 +23,9 @@ def sync_weather(**context):
     pg = get_session()
     ch = get_ch_client()
 
-    result = ch.query("SELECT max(id) FROM weather")
-    max_id = result.result_rows[0][0] or 0
+    ch.command("TRUNCATE TABLE weather")
 
-    new_rows = pg.query(models.Weather).filter(models.Weather.id > max_id).all()
+    new_rows = pg.query(models.Weather).all()
 
     if not new_rows:
         logger.info("Нет новых данных для синхронизации weather")
@@ -34,11 +33,11 @@ def sync_weather(**context):
         return
 
     data = [[
-        r.id, r.lat, r.lon, r.timestamp, r.temperature, r.humidity, r.pressure, r.wind_speed, r.collected_at
+        r.id, r.location.lat, r.location.lon, r.location_id, r.timestamp, r.temperature, r.humidity, r.pressure, r.wind_speed, r.collected_at
     ] for r in new_rows]
 
     ch.insert('weather', data,
-              column_names=['id', 'lat', 'lon', 'timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed', 'collected_at'])
+              column_names=['id', 'lat', 'lon', 'location_id', 'timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed', 'collected_at'])
     logger.info(f"Синхронизировано {len(data)} записей weather")
     pg.close()
 

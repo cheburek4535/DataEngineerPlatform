@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS weather_analytics.weather (
     id          UInt64,
     lat         Float64,
     lon         Float64,
+    location_id UInt64,
     timestamp   DateTime64(3, 'UTC'),
     temperature Float64,
     pressure    Float64,
