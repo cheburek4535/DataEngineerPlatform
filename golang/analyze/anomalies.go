@@ -84,11 +84,12 @@ func compareWeather(pool *pgxpool.Pool, ctx context.Context, data APIWeather) ma
 	radius := 0.3
 
 	similarPlacesRows, err := pool.Query(ctx,
-		`SELECT temperature, pressure, humidity, wind_speed FROM weather
-		WHERE lat >= $1 AND lat <= $2 AND lon >= $3 AND lon <= $4 AND collected_at > $5`,
+		`SELECT temperature, pressure, humidity, wind_speed FROM weather w join locations_to_track l on l.id = w.location_id
+		WHERE l.lat >= $1 AND l.lat <= $2 AND l.lon >= $3 AND l.lon <= $4 AND w.collected_at > $5`,
 		lat-radius, lat+radius, lon-radius, lon+radius, time.Now().UTC().AddDate(0, 0, -31))
 	if err != nil {
-		log.Fatal(err)
+		log.Println("Query error:", err)
+    	return nil
 	}
 	defer similarPlacesRows.Close()
 
@@ -101,7 +102,8 @@ func compareWeather(pool *pgxpool.Pool, ctx context.Context, data APIWeather) ma
 		similarPlaces = append(similarPlaces, w)
 	}
 	if similarPlacesRows.Err() != nil {
-		log.Fatal(similarPlacesRows.Err())
+		log.Println("Rows error:", similarPlacesRows.Err())
+    	return nil
 	}
 	if len(similarPlaces) < 2 {
 		fmt.Println("Похожие места не найдены или их не хватает")

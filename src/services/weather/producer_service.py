@@ -33,9 +33,6 @@ def get_weather(lat: float, lon: float, loc_id: int) -> Optional[dict]:
         current_relative_humidity = current.Variables(2).Value()
         current_pressure = current.Variables(3).Value()
 
-        latitude = response.Latitude()
-        longitude = response.Longitude()
-
         data = {
             'location_id': loc_id,
             'temp': float(current_temperature),  # Преобразуем в обычный float

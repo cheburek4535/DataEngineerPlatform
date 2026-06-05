@@ -10,30 +10,30 @@ from logger import logger
 from datetime import datetime, timedelta, timezone
 import traceback
 
-def process_raw_weather_message(message_value: dict) -> bool:
-    db = get_session()
-
-    try:
-        loc_id = message_value.get('location_id')
-        if loc_id is None:
-            return False
-        logger.info(f"ОБРАБОТКА ЛОКАЦИИ {loc_id}")
-        raw_weather = save_raw_weather(db, message_value)
-
-        weather = save_structured_weather(db, raw_weather)
-
-        # anomalies = check_anomalies(db, weather, loc_id)
-
-
-        db.commit()
-        logger.info(f"Successfully processed weather data")
-        return True
-    except Exception as e:
-        db.rollback()
-        logger.info(f"Failed to process weather data: {e}")
-        return False
-    finally:
-        db.close()
+# def process_raw_weather_message(message_value: dict) -> bool:
+#     db = get_session()
+#
+#     try:
+#         loc_id = message_value.get('location_id')
+#         if loc_id is None:
+#             return False
+#         logger.info(f"ОБРАБОТКА ЛОКАЦИИ {loc_id}")
+#         raw_weather = save_raw_weather(db, message_value)
+#
+#         weather = save_structured_weather(db, raw_weather)
+#
+#         # anomalies = check_anomalies(db, weather, loc_id)
+#
+#
+#         db.commit()
+#         logger.info(f"Successfully processed weather data")
+#         return True
+#     except Exception as e:
+#         db.rollback()
+#         logger.info(f"Failed to process weather data: {e}")
+#         return False
+#     finally:
+#         db.close()
 
 
 def process_raw_weather_batch(messages_batch: list) -> bool:
@@ -50,7 +50,10 @@ def process_raw_weather_batch(messages_batch: list) -> bool:
             if loc_id is None:
                 continue
 
-            raw_weather = save_raw_weather(db, message_value)
+            raw_weather = RawWeather(
+            data_json=message_value,
+            collected_at=datetime.fromtimestamp(message_value.get('timestamp')),
+            )
             weather = save_structured_weather(db, raw_weather)
             weather_records.append(weather)
             loc_ids.append(loc_id)
@@ -73,8 +76,7 @@ def process_raw_weather_batch(messages_batch: list) -> bool:
                 "pressure": pressure,
                 "humidity": humidity,
                 "wind_speed": wind_speed,
-                "collected_at": weather.timestamp.isoformat() if weather.timestamp else datetime.now(
-                    timezone.utc).isoformat()
+                "collected_at": weather.timestamp.strftime("%Y-%m-%dT%H:%M:%SZ") if weather.timestamp else datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
             }
             go_batch.append(go_item)
 
@@ -92,17 +94,17 @@ def process_raw_weather_batch(messages_batch: list) -> bool:
         return False
     finally:
         db.close()
-def save_raw_weather(db: Session, weather: dict) -> RawWeather:
-    db_weather = RawWeather(
-        # lat=weather['latitude'],
-        # lon=weather['longitude'],
-        data_json=weather,
-        collected_at=datetime.fromtimestamp(weather.get('timestamp')),
-    )
-    db.add(db_weather)
-    db.flush()
-    db.refresh(db_weather)
-    return db_weather
+# def save_raw_weather(db: Session, weather: dict) -> RawWeather:
+#     db_weather = RawWeather(
+#         # lat=weather['latitude'],
+#         # lon=weather['longitude'],
+#         data_json=weather,
+#         collected_at=datetime.fromtimestamp(weather.get('timestamp')),
+#     )
+#     db.add(db_weather)
+#     db.flush()
+#     db.refresh(db_weather)
+#     return db_weather
 
 
 def save_structured_weather(db: Session, raw_weather: RawWeather) -> Weather:

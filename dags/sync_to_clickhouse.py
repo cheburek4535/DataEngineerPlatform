@@ -163,6 +163,58 @@ def sync_air_quality(**context):
 
     pg.close()
 
+
+def sync_location_life_scores(**context):
+    pg = get_session()
+    ch = get_ch_client()
+
+    # Очищаем таблицу перед полной перезаписью
+    ch.command("TRUNCATE TABLE location_life_scores")
+
+    # Извлекаем все записи из PostgreSQL
+    rows = pg.query(models.LocationLifeScore).all()
+
+    data = [
+        [
+            row.id,
+            row.location.lat, row.location.lon,
+            row.location_id,
+            float(row.general_score),
+            int(row.air_quality),
+            int(row.weather_quality),
+            int(row.anomalies_danger),
+            row.created_at,
+            # Если updated_at равен None, в ClickHouse уйдет корректный Null
+            row.updated_at if row.updated_at is not None else None
+        ]
+        for row in rows
+    ]
+
+    if data:
+        ch.insert(
+            'location_life_scores',
+            data,
+            column_names=[
+                'id',
+                'lat',
+                'lon',
+                'location_id',
+                'general_score',
+                'air_quality',
+                'weather_quality',
+                'anomalies_danger',
+                'created_at',
+                'updated_at'
+            ]
+        )
+        logger.info(f"Синхронизировано {len(data)} записей location_life_scores")
+    else:
+        logger.info("Таблица location_life_scores в PG пуста")
+
+    pg.close()
+
+
+
 default_args = {
     'owner': 'Cheburek',
     'retries': 1,
@@ -203,4 +255,8 @@ max_active_runs=1,
         task_id='sync_air_quality',
         python_callable=sync_air_quality,
     )
-    sync_w >> sync_a >> sync_c >> sync_sc >> sync_aq
+    sync_ls = PythonOperator(
+        task_id='sync_location_life_scores',
+        python_callable=sync_location_life_scores,
+    )
+    sync_w >> sync_a >> sync_c >> sync_sc >> sync_aq >> sync_ls

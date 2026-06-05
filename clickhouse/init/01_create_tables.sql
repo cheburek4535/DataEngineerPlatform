@@ -81,6 +81,23 @@ PARTITION BY toYYYYMM(collected_at)
 ORDER BY (collected_at, location_id, lat, lon)
 SETTINGS index_granularity = 8192;
 
+CREATE TABLE IF NOT EXISTS weather_analytics.location_life_scores (
+    id                  UInt64,
+    lat Float64,
+    lon Float64,
+    location_id         UInt64,
+    general_score       Float64,
+    air_quality         UInt8,
+    weather_quality     UInt8,
+    anomalies_danger    UInt8,
+    created_at          DateTime64(3, 'UTC') DEFAULT now64(3),
+    updated_at          Nullable(DateTime64(3, 'UTC'))
+)
+ENGINE = MergeTree()
+PRIMARY KEY (location_id)
+ORDER BY (location_id, created_at)
+PARTITION BY toYYYYMM(created_at)
+SETTINGS index_granularity = 8192;
 
 
 
