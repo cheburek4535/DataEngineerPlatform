@@ -22,7 +22,7 @@ class Weather(Base):
     id: Mapped[int] = Column(Integer, primary_key=True, index=True)
     # lat: Mapped[float] = Column(Float, index=True, nullable=False)
     # lon: Mapped[float] = Column(Float, index=True, nullable=False)
-    location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id'), nullable=False)
+    location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id', ondelete='CASCADE'), nullable=False)
     timestamp: Mapped[datetime] = Column(DateTime(timezone=True))
     temperature: Mapped[float] = Column(Float, index=True, nullable=False)
     pressure: Mapped[float] = Column(Float, index=True, nullable=False)
@@ -70,7 +70,7 @@ class LocationToTrack(Base):
 class Anomaly(Base):
     __tablename__ = 'anomalies'
     id : Mapped[int] = Column(Integer, primary_key=True, index=True)
-    location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id'), nullable=False)
+    location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id', ondelete='CASCADE'), nullable=False)
     anomaly_temperature: Mapped[float] = Column(Float, index=True, nullable=True)
     anomaly_humidity: Mapped[float] = Column(Float, index=True, nullable=True)
     anomaly_wind_speed: Mapped[float] = Column(Float, index=True, nullable=True)
@@ -97,7 +97,7 @@ class RawAirQuality(Base):
 class AirQuality(Base):
     __tablename__ = 'air_quality'
     id: Mapped[int] = Column(Integer, primary_key=True, index=True)
-    location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id'), nullable=False)
+    location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id', ondelete='CASCADE'), nullable=False)
     pm25: Mapped[Optional[float]] = Column(Float, nullable=True)  # µg/m³
     pm10: Mapped[Optional[float]] = Column(Float, nullable=True)  # µg/m³
     no2: Mapped[Optional[float]] = Column(Float, nullable=True)  # ppm → пересчитаем в ppb
@@ -252,7 +252,7 @@ class CurrencySharpChange(Base):
 class LocationLifeScore(Base):
     __tablename__ = 'location_life_scores'
     id : Mapped[int] = Column(Integer, primary_key=True, index=True)
-    location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id'), nullable=False)
+    location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id', ondelete='CASCADE'), nullable=False)
     general_score: Mapped[float] = Column(Float, index=True, nullable=False)
     air_quality: Mapped[int] = Column(SmallInteger, index=True, nullable=False)
     weather_quality: Mapped[int] = Column(SmallInteger, index=True, nullable=False)
