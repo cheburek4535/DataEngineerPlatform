@@ -39,9 +39,8 @@ def process_raw_weather_batch(messages_batch: list) -> bool:
     db = get_session()
 
     try:
-        # Сохраняем все записи
         weather_records = []
-        loc_ids = []  # Сохраняем loc_id для каждого weather
+        loc_ids = []
 
         for message_value in messages_batch:
             loc_id = message_value.get('location_id')
@@ -59,7 +58,6 @@ def process_raw_weather_batch(messages_batch: list) -> bool:
         # Формируем данные для отправки в Go
         go_batch = []
         for i, weather in enumerate(weather_records):
-            # Убедимся что все значения корректные
             temperature = float(weather.temperature) if weather.temperature is not None else None
             pressure = float(weather.pressure) if weather.pressure is not None else None
             humidity = float(weather.humidity) if weather.humidity is not None else None
