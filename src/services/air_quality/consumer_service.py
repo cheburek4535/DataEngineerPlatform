@@ -18,7 +18,7 @@ def process_air_quality_msg(msg_value: dict) -> bool:
         if not transformed_aq:
             logger.error("Не удалось трансформировать AQ")
             return False
-        structured_aq = save_structured_aq(db, transformed_aq, loc_id)
+        save_structured_aq(db, transformed_aq, loc_id)
 
         db.commit()
         logger.info(f"Successfully processed aq data")
@@ -51,7 +51,6 @@ def transform_air_quality(raw_aq: RawAirQuality) -> Optional[Dict]:
     if not measurements:
         return None
 
-    # Группируем по параметру, собираем все значения
     params = {}
     for m in measurements:
         p = m["parameter"]
@@ -59,7 +58,6 @@ def transform_air_quality(raw_aq: RawAirQuality) -> Optional[Dict]:
         if v is not None:
             params.setdefault(p, []).append(v)
 
-    # Считаем среднее по каждому параметру
     def avg_or_none(key):
         values = params.get(key)
         return round(sum(values) / len(values), 3) if values else None

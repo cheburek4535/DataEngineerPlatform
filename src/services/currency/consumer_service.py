@@ -1,10 +1,8 @@
-import json
 from datetime import datetime, timezone, timedelta
 from decimal import Decimal
 from typing import Optional, Dict
 
 from sqlalchemy.orm import Session
-from sqlalchemy import and_
 
 from services.db.models import RawCurrency, Currency, CurrencyHistory, CurrencySharpChange
 from services.db.db import get_session
@@ -18,7 +16,6 @@ def process_raw_currency_message(message_value: dict) -> bool:
     try:
         logger.info(f"Processing currency data for date: {message_value.get('Date', 'unknown')}")
 
-        # Извлекаем данные о валютах
         valutes = message_value.get('Valute', {})
 
         if not valutes:
@@ -39,8 +36,8 @@ def process_raw_currency_message(message_value: dict) -> bool:
             logger.info("No currency anomalies detected")
 
         db.commit()
-        logger.info("✅ Successfully processed currency data")
-        send_alert_sync("✅ Данные о курсах валют успешно обработаны")
+        logger.info("Successfully processed currency data")
+        send_alert_sync("Данные о курсах валют успешно обработаны")
         return True
     except Exception as e:
         db.rollback()
@@ -70,7 +67,6 @@ def save_structured_currencies(db: Session, raw_currency: RawCurrency) -> list:
 
         value_rub = Decimal(str(data.get('Value', 0))) / Decimal(str(data.get('Nominal', 1)))
 
-        # Обновляем или создаем справочник валют
         currency = db.query(Currency).filter(Currency.code == code).first()
         if not currency:
             currency = Currency(
@@ -84,7 +80,6 @@ def save_structured_currencies(db: Session, raw_currency: RawCurrency) -> list:
 
         currency_result.append(currency)
 
-        # Добавляем запись в историю
         history_mappings.append({
             'code': code,
             'name': data.get('Name', code),

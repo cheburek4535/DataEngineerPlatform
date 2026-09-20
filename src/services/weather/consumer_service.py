@@ -4,8 +4,6 @@ from services.db.db import get_session
 from services.db.models import RawWeather, Weather, Anomaly
 from typing import Optional, Dict
 from sqlalchemy.orm import Session
-from sqlalchemy import and_
-import json
 from logger import logger
 from datetime import datetime, timedelta, timezone
 import traceback
@@ -69,7 +67,7 @@ def process_raw_weather_batch(messages_batch: list) -> bool:
 
             go_item = {
                 "id": weather.id,
-                "loc_id": loc_ids[i],  # Используем location_id из исходного сообщения
+                "loc_id": loc_ids[i],
                 "lat": weather.location.lat,
                 "lon": weather.location.lon,
                 "temperature": temperature,
@@ -80,7 +78,6 @@ def process_raw_weather_batch(messages_batch: list) -> bool:
             }
             go_batch.append(go_item)
 
-        # Отправляем батч в Go и обрабатываем аномалии
         if go_batch:
             check_anomalies_go(db, go_batch)
 
@@ -177,7 +174,6 @@ def save_anomaly(db: Session, anomalies: Dict[str, float], loc_id: int, data: di
 
     if create_new:
         if exists_anomaly:
-            # Обновляем существующую
             for k, value in anomalies.items():
                 setattr(exists_anomaly, k, value)
             exists_anomaly.additional_data = data  # Обновляем доп. данные

@@ -91,7 +91,7 @@ def sync_currency(**context):
 
     ch.insert('weather_analytics.currencies', data,
               column_names=['id', 'name', 'code', 'value_in_rubles', 'created_at', 'updated_at'])
-    logger.info(f"✅ {len(data)} currencies")
+    logger.info(f"{len(data)} currencies")
     pg.close()
 
 def sync_currency_sharp_changes(**context):
@@ -122,7 +122,7 @@ def sync_currency_sharp_changes(**context):
 
     ch.insert('weather_analytics.currency_sharp_changes', data,
               column_names=['id', 'change_percents', 'value_in_rubles', 'previous_value', 'currency_code', 'found_at'])
-    logger.info(f"✅ {len(data)} sharp_changes")
+    logger.info(f"{len(data)} sharp_changes")
     pg.close()
 
 def sync_air_quality(**context):
@@ -184,7 +184,6 @@ def sync_location_life_scores(**context):
             int(row.weather_quality),
             int(row.anomalies_danger),
             row.created_at,
-            # Если updated_at равен None, в ClickHouse уйдет корректный Null
             row.updated_at if row.updated_at is not None else None
         ]
         for row in rows

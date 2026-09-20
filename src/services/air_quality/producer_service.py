@@ -16,7 +16,7 @@ OPENAQ_API_KEY = os.getenv('OPENAQ_API_KEY')
 OPENAQ_BASE_URL = "https://api.openaq.org/v3"
 
 HEADERS = {
-    "X-API-Key": OPENAQ_API_KEY,
+    "X-API-Key": '522fb004826777c1888ce980d9517b32bceeac75fa7db3c02c563a99e1525177',
     "Accept": "application/json"
 }
 

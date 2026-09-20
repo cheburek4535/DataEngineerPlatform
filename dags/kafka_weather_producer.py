@@ -26,7 +26,6 @@ def collect_weather_for_locations(**context):
     db = get_session()
     try:
         locations = db.query(LocationToTrack).filter_by(is_on_land=True).order_by(asc(LocationToTrack.id)).offset(0).all()
-        # Счетчик для контроля лимита в минуту
         location_counter = 0
         for location in locations:
             try:
@@ -38,21 +37,18 @@ def collect_weather_for_locations(**context):
                     db.commit()
                     db.expire_all()
 
-                    # Увеличиваем счетчик после успешной обработки локации
+
                     location_counter += 1
                     if location_counter >= 5000:
                         logger.warning("Достигнут лимит 5000 локаций")
-                        # send_alert("Достигнут лимит 5000 локаций при обработке weather")
+
                         break
 
-                    # ХИТРОСТЬ: Если обработали 500 локаций и это ЕЩЕ НЕ конец списка
                     if location_counter % 500 == 0 and location_counter < len(locations):
                         logger.info(
                             f"Обработано {location_counter} локаций. Спим 30 секунд для сброса минутного лимита API...")
                         time.sleep(30)
                     else:
-                        # Микро-пауза в 0.01 сек между обычными запросами.
-                        # Она нужна, чтобы база данных успевала отдыхать и не было микро-спама к API.
                         time.sleep(0.01)
             except Exception as e:
                 logger.error(f"Ошибка при проверке локации {location.id}: {e}")

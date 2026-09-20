@@ -34,8 +34,8 @@ def run_weather_consumer():
     start = time.time()
 
     # Буфер для батча
-    batch_messages = []  # сами данные
-    batch_kafka_msgs = []  # оригинальные kafka сообщения для коммита
+    batch_messages = []
+    batch_kafka_msgs = []
 
     try:
         while messages_processed < max_messages:
@@ -64,9 +64,7 @@ def run_weather_consumer():
             if len(batch_messages) >= BATCH_SIZE:
                 logger.info(f"Processing batch of {len(batch_messages)} messages")
 
-                # Обрабатываем весь батч
                 if process_raw_weather_batch(batch_messages):
-                    # Коммитим только после успешной обработки
                     for kafka_msg in batch_kafka_msgs:
                         consumer.commit(kafka_msg)
                     messages_processed += len(batch_messages)
@@ -82,7 +80,6 @@ def run_weather_consumer():
         raise
 
     finally:
-        # Обрабатываем оставшиеся сообщения
         if batch_messages:
             logger.info(f"Processing remaining {len(batch_messages)} messages")
             if process_raw_weather_batch(batch_messages):

@@ -179,7 +179,7 @@ services:
       - default
 
   minio:
-    image: minio/minio:latest
+    image: quay.io/minio/minio:latest
     container_name: minio
     ports:
       - "9000:9000"
@@ -190,6 +190,7 @@ services:
     command: server --console-address ":9001" /data
     volumes:
       - minio_data:/data
+
 
   redpanda:
     image: redpandadata/redpanda:latest

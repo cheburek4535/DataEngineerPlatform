@@ -1,9 +1,7 @@
 import requests
 from services.minio.storage import save_raw_json
 from logger import logger
-from sqlalchemy.orm import Session
 from datetime import datetime
-from services.db.models import RawCurrency
 from services.kafka.producer_confluent import send_message
 from services.telegram.alerts import send_alert_sync
 
@@ -16,7 +14,6 @@ def get_currency() -> dict:
         response.raise_for_status()
         data = response.json()
 
-        # Добавляем метаданные
         data['_metadata'] = {
             'fetch_timestamp': datetime.now().isoformat(),
             'source': 'cbr_api',

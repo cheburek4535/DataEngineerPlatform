@@ -1,23 +1,16 @@
 
-"""
-gRPC клиент для связи с Go сервисом расчета качества жизни
-"""
 import grpc
 import sys
 from typing import List, Dict, Optional
 
-# Добавляем путь к сгенерированным proto файлам
 sys.path.insert(0, '/opt/airflow/src/generated/lifescore')
 
-import generated.lifescore.service_pb2 as service_pb2
 import generated.lifescore.service_pb2_grpc as service_pb2_grpc
 from google.protobuf import symbol_database as _symbol_database
 from logger import logger
 
-# Получаем доступ ко всем protobuf классам через symbol_database
 _sym_db = _symbol_database.Default()
 
-# Извлекаем нужные классы по их полным именам в пакете "lifescore"
 try:
     LocationData = _sym_db.GetSymbol('lifescore.LocationData')
     AirQualityData = _sym_db.GetSymbol('lifescore.AirQualityData')
@@ -111,7 +104,6 @@ class LifeScoreClient:
         loc_data = LocationData()
         loc_data.loc_id = int(loc['loc_id'])
 
-        # Добавляем AirQuality данные
         for aq in loc.get('aq', []):
             aq_msg = AirQualityData()
             if aq.get('pm25') is not None:
@@ -128,7 +120,6 @@ class LifeScoreClient:
                 aq_msg.co = float(aq['co'])
             loc_data.aq.append(aq_msg)
 
-        # Добавляем Weather данные
         for w in loc.get('weather', []):
             w_msg = WeatherData()
             if w.get('temp') is not None:
@@ -141,7 +132,6 @@ class LifeScoreClient:
                 w_msg.wind = float(w['wind'])
             loc_data.weather.append(w_msg)
 
-        # Добавляем Anomaly данные
         for a in loc.get('anomalies', []):
             a_msg = AnomalyData()
             if a.get('temp') is not None:

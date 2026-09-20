@@ -15,7 +15,7 @@ def run_aq_consumer():
         'enable.auto.commit': False,
         'session.timeout.ms': 30000,
         'heartbeat.interval.ms': 10000,
-        'fetch.min.bytes': 10000,  # Ждем хотя бы 10KB данных
+        'fetch.min.bytes': 10000,
         'max.poll.interval.ms': 600000,
         'fetch.wait.max.ms': 5000,
     }

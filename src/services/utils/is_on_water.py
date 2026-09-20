@@ -7,6 +7,7 @@ from logger import logger
 
 def is_on_water(lat: int, lon: int) -> Optional[bool]:
     try:
+        logger.info(f"Проверяем локацию {lat}, {lon} на суше ли она")
         data = requests.get(f"https://is-on-water.balbona.me/api/v1/get/{lat}/{lon}", timeout=5)
         data.raise_for_status()
         logger.debug(f"Response text: {data.text[:500]}")
@@ -20,7 +21,6 @@ def is_on_water(lat: int, lon: int) -> Optional[bool]:
             result = data.json()
             is_water = result['isWater']
         except Exception:
-            # Если JSON битый, ищем isWater в тексте через regex
             text = data.text
             match = re.search(r'"isWater"\s*:\s*(true|false)', text, re.IGNORECASE)
             if match:

@@ -32,7 +32,6 @@ ORDER BY (lat, lon, found_at)
 PARTITION BY toYYYYMM(found_at)
 SETTINGS index_granularity = 8192;
 
--- Справочник валют (маленькая, без партиций)
 CREATE TABLE IF NOT EXISTS weather_analytics.currencies (
     id UInt64,
     name LowCardinality(String),
@@ -42,20 +41,19 @@ CREATE TABLE IF NOT EXISTS weather_analytics.currencies (
     updated_at Nullable(DateTime64(3, 'UTC'))
 )
 ENGINE = MergeTree()
-ORDER BY (code, created_at)  -- code основной!
+ORDER BY (code, created_at)
 SETTINGS index_granularity = 8192;
 
--- Скачки (аналитика, по времени)
 CREATE TABLE IF NOT EXISTS weather_analytics.currency_sharp_changes (
     id UInt64,
     change_percents Float64,
     value_in_rubles Decimal128(16),
     previous_value Nullable(Decimal128(16)),
-    currency_code LowCardinality(String),  -- ← code вместо ID! FK нет в CH
+    currency_code LowCardinality(String),
     found_at DateTime64(3, 'UTC') DEFAULT now64(3)
 )
 ENGINE = MergeTree()
-ORDER BY (currency_code, found_at)  -- code + время
+ORDER BY (currency_code, found_at)
 PARTITION BY toYYYYMM(found_at)
 SETTINGS index_granularity = 8192;
 
