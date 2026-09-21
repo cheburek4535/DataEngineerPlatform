@@ -34,7 +34,7 @@ public class BatchingProcessor implements Processor<String, Weather.RawWeather, 
     public void flushBatch() {
         if (batch.isEmpty()) {return;}
         System.out.println("Отправка погодного бачта на обработку");
-        WeatherConsumer.processBatch();
+        WeatherConsumer.processBatch(batch);
         batch.clear();
     }
     @Override
