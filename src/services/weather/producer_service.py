@@ -35,34 +35,33 @@ def get_weather(lat: float, lon: float, loc_id: int) -> Optional[dict]:
 
         data = {
             'location_id': loc_id,
-            'temp': float(current_temperature),  # Преобразуем в обычный float
+            'temp': float(current_temperature),
             'wind_speed': float(current_wind_speed),
             'humidity': float(current_relative_humidity),
             'pressure': float(current_pressure),
             'latitude': lat,
             'longitude': lon,
-            'timestamp': response.Current().Time(),  # Время текущих данных
-            'raw_json': json.loads(json.dumps({
-                'latitude': response.Latitude(),
-                'longitude': response.Longitude(),
-                'elevation': response.Elevation(),
-                'timezone': response.Timezone(),
-                'timezone_abbreviation': response.TimezoneAbbreviation(),
-                'utc_offset_seconds': response.UtcOffsetSeconds(),
-                'current': {
-                    'time': response.Current().Time(),
-                    'interval': response.Current().Interval(),
-                    'temperature_2m': float(current_temperature),
-                    'wind_speed_10m': float(current_wind_speed),
-                    'relative_humidity_2m': float(current_relative_humidity),
-                    'pressure_msl': float(current_pressure)
-                }
-            }))
+            'timestamp': response.Current().Time(),
+            # 'raw_json': json.loads(json.dumps({
+            #     'latitude': response.Latitude(),
+            #     'longitude': response.Longitude(),
+            #     'elevation': response.Elevation(),
+            #     'timezone': response.Timezone(),
+            #     'timezone_abbreviation': response.TimezoneAbbreviation(),
+            #     'utc_offset_seconds': response.UtcOffsetSeconds(),
+            #     'current': {
+            #         'time': response.Current().Time(),
+            #         'interval': response.Current().Interval(),
+            #         'temperature_2m': float(current_temperature),
+            #         'wind_speed_10m': float(current_wind_speed),
+            #         'relative_humidity_2m': float(current_relative_humidity),
+            #         'pressure_msl': float(current_pressure)
+            #     }
+            # }))
         }
 
         save_raw_json(bucket="raw-data", prefix="weather", data=data)
 
-        # Отправляем в Kafka
         logger.info("Sending raw weather data to Kafka...")
         success = send_message(
             topic='weather.raw',

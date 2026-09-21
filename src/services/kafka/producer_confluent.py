@@ -185,15 +185,13 @@ def send_message(topic, key=None, value=None):
         return False
 
     try:
-        # Преобразуем value в JSON строку, с обработкой datetime
         if isinstance(value, (dict, list)):
             value = json.dumps(
                 value,
                 ensure_ascii=False,
-                default=_json_serializer_default   # обрабатывает datetime
+                default=_json_serializer_default
             )
 
-        # Преобразуем key в строку
         if key is not None and not isinstance(key, str):
             key = str(key)
 
