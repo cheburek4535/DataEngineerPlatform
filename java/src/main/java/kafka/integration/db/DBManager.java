@@ -29,4 +29,15 @@ public class DBManager {
             return false;
         }
     }
+    public static boolean saveAnomaly(Weather.RawWeather data) {
+        String sql = "";
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

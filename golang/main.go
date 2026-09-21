@@ -21,8 +21,7 @@ func convertProtoToData(pbLoc *pb.LocationData) analyze.APIRequest {
     data := analyze.APIRequest{
         LocID: int(pbLoc.LocId),
     }
-    
-    // Конвертируем Air Quality
+
     for _, pbAq := range pbLoc.Aq {
         aq := analyze.AirQuality{
             Pm25: pbAq.Pm25,
@@ -34,8 +33,7 @@ func convertProtoToData(pbLoc *pb.LocationData) analyze.APIRequest {
         }
         data.AQ = append(data.AQ, aq)
     }
-    
-    // Конвертируем Weather
+
     for _, pbW := range pbLoc.Weather {
         w := analyze.APIWeatherLS{
             Temperature: pbW.Temp,
@@ -45,8 +43,7 @@ func convertProtoToData(pbLoc *pb.LocationData) analyze.APIRequest {
         }
         data.Weather = append(data.Weather, w)
     }
-    
-    // Конвертируем Anomalies
+
     for _, pbA := range pbLoc.Anomalies {
         a := analyze.Anomaly{
             Temperature: pbA.Temp,
@@ -81,7 +78,6 @@ func (s *server) CalculateBatch(ctx context.Context, req *pb.BatchRequest) (*pb.
 	return &pb.BatchResponse{Scores: scores}, nil
 }
 
-// Потоковая обработка - более эффективно для больших данных
 func (s *server) CalculateLifeScore(stream pb.LifeScoreService_CalculateLifeScoreServer) error {
 	for {
 		data, err := stream.Recv()
@@ -116,7 +112,7 @@ func main() {
 	ctx := context.Background()
 	defer pool.Close()
 
-	// Запускаем gRPC в горутине
+	// gRPC
 	go func() {
 		lis, err := net.Listen("tcp", ":50051")
 		if err != nil {
@@ -133,7 +129,6 @@ func main() {
 		}
 	}()
 
-	// HTTP сервер
 	r := gin.Default()
 	r.POST("/weather/batch", func(c *gin.Context) {
 		var batch []analyze.APIWeather

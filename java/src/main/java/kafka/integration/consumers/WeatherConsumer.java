@@ -3,7 +3,10 @@ package kafka.integration.consumers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kafka.integration.models.Weather;
 
+import java.net.URI;
 import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -43,7 +46,7 @@ public class WeatherConsumer {
                 );
                 goBatch.add(goItem);
             }
-            if (goBatch.size() > 0) {
+            if (!goBatch.isEmpty()) {
                 checkAnomaliesGo(goBatch);
             }
         } catch (Exception e) {
@@ -56,7 +59,44 @@ public class WeatherConsumer {
             jsonBody = mapper.writeValueAsString(batch);
         } catch (Exception e) {
             System.out.println("Не удалось превратить goBatch в json");
+            return;
         }
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://golang:8000/weather/batch"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+
+        HttpResponse<String> response = null;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            System.out.println("Не удалось отправить батч в Go");
+            return;
+        }
+        if (response.statusCode() != 200) {
+            System.out.printf("Go прислал плохой статус: %d", response.statusCode());
+            return;
+        }
+        Weather.GoResponse result = null;
+        try {
+            result = mapper.readValue(response.body(), Weather.GoResponse.class);
+        } catch (Exception e) {
+            System.out.println("Ошибка десериализации ответа Go");
+            return;
+        }
+        List<Weather.AnomaliesResponse> anomalies = result.result();
+        if (!anomalies.isEmpty()) {
+            for (Weather.AnomaliesResponse anomaly : anomalies) {
+                Weather.AnomaliesToSave anomaliesToSave = anomaly.anomalies_to_save();
+                int locId = anomaly.loc_id();
+                Weather.AnomaliesData anomaliesData = anomaly.anomalies_data();
+                if (anomaliesToSave != null && locId >= 0) {
+                    saveAnomaly();
+                }
+            }
+        }
+
     }
 
 }

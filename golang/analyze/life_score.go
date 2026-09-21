@@ -7,7 +7,6 @@ type APIRequest struct {
 	Anomalies []Anomaly    `json:"anomalies"`
 }
 
-// Качество воздуха
 
 type AirQuality struct {
 	Pm25 *float64 `json:"pm25"`
@@ -38,14 +37,13 @@ const (
 	LevelHazardous
 )
 
-// Формат: (хорошо, удовлетворительно, вредно для чувствительных, вредно, очень вредно)
 var (
-	PM25Thresholds = []float64{12, 35, 55, 150, 250}       // µg/m³
-	PM10Thresholds = []float64{20, 50, 100, 200, 350}      // µg/m³
-	NO2Thresholds  = []float64{0.02, 0.05, 0.1, 0.2, 0.5}  // ppm
-	O3Thresholds   = []float64{0.05, 0.07, 0.1, 0.15, 0.2} // ppm
-	SO2Thresholds  = []float64{0.02, 0.05, 0.1, 0.2, 0.5}  // ppm
-	COThresholds   = []float64{4, 9, 15, 30, 50}           // ppm
+	PM25Thresholds = []float64{12, 35, 55, 150, 250}
+	PM10Thresholds = []float64{20, 50, 100, 200, 350}
+	NO2Thresholds  = []float64{0.02, 0.05, 0.1, 0.2, 0.5}
+	O3Thresholds   = []float64{0.05, 0.07, 0.1, 0.15, 0.2}
+	SO2Thresholds  = []float64{0.02, 0.05, 0.1, 0.2, 0.5}
+	COThresholds   = []float64{4, 9, 15, 30, 50}
 )
 
 func CalculateAirQualityLevel(data AvgAirQuality) *AirQualityLevel {
@@ -218,7 +216,6 @@ type WeatherMetric []Range
 type WeatherLevel int
 
 var (
-	// Температура (°C): Идеал ~20. В обе стороны идет ухудшение.
 	tempThresholds = WeatherMetric{
 		{Min: 18.0, Max: 23.0},  // Хорошо
 		{Min: 10.0, Max: 27.0},  // Удовлетворительно
@@ -227,7 +224,6 @@ var (
 		{Min: -50.0, Max: 60.0}, // Очень вредно (экстремальный мороз / жара)
 	}
 
-	// Влажность (%): Идеал ~50. Вредна как сухость, так и сырость.
 	humidityThresholds = WeatherMetric{
 		{Min: 40.0, Max: 60.0}, // Хорошо
 		{Min: 30.0, Max: 70.0}, // Удовлетворительно
@@ -236,7 +232,6 @@ var (
 		{Min: 0.0, Max: 100.0}, // Очень вредно
 	}
 
-	// Давление (гПа): Идеал ~1013.25. Вредно и низкое (циклон), и высокое (антициклон).
 	pressureThresholds = WeatherMetric{
 		{Min: 1008.0, Max: 1018.0}, // Хорошо
 		{Min: 1000.0, Max: 1025.0}, // Удовлетворительно
@@ -261,7 +256,7 @@ func getStatusIndex(val float64, metric WeatherMetric) WeatherLevel {
 			return WeatherLevel(i)
 		}
 	}
-	return 4 // Если вышло за все рамки — это очень вредно
+	return 4
 }
 
 func calculateAverageWeather(data []APIWeatherLS) *AvgWeather {

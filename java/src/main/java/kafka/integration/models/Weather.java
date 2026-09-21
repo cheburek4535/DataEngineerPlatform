@@ -1,6 +1,7 @@
 package kafka.integration.models;
 
 import java.time.Instant;
+import java.util.List;
 
 public class Weather {
     public record RawWeather(
@@ -12,6 +13,31 @@ public class Weather {
             double latitude,
             double longitude,
             Instant timestamp
+    ) {}
+    public record GoResponse(
+            int processed,
+            List<AnomaliesResponse> result
+    ) {}
+    public record AnomaliesResponse(
+            int loc_id,
+            AnomaliesToSave anomalies_to_save,
+          AnomaliesData anomalies_data
+    ) {}
+    public record AnomaliesToSave(
+            Double anomaly_temperature,
+            Double anomaly_pressure,
+            Double anomaly_humidity,
+            Double anomaly_wind_speed
+    ) {}
+    public record AnomaliesData(
+            Metric temperature,
+            Metric pressure,
+            Metric humidity,
+            Metric wind_speed
+    ) {}
+    public record Metric(
+            Double value,
+            Double avg
     ) {}
 
 }

@@ -70,7 +70,7 @@ class LocationToTrack(Base):
 class Anomaly(Base):
     __tablename__ = 'anomalies'
     id : Mapped[int] = Column(Integer, primary_key=True, index=True)
-    location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id', ondelete='CASCADE'), nullable=False)
+    location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id', ondelete='CASCADE'), nullable=False, unique=True)
     anomaly_temperature: Mapped[float] = Column(Float, index=True, nullable=True)
     anomaly_humidity: Mapped[float] = Column(Float, index=True, nullable=True)
     anomaly_wind_speed: Mapped[float] = Column(Float, index=True, nullable=True)
