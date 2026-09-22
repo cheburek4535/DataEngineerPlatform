@@ -2,6 +2,8 @@ package kafka.integration.consumers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kafka.integration.models.Weather;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -14,20 +16,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static kafka.integration.db.DBManager.saveWeather;
+
+import static kafka.integration.db.DBManager.*;
 
 public class WeatherConsumer {
     private final static ObjectMapper mapper = new ObjectMapper();
     private final static HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
+    private final static Logger log = LoggerFactory.getLogger(WeatherConsumer.class);
 
     public static void processBatch(List<Weather.RawWeather> batch) {
         try {
             List<Map<String, Object>> goBatch = new ArrayList<>();
-            for (Weather.RawWeather value : batch) {
-                if (value.location_id() <= 0) {
-                    continue;
-                }
-                saveWeather(value);
+
+            List<Weather.RawWeather> saved = saveWeather(batch);
+            if (saved == null || saved.isEmpty()) {
+                log.error("Погодный батч не сохранился, поэтому прерываем обработку");
+                return ;
+            }
+            for (Weather.RawWeather value : saved) {
 
                 Instant timestamp = value.timestamp();
 
@@ -47,19 +53,22 @@ public class WeatherConsumer {
                 goBatch.add(goItem);
             }
             if (!goBatch.isEmpty()) {
-                checkAnomaliesGo(goBatch);
+                boolean goBatchSuccess = checkAnomaliesGo(goBatch);
+                if (!goBatchSuccess) {
+                    log.error("Anomaly check failed");
+                }
             }
         } catch (Exception e) {
-            System.out.printf("Ошибка обработки батча погоды: %s", e);
+            log.error("Ошибка обработки батча погоды", e);
         }
     }
-    private static void checkAnomaliesGo(List<Map<String, Object>> batch) {
+    private static boolean checkAnomaliesGo(List<Map<String, Object>> batch) {
         String jsonBody = null;
         try {
             jsonBody = mapper.writeValueAsString(batch);
         } catch (Exception e) {
-            System.out.println("Не удалось превратить goBatch в json");
-            return;
+            log.error("Не удалось превратить goBatch в json", e);
+            return false;
         }
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://golang:8000/weather/batch"))
@@ -71,32 +80,31 @@ public class WeatherConsumer {
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
-            System.out.println("Не удалось отправить батч в Go");
-            return;
+            log.error("Не удалось отправить батч в Go", e);
+            return false;
         }
         if (response.statusCode() != 200) {
-            System.out.printf("Go прислал плохой статус: %d", response.statusCode());
-            return;
+            log.error("Go прислал плохой статус: {}", response.statusCode());
+            return false;
         }
         Weather.GoResponse result = null;
         try {
             result = mapper.readValue(response.body(), Weather.GoResponse.class);
         } catch (Exception e) {
-            System.out.println("Ошибка десериализации ответа Go");
-            return;
+            log.error("Ошибка десериализации ответа Go", e);
+            return false;
         }
         List<Weather.AnomaliesResponse> anomalies = result.result();
         if (!anomalies.isEmpty()) {
-            for (Weather.AnomaliesResponse anomaly : anomalies) {
-                Weather.AnomaliesToSave anomaliesToSave = anomaly.anomalies_to_save();
-                int locId = anomaly.loc_id();
-                Weather.AnomaliesData anomaliesData = anomaly.anomalies_data();
-                if (anomaliesToSave != null && locId >= 0) {
-                    saveAnomaly();
-                }
+            boolean saved = saveAnomalies(anomalies);
+            if (!saved) {
+                log.warn("Батч Go не был сохранен");
+                return false;
             }
+        } else {
+            log.info("Go не нашел никаких аномалий в погодном батче");
         }
-
+        return true;
     }
 
 }
