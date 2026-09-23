@@ -25,8 +25,8 @@ public class DBManager {
             List<Weather.RawWeather> savedWeather = new ArrayList<>();
             int successful = 0;
             for (Weather.RawWeather data : weather) {
-                if (data.location_id() <= 0) {continue;}
-                ps.setInt(1, data.location_id());
+                if (data.locationId() <= 0) {continue;}
+                ps.setInt(1, data.locationId());
                 ps.setObject(2, data.timestamp());
                 ps.setDouble(3, data.temp());
                 ps.setDouble(4, data.pressure());
@@ -66,7 +66,7 @@ on conflict (location_id) do update set
             int successful = 0;
             for (Weather.AnomaliesResponse anomaly : anomalies) {
                 Weather.AnomaliesToSave anomaliesToSave = anomaly.anomalies_to_save();
-                int locId = anomaly.loc_id();
+                int locId = anomaly.locId();
                 Weather.AnomaliesData anomaliesData = anomaly.anomalies_data();
                 if (anomaliesToSave != null && locId >= 0) {
                     String additional = null;

@@ -1,11 +1,14 @@
 package kafka.integration.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.Instant;
 import java.util.List;
 
 public class Weather {
     public record RawWeather(
-            int location_id,
+            @JsonProperty("location_id")
+            int locationId,
             double temp,
             double wind_speed,
             double humidity,
@@ -19,7 +22,8 @@ public class Weather {
             List<AnomaliesResponse> result
     ) {}
     public record AnomaliesResponse(
-            int loc_id,
+            @JsonProperty("loc_id")
+            int locId,
             AnomaliesToSave anomalies_to_save,
           AnomaliesData anomalies_data
     ) {}

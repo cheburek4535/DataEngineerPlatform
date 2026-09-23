@@ -281,6 +281,22 @@ services:
     networks:
       - default
 
+  java:
+    build:
+      context: ./java
+      dockerfile: Dockerfile
+    container_name: java
+    depends_on:
+      weather_db:
+          condition: service_healthy
+      redpanda:
+        condition: service_healthy
+    restart: always
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=redpanda:9092
+    networks:
+      - default
+
   airflow-webserver:
     <<: *airflow-common
     command: webserver

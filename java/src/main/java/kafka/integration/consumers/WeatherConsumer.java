@@ -41,7 +41,7 @@ public class WeatherConsumer {
                         .truncatedTo(ChronoUnit.SECONDS)
                         .toString();
                 Map<String, Object> goItem = Map.of(
-                        "loc_id", value.location_id(),
+                        "locId", value.locationId(),
                         "lat",value.latitude(),
                         "lon", value.longitude(),
                         "temperature", value.temp(),
