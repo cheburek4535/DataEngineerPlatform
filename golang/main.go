@@ -143,6 +143,9 @@ func main() {
 				result = append(result, anomalies)
 			}
 		}
+    if result == nil {
+        result = make([]map[string]any, 0)
+    }
 		c.JSON(http.StatusOK, gin.H{"processed": len(batch), "result": result})
 	})
 

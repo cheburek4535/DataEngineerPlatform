@@ -12,13 +12,14 @@ import java.util.List;
 
 public class DBManager {
     private static final String URL = "jdbc:postgresql://weather_db:5432/weather_guard";
-    private static final String USER = "weather_pass";
+    private static final String USER = "weather_user";
     private static String PASS = "weather_pass";
     private static final ObjectMapper mapper = new ObjectMapper();
     private static final Logger log = LoggerFactory.getLogger(DBManager.class);
 
     public static List<Weather.RawWeather> saveWeather(List<Weather.RawWeather> weather) {
-        String sql = "insert into weather (location_id, timestamp, temperature, pressure, humidity, wind_speed) values (?, ?, ?, ?, ?, ?)";
+        log.info("Сохранение погодного бачта в БД");
+        String sql = "insert into weather (location_id, timestamp, temperature, pressure, humidity, wind_speed) values (?, ?, ?, ?, ?, ?) ON CONFLICT (location_id, timestamp) DO NOTHING";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -27,7 +28,7 @@ public class DBManager {
             for (Weather.RawWeather data : weather) {
                 if (data.locationId() <= 0) {continue;}
                 ps.setInt(1, data.locationId());
-                ps.setObject(2, data.timestamp());
+                ps.setTimestamp(2, java.sql.Timestamp.from(java.time.Instant.ofEpochSecond(data.timestamp())));
                 ps.setDouble(3, data.temp());
                 ps.setDouble(4, data.pressure());
                 ps.setDouble(5, data.humidity());
@@ -40,15 +41,17 @@ public class DBManager {
 
             if (successful > 0) {
                 ps.executeBatch();
+                log.info("Погодный батч был сохранен в БД");
             }
             return savedWeather;
 
         } catch (SQLException e) {
             log.error("Ошибка при сохранении погоды", e);;
-            return null;
+            throw new RuntimeException("Database weather error: " + e.getMessage());
         }
     }
     public static boolean saveAnomalies(List<Weather.AnomaliesResponse> anomalies) {
+        log.info("Сохранение батча аномалтий а БД");
         String sql = """
 insert into anomalies (location_id, anomaly_temperature, anomaly_pressure, anomaly_humidity, anomaly_wind_speed, additional_data)
 values (?, ?, ?, ?, ?, ?::jsonb)
@@ -88,12 +91,13 @@ on conflict (location_id) do update set
             }
             if (successful > 0) {
                 ps.executeBatch();
+                log.info("Батч аномалий сохранен в БД успешно");
             }
             return true;
 
         } catch (SQLException e) {
            log.error("Ошибка при сохранении аномалий", e);
-            return false;
+           throw new RuntimeException("Database anomalies error: " + e.getMessage());
         }
     }
 }

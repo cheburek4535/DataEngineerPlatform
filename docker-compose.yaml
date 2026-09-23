@@ -291,11 +291,22 @@ services:
           condition: service_healthy
       redpanda:
         condition: service_healthy
+      init-kafka:
+        condition: service_completed_successfully
     restart: always
     environment:
       - KAFKA_BOOTSTRAP_SERVERS=redpanda:9092
     networks:
       - default
+
+  init-kafka:
+    image: redpandadata/redpanda:latest
+    container_name: init-kafka
+    depends_on:
+      redpanda:
+        condition: service_healthy
+    # Выполняем rpk команды и сразу завершаем работу
+    entrypoint: [ 'sh', '-c', 'rpk topic create weather.raw --brokers redpanda:9092 || true && rpk topic create air_quality.raw --brokers redpanda:9092 || true' ]
 
   airflow-webserver:
     <<: *airflow-common

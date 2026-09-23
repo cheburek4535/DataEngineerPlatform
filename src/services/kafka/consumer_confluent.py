@@ -24,7 +24,6 @@ def read_currency(max_messages=10, timeout_ms=10000):
         logger.info("Creating consumer...")
         consumer = Consumer(consumer_config)
 
-        # Подписываемся на топик
         consumer.subscribe(['currencies.raw'])
         logger.info("Subscribed to currencies.raw")
 
@@ -32,13 +31,11 @@ def read_currency(max_messages=10, timeout_ms=10000):
         start_time = time.time()
 
         while messages_received < max_messages:
-            # Проверяем таймаут
             elapsed_ms = (time.time() - start_time) * 1000
             if elapsed_ms > timeout_ms:
                 logger.info(f"Timeout reached: {timeout_ms}ms")
                 break
 
-            # Получаем сообщение с таймаутом 1 секунда
             msg = consumer.poll(1.0)
 
             if msg is None:
@@ -52,7 +49,6 @@ def read_currency(max_messages=10, timeout_ms=10000):
                     logger.error(f"Consumer error: {msg.error()}")
                     continue
 
-            # Обрабатываем сообщение
             try:
                 value = json.loads(msg.value().decode('utf-8'))
                 logger.info(f"Received message from {msg.topic()} [{msg.partition()}]:")

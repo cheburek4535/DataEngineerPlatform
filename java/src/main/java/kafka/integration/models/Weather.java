@@ -2,7 +2,6 @@ package kafka.integration.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.time.Instant;
 import java.util.List;
 
 public class Weather {
@@ -15,7 +14,7 @@ public class Weather {
             double pressure,
             double latitude,
             double longitude,
-            Instant timestamp
+            long timestamp
     ) {}
     public record GoResponse(
             int processed,

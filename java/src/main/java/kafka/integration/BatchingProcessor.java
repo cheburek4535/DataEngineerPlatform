@@ -8,12 +8,15 @@ import org.apache.kafka.streams.processor.api.Record;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.processor.api.ProcessorContext;
 import org.apache.kafka.streams.processor.internals.InternalTopologyBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BatchingProcessor implements Processor<String, Weather.RawWeather, Void, Void> {
+    private static final Logger log = LoggerFactory.getLogger(BatchingProcessor.class);
     private ProcessorContext<Void, Void> context;
     private final List<Weather.RawWeather> batch = new ArrayList<>();
     private final static int BATCH_SIZE = 100;
@@ -32,10 +35,17 @@ public class BatchingProcessor implements Processor<String, Weather.RawWeather, 
         }
     }
     public void flushBatch() {
-        if (batch.isEmpty()) {return;}
-        System.out.println("Отправка погодного бачта на обработку");
-        WeatherConsumer.processBatch(batch);
-        batch.clear();
+        if (batch.isEmpty()) {
+            return;
+        }
+        log.info("Отправка погодного бачта на обработку");
+        try {
+            WeatherConsumer.processBatch(batch);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        } finally {
+            batch.clear();
+        }
     }
     @Override
     public void close() {

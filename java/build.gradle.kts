@@ -18,6 +18,7 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
     implementation("org.apache.kafka:kafka-streams:3.7.0")
     implementation("ch.qos.logback:logback-classic:1.5.16")
+    implementation("org.postgresql:postgresql:42.7.2")
 }
 
 tasks.test {

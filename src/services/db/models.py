@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Mapped, relationship
-from sqlalchemy import Integer, Column, DateTime, ForeignKey, Float, String, Numeric, Boolean, SmallInteger
+from sqlalchemy import Integer, Column, DateTime, ForeignKey, Float, String, Numeric, Boolean, SmallInteger, \
+    UniqueConstraint
 from sqlalchemy.sql import func
 from typing import List, Optional
 from datetime import datetime
@@ -19,6 +20,10 @@ class RawWeather(Base):
 
 class Weather(Base):
     __tablename__ = 'weather'
+
+    __table_args__ = (
+        UniqueConstraint('location_id', 'timestamp', name='uix_weather_location_time'),
+    )
     id: Mapped[int] = Column(Integer, primary_key=True, index=True)
     # lat: Mapped[float] = Column(Float, index=True, nullable=False)
     # lon: Mapped[float] = Column(Float, index=True, nullable=False)
