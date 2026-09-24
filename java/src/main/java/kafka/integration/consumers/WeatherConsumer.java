@@ -43,7 +43,7 @@ public class WeatherConsumer {
                     .toString();
 
             Map<String, Object> goItem = Map.of(
-                    "locId", value.locationId(),
+                    "locId", value.location_id(),
                     "lat",value.latitude(),
                     "lon", value.longitude(),
                     "temperature", value.temp(),
