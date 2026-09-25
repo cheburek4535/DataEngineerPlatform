@@ -1,5 +1,6 @@
 package kafka.integration;
 
+import kafka.integration.consumers.AQConsumer;
 import kafka.integration.consumers.WeatherConsumer;
 import kafka.integration.models.Weather;
 import org.apache.kafka.streams.processor.PunctuationType;
@@ -14,12 +15,18 @@ import org.slf4j.LoggerFactory;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BatchingProcessor implements Processor<String, Weather.RawWeather, Void, Void> {
+    private final String type;
     private static final Logger log = LoggerFactory.getLogger(BatchingProcessor.class);
     private ProcessorContext<Void, Void> context;
     private final List<Weather.RawWeather> batch = new ArrayList<>();
     private final static int BATCH_SIZE = 100;
+
+    public BatchingProcessor(String type) {
+        this.type = type;
+    }
 
     @Override
     public void init(ProcessorContext<Void, Void> context) {
@@ -36,11 +43,22 @@ public class BatchingProcessor implements Processor<String, Weather.RawWeather, 
     }
     public void flushBatch() {
         if (batch.isEmpty()) {
+            log.error("Батч пустой");
             return;
         }
-        log.info("Отправка погодного бачта на обработку");
+
         try {
-            WeatherConsumer.processBatch(batch);
+            if (Objects.equals(type, "weather")) {
+                log.info("Отправка погодного бачта на обработку");
+                WeatherConsumer.processBatch(batch);
+            } else if (Objects.equals(type, "aq")) {
+                log.info("Отправка бачта качества воздуха на обработку");
+                AQConsumer.processAQ(batch);
+            } else {
+                log.error("Неверно указан тип обработчика для бачтей");
+                return;
+            }
+
         } catch (Exception e) {
             log.error(e.getMessage());
         } finally {

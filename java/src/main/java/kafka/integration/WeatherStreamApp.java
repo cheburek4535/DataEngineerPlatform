@@ -44,7 +44,7 @@ public class WeatherStreamApp {
             }
         }).filter((key, value) -> value != null);
 
-        rawWeatherKStream.process(() -> new BatchingProcessor());
+        rawWeatherKStream.process(() -> new BatchingProcessor("weather"));
 
         KafkaStreams streams = new KafkaStreams(builder.build(), props);
         Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
