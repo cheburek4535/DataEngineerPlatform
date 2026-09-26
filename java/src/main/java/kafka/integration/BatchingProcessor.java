@@ -16,16 +16,17 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 
-public class BatchingProcessor implements Processor<String, Weather.RawWeather, Void, Void> {
-    private final String type;
+public class BatchingProcessor<T> implements Processor<String, T, Void, Void> {
+    private final Consumer<List<T>> batchConsumer;
     private static final Logger log = LoggerFactory.getLogger(BatchingProcessor.class);
     private ProcessorContext<Void, Void> context;
     private final List<Weather.RawWeather> batch = new ArrayList<>();
     private final static int BATCH_SIZE = 100;
 
-    public BatchingProcessor(String type) {
-        this.type = type;
+    public BatchingProcessor(Consumer<List<T>> batchConsumer) {
+        this.batchConsumer = batchConsumer;
     }
 
     @Override
