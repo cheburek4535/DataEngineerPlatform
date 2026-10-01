@@ -44,7 +44,6 @@ public class BatchingProcessor<T> implements Processor<String, T, Void, Void> {
             return;
         }
         try {
-            // Вызываем переданную логику для конкретного типа
             batchConsumer.accept(new ArrayList<>(batch));
         } catch (Exception e) {
             log.error("Ошибка при обработке батча: ", e);

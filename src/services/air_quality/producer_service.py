@@ -130,10 +130,11 @@ def extract_air_quality(loc_id: int, lat: float, lon: float, limiter: ApiLimiter
         "lon": lon,
         "collected_at": datetime.now(timezone.utc),
         "measurements": all_measurements,
-        "raw_json": {
-            "locations": locations,
-            "measurements": all_measurements
-        }
+        "locations": locations,
+        # "raw_json": {
+        #
+        #     "measurements": all_measurements
+        # }
     }
     logger.info(f"Отправляем в kafka")
     success = send_message("air_quality.raw", data.get("collected_at").isoformat(), data)
