@@ -16,33 +16,24 @@ class SmartLogger:
         self.log_level = getattr(logging, log_level.upper())
         self.log_dir = LOG_DIR
 
-        # Создаем директорию для логов если ее нет
         self.log_dir.mkdir(exist_ok=True)
 
-        # Создаем логгер
         self.logger = logging.getLogger(self.name)
         self.logger.setLevel(self.log_level)
 
         self.logger.propagate = False
         self.logger.handlers.clear()
-
-        # Очищаем старые обработчики чтобы избежать дублирования
-
         self.logger.handlers.clear()
 
-        # Настраиваем форматы и обработчики
         self._setup_handlers()
 
     def _setup_handlers(self):
         """Настраиваем обработчики - только самые нужные"""
-
-        # 1. КОНСОЛЬ - цветной и красивый
         console_handler = logging.StreamHandler(sys.stdout)
         console_handler.setLevel(self.log_level)
         console_handler.setFormatter(self._get_console_formatter())
         self.logger.addHandler(console_handler)
 
-        # 2. ФАЙЛ - подробный с ротацией
         file_handler = logging.handlers.RotatingFileHandler(
             filename=self.log_dir / "app.log",
             maxBytes=5 * 1024 * 1024,  # 5 MB
@@ -103,15 +94,5 @@ def setup_logger(name=None, log_level="INFO"):
     """
     return SmartLogger(name, log_level).get_logger()
 
-
-# Пример использования
-if __name__ == "__main__":
-    logger = setup_logger("MyApp", "DEBUG")
-
-    logger.debug("Отладочная информация")
-    logger.info("Обычное сообщение")
-    logger.warning("Предупреждение!")
-    logger.error("Ошибка!")
-    logger.critical("Критическая ошибка!")
 
 logger = setup_logger(__name__)

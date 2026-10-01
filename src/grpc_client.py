@@ -63,20 +63,16 @@ class LifeScoreClient:
             return None
 
         try:
-            # Создаем batch запрос
             batch = BatchRequest()
 
             for loc in locations:
-                # Создаем LocationData для каждой локации
                 loc_data = self._create_location_data(loc)
                 batch.locations.append(loc_data)
 
             logger.info(f"Sending {len(batch.locations)} locations to Go service")
 
-            # Вызываем удаленную процедуру
             response = self.stub.CalculateBatch(batch, timeout=30)
 
-            # Конвертируем результат
             result = []
             for score in response.scores:
                 result.append({
@@ -147,7 +143,6 @@ class LifeScoreClient:
         return loc_data
 
     def close(self):
-        """Закрываем gRPC канал"""
         if self.channel:
             self.channel.close()
             logger.info("gRPC channel closed")
