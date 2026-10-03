@@ -2,6 +2,7 @@ package kafka.integration.db;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import kafka.integration.models.AQ;
 import kafka.integration.models.Weather;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -98,6 +99,38 @@ on conflict (location_id) do update set
         } catch (SQLException e) {
            log.error("Ошибка при сохранении аномалий", e);
            throw new RuntimeException("Database anomalies error: " + e.getMessage());
+        }
+    }
+    public static void saveAQ(List<AQ.AQStructured> batch) {
+        log.info("Save AQ batch in DB");
+        String sql = "insert into air_quality (location_id, pm25, pm10, no2, o3, so2, co, collected_at) values (?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT (location_id, collected_at) DO NOTHING";
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+        PreparedStatement ps = conn.prepareStatement(sql)) {
+            int successful = 0;
+            for (AQ.AQStructured aq : batch) {
+                int locId = aq.loc_id();
+                if (locId <= 0) {return;}
+
+                ps.setInt(1, locId);
+                ps.setObject(2, aq.pm25());
+                ps.setObject(3, aq.pm10());
+                ps.setObject(4, aq.no2());
+                ps.setObject(5, aq.o3());
+                ps.setObject(6, aq.so2());
+                ps.setObject(7, aq.co());
+                ps.setTimestamp(8, java.sql.Timestamp.from(aq.collected_at()));
+
+                ps.addBatch();
+                successful++;
+            }
+            if (successful >0) {
+                ps.executeBatch();
+                log.info("Saved AQ batch in DB with {} records", successful);
+            }
+
+        } catch (Exception e) {
+            log.error("Save AQ in DB error", e);
+            throw new RuntimeException("Database AQ error: " + e.getMessage());
         }
     }
 }

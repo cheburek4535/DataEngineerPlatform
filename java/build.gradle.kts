@@ -25,5 +25,5 @@ tasks.test {
     useJUnitPlatform()
 }
 application {
-    mainClass = "kafka.integration.WeatherStreamApp"
+    mainClass = "kafka.integration.Main"
 }

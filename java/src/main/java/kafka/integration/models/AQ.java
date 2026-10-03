@@ -1,14 +1,17 @@
 package kafka.integration.models;
 
+import java.time.Instant;
+
 public class AQ {
     public record AQStructured(
             int loc_id,
-            double pm25,
-            double pm10,
-            double no2,
-            double o3,
-            double so2,
-            double co
+            Double pm25,
+            Double pm10,
+            Double no2,
+            Double o3,
+            Double so2,
+            Double co,
+            Instant collected_at
     ) {}
     public record Measurement(
             String parameter,

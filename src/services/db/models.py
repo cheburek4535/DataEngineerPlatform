@@ -105,9 +105,9 @@ class AirQuality(Base):
     location_id: Mapped[int] = Column(Integer, ForeignKey('locations_to_track.id', ondelete='CASCADE'), nullable=False)
     pm25: Mapped[Optional[float]] = Column(Float, nullable=True)  # µg/m³
     pm10: Mapped[Optional[float]] = Column(Float, nullable=True)  # µg/m³
-    no2: Mapped[Optional[float]] = Column(Float, nullable=True)  # ppm → пересчитаем в ppb
-    o3: Mapped[Optional[float]] = Column(Float, nullable=True)  # ppm → пересчитаем в ppb
-    so2: Mapped[Optional[float]] = Column(Float, nullable=True)  # ppm → пересчитаем в ppb
+    no2: Mapped[Optional[float]] = Column(Float, nullable=True)  # ppm
+    o3: Mapped[Optional[float]] = Column(Float, nullable=True)  # ppm
+    so2: Mapped[Optional[float]] = Column(Float, nullable=True)  # ppm
     co: Mapped[Optional[float]] = Column(Float, nullable=True)  # ppm
     collected_at: Mapped[datetime] = Column(DateTime(timezone=True), server_default=func.now())
 
