@@ -13,3 +13,5 @@ grpcio
 grpcio-tools
 google
 protobuf
+pymongo
+pydantic

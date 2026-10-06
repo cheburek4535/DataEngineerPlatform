@@ -308,6 +308,17 @@ services:
     # Выполняем rpk команды и сразу завершаем работу
     entrypoint: [ 'sh', '-c', 'rpk topic create weather.raw --brokers redpanda:9092 || true && rpk topic create air_quality.raw --brokers redpanda:9092 || true' ]
 
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    ports:
+      - "27017:21027"
+    volumes:
+      - mongo_Data:/data/db
+
   airflow-webserver:
     <<: *airflow-common
     command: webserver
@@ -485,6 +496,7 @@ volumes:
   clickhouse_data:
   grafana_data:
   minio_data:
+  mongo_data:
   redpanda:
     driver: local
 
