@@ -22,7 +22,6 @@ def get_currency() -> dict:
 
         save_raw_json(bucket="raw-data", prefix="currency", data=data)
 
-        # Отправляем в Kafka
         logger.info("Sending raw currency data to Kafka...")
         success = send_message(
             topic='currencies.raw',
@@ -34,7 +33,7 @@ def get_currency() -> dict:
             raise Exception("Failed to send data to Kafka")
 
         logger.info(f"Successfully sent currency data to Kafka for date: {data.get('Date')}")
-        send_alert_sync("✅ Данные о курсах валют успешно отправлены в Kafka")
+        send_alert_sync("Данные о курсах валют успешно отправлены в Kafka")
         return data
 
     except Exception as e:
