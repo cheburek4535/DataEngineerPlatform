@@ -1,3 +1,5 @@
+from enum import unique
+
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy import Integer, Column, DateTime, ForeignKey, Float, String, Numeric, Boolean, SmallInteger, \
     UniqueConstraint
@@ -226,7 +228,7 @@ class CurrencyHistory(Base):
     __tablename__ = 'currency_history'
     id: Mapped[int] = Column(Integer, primary_key=True, index=True)
     name: Mapped[str] = Column(String(64), index=True, nullable=False)
-    code: Mapped[str] = Column(String(3), nullable=False)
+    code: Mapped[str] = Column(String(3), nullable=False, index=True)
     value_in_rubles: Mapped[decimal.Decimal] = Column(Numeric(precision=16, scale=6), index=True, nullable=False)
     timestamp: Mapped[datetime] = Column(DateTime(timezone=True), server_default=func.now())
 
@@ -234,7 +236,7 @@ class Currency(Base):
     __tablename__ = 'currencies'
     id : Mapped[int] = Column(Integer, primary_key=True, index=True)
     name: Mapped[str] = Column(String(64), index=True, nullable=False)
-    code: Mapped[str] = Column(String(3), nullable=False)
+    code: Mapped[str] = Column(String(3), nullable=False, unique=True, index=True)
     value_in_rubles: Mapped[decimal.Decimal] = Column(Numeric(precision=16, scale=6), index=True, nullable=False)
     created_at: Mapped[datetime] = Column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = Column(DateTime(timezone=True), nullable=True, onupdate=func.now())
