@@ -3,11 +3,13 @@ package kafka.integration.db;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kafka.integration.models.AQ;
+import kafka.integration.models.Currency;
 import kafka.integration.models.Weather;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +50,7 @@ public class DBManager {
 
         } catch (SQLException e) {
             log.error("Ошибка при сохранении погоды", e);;
-            throw new RuntimeException("Database weather error: " + e.getMessage());
+            throw new RuntimeException("Database weather error: " + e.getMessage(), e);
         }
     }
     public static boolean saveAnomalies(List<Weather.AnomaliesResponse> anomalies) {
@@ -98,7 +100,7 @@ on conflict (location_id) do update set
 
         } catch (SQLException e) {
            log.error("Ошибка при сохранении аномалий", e);
-           throw new RuntimeException("Database anomalies error: " + e.getMessage());
+           throw new RuntimeException("Database anomalies error: " + e.getMessage(), e);
         }
     }
     public static void saveAQ(List<AQ.AQStructured> batch) {
@@ -130,7 +132,120 @@ on conflict (location_id) do update set
 
         } catch (Exception e) {
             log.error("Save AQ in DB error", e);
-            throw new RuntimeException("Database AQ error: " + e.getMessage());
+            throw new RuntimeException("Database AQ error: " + e.getMessage(), e);
         }
     }
+
+    public static List<Currency.CurrencyEntity> saveCurrencies(List<Currency.CurrencyStructured> batch) {
+        List<Currency.CurrencyEntity> saved = new ArrayList<>();
+        String sql = """
+                insert into currencies (name, code, value_in_rubles) values (?, ?, ?)
+                on conflict (code) do update set value_in_rubles = EXCLUDED.value_in_rubles
+                returning id, code, name, value_in_rubles
+                """;
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+            conn.setAutoCommit(false);
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                for (Currency.CurrencyStructured currency : batch) {
+                    ps.setString(1, currency.name());
+                    ps.setString(2, currency.code());
+                    ps.setBigDecimal(3, currency.valueInRubles());
+                    try (ResultSet rs = ps.executeQuery()) {
+                        if (rs.next()) {
+                            saved.add(new Currency.CurrencyEntity(
+                                    rs.getInt("id"),
+                                    rs.getString("code"),
+                                    rs.getString("name"),
+                                    rs.getBigDecimal("value_in_rubles")
+                            ));
+                        }
+                    }
+                }
+                conn.commit();
+                return saved;
+            } catch (SQLException e) {
+                conn.rollback();
+                throw e;
+            }
+        } catch (Exception e) {
+            log.error("Currency batch save error", e);
+            throw new RuntimeException("Database currency error: " + e.getMessage(), e);
+        }
+    }
+
+    public static boolean saveCurrenciesHistory(List<Currency.CurrencyStructured> batch) {
+        String sql = "insert into currency_history (name, code, value_in_rubles) values (?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            int successful = 0;
+            for (Currency.CurrencyStructured currency : batch) {
+                ps.setString(1, currency.name());
+                ps.setString(2, currency.code());
+                ps.setBigDecimal(3, currency.valueInRubles());
+                ps.addBatch();
+                successful++;
+            }
+            if (successful > 0) {
+                ps.executeBatch();
+                log.info("Saved currency history batch in DB with {} records", successful);
+                return true;
+            }
+        } catch (Exception e) {
+            log.error("Currency history batch save error", e);
+            throw new RuntimeException("Database currency history error: " + e.getMessage(), e);
+        }
+        return false;
+    }
+
+    public static List<Currency.CurrencyStructured> getCurrencyHistory(String code, Instant since) {
+        List<Currency.CurrencyStructured> result = new ArrayList<>();
+        String sql = """
+                select code, name, value_in_rubles from currency_history
+                where code = ? and timestamp > ?
+                """;
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+        PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, code);
+            ps.setTimestamp(2, Timestamp.from(since));
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    result.add(new Currency.CurrencyStructured(
+                            rs.getString("code"),
+                            rs.getString("name"),
+                            rs.getBigDecimal("value_in_rubles")
+                    ));
+                }
+            }
+            return result;
+        } catch (Exception e) {
+            log.error("Currency history data get error", e);
+            throw new RuntimeException("Database currency history get error: " + e.getMessage(), e);
+        }
+    }
+    public static void saveCurrencySharpChanges(List<Currency.SharpChange> batch) {
+        String sql = "insert into currency_sharp_changes (change_percents, value_in_rubles, previous_value, currency_id) values (?, ?, ?, ?)";
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+        PreparedStatement ps = conn.prepareStatement(sql)) {
+            int successful = 0;
+            for (var sc : batch) {
+                ps.setBigDecimal(1, sc.changePercents());
+                ps.setBigDecimal(2, sc.valueInRubles());
+                ps.setBigDecimal(3, sc.previousValue());
+                ps.setInt(4, sc.currencyId());
+
+                ps.addBatch();
+                successful++;
+            }
+            if (successful > 0) {
+                ps.executeBatch();
+                log.info("Successfully saved currency sharp changes batch in DB");
+            }
+        } catch (Exception e) {
+            log.error("Currency sharp changes saved error", e);
+            throw new RuntimeException("Database sharp changes saved error: " + e.getMessage(), e);
+        }
+    }
+
 }

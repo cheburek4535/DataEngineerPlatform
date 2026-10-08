@@ -17,6 +17,8 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 import java.util.Properties;
 
+import static kafka.integration.consumers.CurrencyConsumer.processMsg;
+
 public class Main {
 
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -76,6 +78,19 @@ public class Main {
                 }).filter((key, value) -> value != null);
 
                 rawAQKStream.process(() -> new BatchingProcessor<>(50, AQConsumer::processAQ));
+                return true;
+            case "currencies.raw":
+                KStream<String, Map<String, Object>> rawCurrenciesStream = stream.mapValues(value -> {
+                    try {
+                        log.info("Catch currencies JSON: {}", value);
+                        return mapper.readValue(value, new TypeReference<Map<String, Object>>() {});
+                    } catch (Exception e) {
+                        log.error("Currencies JSON parse error", e);
+                        return null;
+                    }
+                }).filter((key, value) -> value != null);
+
+                rawCurrenciesStream.foreach((key, value) -> processMsg(value));
                 return true;
 
             default:
