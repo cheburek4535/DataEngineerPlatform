@@ -1,9 +1,11 @@
 package kafka.integration.consumers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import kafka.integration.db.DBManager;
 import kafka.integration.models.Weather;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -16,20 +18,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
-import static kafka.integration.db.DBManager.*;
-
+@Service
 public class WeatherConsumer {
+    private final DBManager dbManager;
     private final static ObjectMapper mapper = new ObjectMapper();
     private final static HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
     private final static Logger log = LoggerFactory.getLogger(WeatherConsumer.class);
 
-    public static void processBatch(List<Weather.RawWeather> batch) {
+    public WeatherConsumer(DBManager dbManager) {
+        this.dbManager = dbManager;
+    }
+    public void processBatch(List<Weather.RawWeather> batch) {
 
         log.info("Starting to process batch of {} records", batch.size());
         List<Map<String, Object>> goBatch = new ArrayList<>();
 
-        List<Weather.RawWeather> saved = saveWeather(batch);
+        List<Weather.RawWeather> saved = dbManager.saveWeather(batch);
         if (saved == null || saved.isEmpty()) {
             log.error("Погодный батч не сохранился, поэтому прерываем обработку");
             return ;
@@ -63,7 +67,7 @@ public class WeatherConsumer {
         }
 
     }
-    private static boolean checkAnomaliesGo(List<Map<String, Object>> batch) {
+    private boolean checkAnomaliesGo(List<Map<String, Object>> batch) {
         String jsonBody = null;
         try {
             jsonBody = mapper.writeValueAsString(batch);
@@ -104,7 +108,7 @@ public class WeatherConsumer {
             return true;
         }
         List<Weather.AnomaliesResponse> anomalies = result.result();
-        boolean saved = saveAnomalies(anomalies);
+        boolean saved = dbManager.saveAnomalies(anomalies);
         if (!saved) {
             log.warn("Батч Go не был сохранен");
             return false;

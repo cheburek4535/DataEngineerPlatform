@@ -13,12 +13,17 @@ import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 import java.util.Map;
 import java.util.Properties;
 
 import static kafka.integration.consumers.CurrencyConsumer.processMsg;
 
+@SpringBootApplication
+@ConfigurationPropertiesScan
 public class Main {
 
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -26,6 +31,8 @@ public class Main {
     private static final StreamsBuilder builder = new StreamsBuilder();
 
     static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
+
         Properties props = new Properties();
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, "weather-consumer-app");
 

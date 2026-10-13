@@ -1,29 +1,36 @@
 plugins {
     id("java")
-    id("application")
-    id("com.gradleup.shadow") version "9.6.1"
+    id("org.springframework.boot") version "3.4.3"
+    id("io.spring.dependency-management") version "1.1.7"
 }
 
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(25))
+    }
+}
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:6.0.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
+    runtimeOnly("org.postgresql:postgresql")
+
+    implementation("org.apache.kafka:kafka-streams")
+    implementation("org.springframework.kafka:spring-kafka")
+
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
-    implementation("org.apache.kafka:kafka-streams:3.7.0")
-    implementation("ch.qos.logback:logback-classic:1.5.16")
-    implementation("org.postgresql:postgresql:42.7.2")
 }
 
 tasks.test {
     useJUnitPlatform()
-}
-application {
-    mainClass = "kafka.integration.Main"
 }

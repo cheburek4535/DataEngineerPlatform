@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static kafka.integration.db.DBManager.*;
 
 public class CurrencyConsumer {
     private static final Logger log = LoggerFactory.getLogger(CurrencyConsumer.class);
@@ -76,7 +75,8 @@ public class CurrencyConsumer {
         if (rates.isEmpty()) {
             return null;
         }
-        BigDecimal avgRate = rates.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal sum = rates.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal avgRate = rates.isEmpty() ? BigDecimal.ZERO : sum.divide(BigDecimal.valueOf(rates.size()), 4, RoundingMode.HALF_EVEN);
         BigDecimal threshold = BigDecimal.valueOf(0.03);
         boolean isSharpChange = (valueRub.subtract(avgRate).abs()).compareTo(threshold.multiply(avgRate)) > 0;
         if (!isSharpChange) {

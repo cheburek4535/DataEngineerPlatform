@@ -1,22 +1,28 @@
 package kafka.integration.consumers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import kafka.integration.db.DBManager;
 import kafka.integration.models.AQ;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Instant;
 import java.util.*;
 
-import static kafka.integration.db.DBManager.saveAQ;
-
+@Service
 public class AQConsumer {
+    private final DBManager dbManager;
     private final static Logger log = LoggerFactory.getLogger(AQConsumer.class);
     private final static ObjectMapper mapper = new ObjectMapper();
 
-    public static void processAQ(List<Map<String, Object>> batch) {
+    public AQConsumer(DBManager dbManager) {
+        this.dbManager = dbManager;
+    }
+
+    public void processAQ(List<Map<String, Object>> batch) {
         List<AQ.AQStructured> measurements = new ArrayList<>();
         for (Map<String, Object> aq : batch) {
             Integer RawlocId = (Integer) aq.get("location_id");
@@ -32,11 +38,11 @@ public class AQConsumer {
             measurements.add(transformedAQ);
         }
         if (!measurements.isEmpty()) {
-            saveAQ(measurements);
+            dbManager.saveAQ(measurements);
             log.info("AQ batch process ready");
         }
     }
-    private static AQ.AQStructured transformAQ(Map<String, Object> aq) {
+    private AQ.AQStructured transformAQ(Map<String, Object> aq) {
         Object locIdRaw = aq.get("location_id");
         if (!(locIdRaw instanceof Number locId) || (int) locId <= 0) {
             return null;
