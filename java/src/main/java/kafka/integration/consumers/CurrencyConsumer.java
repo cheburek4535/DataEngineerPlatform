@@ -1,8 +1,10 @@
 package kafka.integration.consumers;
 
+import kafka.integration.db.DBManager;
 import kafka.integration.models.Currency;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -12,11 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
+@Service
 public class CurrencyConsumer {
     private static final Logger log = LoggerFactory.getLogger(CurrencyConsumer.class);
 
-    public static void processMsg(Map<String, Object> rawCurrencyMap) {
+    private final DBManager dbManager;
+
+    public CurrencyConsumer(DBManager dbManager) {
+        this.dbManager = dbManager;
+    }
+
+    public void processMsg(Map<String, Object> rawCurrencyMap) {
         List<Currency.CurrencyStructured> structuredCurrencies = new ArrayList<>();
         rawCurrencyMap.forEach((code, v) -> {
             if (!(v instanceof Map<?, ?> parsed)) {
@@ -34,22 +42,19 @@ public class CurrencyConsumer {
             Currency.CurrencyStructured structured = new Currency.CurrencyStructured(code, name, valueInRub);
             structuredCurrencies.add(structured);
         });
-        List<Currency.CurrencyEntity> savedCurrency = saveCurrencies(structuredCurrencies);
+        List<Currency.CurrencyEntity> savedCurrency = dbManager.saveCurrencies(structuredCurrencies);
         if (savedCurrency == null || savedCurrency.isEmpty()) {
             return;
         }
-        boolean historySaved = saveCurrenciesHistory(structuredCurrencies);
-        if (!historySaved) {
-            return;
-        }
+        dbManager.saveCurrenciesHistory(structuredCurrencies);
         var sharpChanges = checkSharpChanges(savedCurrency);
         if (!sharpChanges.isEmpty()) {
-            saveCurrencySharpChanges(sharpChanges);
+            dbManager.saveCurrencySharpChanges(sharpChanges);
         }
         log.info("Currency batch successfully processed");
     }
 
-    private static List<Currency.SharpChange> checkSharpChanges(List<Currency.CurrencyEntity> data) {
+    private List<Currency.SharpChange> checkSharpChanges(List<Currency.CurrencyEntity> data) {
         List<Currency.SharpChange> sharpChanges = new ArrayList<>();
         for (var currency : data) {
             Currency.SharpChange sharpChange = compareRates(currency);
@@ -59,14 +64,14 @@ public class CurrencyConsumer {
         }
         return sharpChanges;
     }
-    private static Currency.SharpChange compareRates(Currency.CurrencyEntity currency) {
+    private Currency.SharpChange compareRates(Currency.CurrencyEntity currency) {
         int radiusHours = 24;
         String code = currency.code();
         BigDecimal valueRub = currency.valueInRubles();
 
         Instant since = Instant.now().minus(Duration.ofHours(radiusHours));
 
-        List<Currency.CurrencyStructured> historyRates = getCurrencyHistory(code, since);
+        List<Currency.CurrencyStructured> historyRates = dbManager.getCurrencyHistory(code, since);
         List<BigDecimal> rates = new ArrayList<>();
 
         for (var hr : historyRates) {
